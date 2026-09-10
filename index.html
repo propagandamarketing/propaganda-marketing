@@ -62,9 +62,10 @@ body {
 margin: 0;
 background: var(--black);
 color: var(--paper);
-font-family: 'Archivo', sans-serif;
-font-size: 17px;
-line-height: 1.55;
+font-family: 'Anton', sans-serif;
+font-size: 19px;
+line-height: 1.25;
+letter-spacing: 0.01em;
 -webkit-font-smoothing: antialiased;
 }
 
@@ -118,8 +119,8 @@ flex-shrink: 0;
 header nav a {
 text-decoration: none;
 color: var(--paper-dim);
-font-size: 14px;
-font-weight: 600;
+font-size: 16px;
+font-weight: 400;
 border-bottom: 1px solid transparent;
 transition: border-color 0.15s ease, color 0.15s ease;
 }
@@ -136,9 +137,9 @@ position: relative;
 overflow: hidden;
 }
 .hero .stamp {
-font-family: 'Archivo', sans-serif;
-font-size: 13px;
-font-weight: 700;
+font-family: 'Anton', sans-serif;
+font-size: 15px;
+font-weight: 400;
 color: var(--red);
 border: 1.5px solid var(--red);
 display: inline-block;
@@ -180,22 +181,23 @@ transform: none;
 }
 
 .hero .lede {
-max-width: 780px;
+max-width: 100%;
 margin-top: 32px;
-font-family: 'Archivo', sans-serif;
-font-size: clamp(20px, 2.2vw, 25px);
-line-height: 1.35;
-font-weight: 700;
-color: var(--paper-dim);
-}
-.hero .lede strong {
+font-family: 'Anton', sans-serif;
+font-size: clamp(16px, 2.1vw, 32px);
+line-height: 1.25;
+font-weight: 400;
 color: var(--paper);
-font-weight: 900;
+white-space: nowrap;
+}
+.hero .lede .lede-second {
+color: var(--paper);
 display: block;
 margin-top: 12px;
-font-size: clamp(22px, 2.5vw, 28px);
+font-size: clamp(15px, 1.8vw, 25px);
+white-space: normal;
 }
-.hero .lede strong .thin { font-weight: 400; }
+.hero .lede .lede-second .thin { font-weight: 400; }
 
 .hero .cta-row {
 margin-top: 40px;
@@ -206,8 +208,8 @@ flex-wrap: wrap;
 .btn {
 display: inline-block;
 padding: 15px 28px;
-font-weight: 700;
-font-size: 15px;
+font-family: 'Anton', sans-serif;
+font-size: 17px;
 text-decoration: none;
 border: 1.5px solid var(--paper);
 transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
@@ -244,8 +246,8 @@ overflow: hidden;
 
 .partners-label {
 text-align: center;
-font-size: 11px;
-font-weight: 700;
+font-family: 'Anton', sans-serif;
+font-size: 13px;
 text-transform: uppercase;
 letter-spacing: 0.15em;
 color: #777777;
@@ -332,23 +334,16 @@ animation: none;
 
 /* ---------- SEZIONE VIGNETTA CONCEPT ---------- */
 .concept-vignette {
-padding: 80px 0;
+padding: 0;
 border-bottom: 1px solid var(--line);
 background: var(--black-deep);
-}
-.concept-vignette .vignette-container {
-max-width: 960px;
-margin: 0 auto;
-border: 1.5px solid var(--line);
-background: var(--black);
-padding: 16px;
-box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 .concept-vignette img {
 width: 100%;
 height: auto;
 display: block;
-border: 1px solid var(--line);
+border: none;
+box-shadow: none;
 }
 
 /* ---------- Manifesto statement ---------- */
@@ -361,7 +356,7 @@ border-bottom: 1px solid var(--line);
 font-family: 'Anton', sans-serif;
 text-transform: none;
 font-size: clamp(24px, 3.4vw, 38px);
-line-height: 1.28;
+line-height: 1.25;
 max-width: 880px;
 color: var(--paper);
 }
@@ -385,10 +380,12 @@ font-size: clamp(34px, 5vw, 54px);
 color: var(--paper);
 }
 .articles .section-head p {
-color: var(--rust);
-font-size: 15px;
-max-width: 320px;
+color: var(--paper);
+font-size: 22px;
+max-width: 700px;
+white-space: nowrap;
 margin: 0;
+line-height: 1.2;
 }
 
 .article-list {
@@ -411,17 +408,17 @@ letter-spacing: 0.05em;
 padding-top: 2px;
 }
 .article h3 {
-font-size: 28px;
+font-size: 30px;
 color: var(--paper);
 }
 .article p {
-color: var(--paper-dim);
+color: var(--paper);
 margin: 0;
-font-size: 16px;
+font-size: 18px;
 max-width: 46ch;
 }
 
-/* ---------- Articles Close Fluid Mobile-First ---------- */
+/* ---------- Articles Close (Normal style, rosso sull'ultima risposta) ---------- */
 .articles-close {
 margin-top: 56px;
 padding-top: 40px;
@@ -430,16 +427,15 @@ width: 100%;
 }
 .articles-close p {
 margin: 0 0 12px;
-font-family: 'Archivo', sans-serif;
-font-size: clamp(18px, 2vw, 24px);
+font-family: 'Anton', sans-serif;
+font-size: clamp(20px, 2.2vw, 26px);
 font-weight: 400;
-line-height: 1.35;
-color: var(--paper-dim);
+line-height: 1.25;
+color: var(--paper);
 font-style: normal;
 }
-.articles-close p strong {
-font-weight: 800;
-color: var(--paper);
+.articles-close p.service-right {
+  color: var(--red); /* Colore rosso nell'ultima risposta senza bold/italic */
 }
 .articles-close p:last-child { margin-bottom: 0; }
 
@@ -459,9 +455,10 @@ color: var(--paper);
 margin-bottom: 20px;
 }
 .contact .intro {
-color: var(--paper-dim);
+color: var(--paper);
 max-width: 42ch;
 margin-bottom: 32px;
+font-size: 18px;
 }
 .contact .email-link {
 display: inline-flex;
@@ -491,10 +488,11 @@ padding: 32px;
 .field:last-of-type { margin-bottom: 0; }
 label {
 display: block;
-font-size: 13px;
-font-weight: 700;
-color: var(--paper-dim);
+font-size: 15px;
+font-weight: 400;
+color: var(--paper);
 margin-bottom: 8px;
+letter-spacing: 0.05em;
 }
 input, textarea {
 width: 100%;
@@ -502,8 +500,8 @@ background: transparent;
 border: none;
 border-bottom: 1.5px solid var(--line);
 color: var(--paper);
-font-family: 'Archivo', sans-serif;
-font-size: 16px;
+font-family: 'Anton', sans-serif;
+font-size: 18px;
 padding: 10px 2px;
 }
 input:focus, textarea:focus {
@@ -518,13 +516,14 @@ min-height: 96px;
 button[type="submit"] {
 width: 100%;
 cursor: pointer;
-font-family: 'Archivo', sans-serif;
+font-family: 'Anton', sans-serif;
 }
 
 /* ---------- Footer ---------- */
 footer {
 padding: 28px 0;
 border-top: 1px solid var(--line);
+font-family: 'Archivo', sans-serif;
 font-size: 13px;
 color: var(--rust);
 }
@@ -541,6 +540,13 @@ text-decoration: none;
 footer a:hover,
 footer a:focus-visible {
 color: var(--paper-dim);
+}
+
+@media (max-width: 1250px) {
+  .hero .lede,
+  .articles .section-head p {
+    white-space: normal;
+  }
 }
 
 @media (max-width: 760px) {
@@ -626,10 +632,10 @@ header nav {
 
   <p class="lede">
     STRATEGIA, COMUNICAZIONE E MARKETING CHE TI SERVONO DAVVERO.
-    <strong>
+    <span class="lede-second">
       PROPAGANDA mette ordine, costruisce strumenti e fa
       <span class="thin">ri-</span>partire le cose.
-    </strong>
+    </span>
   </p>
 
   <div class="cta-row">
@@ -640,8 +646,81 @@ header nav {
 
   </section>
 
-  <!-- SEZIONE PARTNER SCORREVOLE -->
+  <!-- SEZIONE VIGNETTA / CONCEPT -->
+  <section class="concept-vignette">
+    <img src="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta.jpg" alt="" />
+  </section>
 
+  <section class="statement">
+    <div class="wrap">
+      <p>
+        <em>Partiamo da te:</em> da come lavori, da cosa ti serve e da cosa può davvero funzionare.
+        Costruiamo la comunicazione partendo da quello, non da un pacchetto da vendere.
+      </p>
+    </div>
+  </section>
+
+  <section class="articles" id="cosa-facciamo">
+    <div class="wrap">
+
+  <div class="section-head">
+    <h2>Cosa facciamo</h2>
+    <p>Le aree in cui lavoriamo — ma non come pacchetti.</p>
+  </div>
+
+  <div class="article-list">
+
+    <div class="article">
+      <div class="num">I</div>
+      <h3>Strategia</h3>
+      <p>Capire dove intervenire, cosa cambiare e cosa lasciare perdere.</p>
+    </div>
+
+    <div class="article">
+      <div class="num">II</div>
+      <h3>Comunicazione</h3>
+      <p>Trovare il modo giusto per raccontare quello che fai, senza trasformarlo in qualcosa che non sei.</p>
+    </div>
+
+    <div class="article">
+      <div class="num">III</div>
+      <h3>Contenuti</h3>
+      <p>Creare cose che abbiano una funzione, non semplicemente qualcosa da pubblicare.</p>
+    </div>
+
+    <div class="article">
+      <div class="num">IV</div>
+      <h3>Branding</h3>
+      <p>Dare coerenza a ciò che sei, a come ti presenti e a come vieni riconosciuto.</p>
+    </div>
+
+    <div class="article">
+      <div class="num">V</div>
+      <h3>Strumenti digitali</h3>
+      <p>Siti, landing, sistemi e automazioni solo quando migliorano davvero il lavoro.</p>
+    </div>
+
+    <div class="article">
+      <div class="num">VI</div>
+      <h3>Marketing</h3>
+      <p>Portare tutto questo davanti alle persone giuste, con attività proporzionate a quello che vuoi ottenere.</p>
+    </div>
+
+  </div>
+
+  <div class="articles-close">
+    <p>La differenza fondamentale è questa:</p>
+    <p>non “questi sono i nostri servizi, scegli il tuo”.</p>
+    <p class="service-right">
+      Ma: “questo è quello che sappiamo fare; vediamo insieme quale parte ti serve davvero.”
+    </p>
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- SEZIONE PARTNER SCORREVOLE -->
   <section class="partners-banner">
     <div class="partners-label">Hanno ri-partito con noi</div>
 
@@ -715,87 +794,6 @@ header nav {
     </div>
 
   </div>
-</div>
-
-  </section>
-
-  <!-- SEZIONE VIGNETTA / CONCEPT (Inserita subito dopo il banner dei partner) -->
-  <section class="concept-vignette">
-    <div class="wrap">
-      <div class="vignette-container">
-        <img src="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta2.jpg" alt="Ufficio marketing in affitto" />
-      </div>
-    </div>
-  </section>
-
-  <section class="statement">
-    <div class="wrap">
-      <p>
-        <em>Partiamo da te:</em> da come lavori, da cosa ti serve e da cosa può davvero funzionare.
-        Costruiamo la comunicazione partendo da quello, non da un pacchetto da vendere.
-      </p>
-    </div>
-  </section>
-
-  <section class="articles" id="cosa-facciamo">
-    <div class="wrap">
-
-  <div class="section-head">
-    <h2>Cosa facciamo</h2>
-    <p>Le aree in cui lavoriamo — ma non come pacchetti.</p>
-  </div>
-
-  <div class="article-list">
-
-    <div class="article">
-      <div class="num">I</div>
-      <h3>Strategia</h3>
-      <p>Capire dove intervenire, cosa cambiare e cosa lasciare perdere.</p>
-    </div>
-
-    <div class="article">
-      <div class="num">II</div>
-      <h3>Comunicazione</h3>
-      <p>Trovare il modo giusto per raccontare quello che fai, senza trasformarlo in qualcosa che non sei.</p>
-    </div>
-
-    <div class="article">
-      <div class="num">III</div>
-      <h3>Contenuti</h3>
-      <p>Creare cose che abbiano una funzione, non semplicemente qualcosa da pubblicare.</p>
-    </div>
-
-    <div class="article">
-      <div class="num">IV</div>
-      <h3>Branding</h3>
-      <p>Dare coerenza a ciò che sei, a come ti presenti e a come vieni riconosciuto.</p>
-    </div>
-
-    <div class="article">
-      <div class="num">V</div>
-      <h3>Strumenti digitali</h3>
-      <p>Siti, landing, sistemi e automazioni solo quando migliorano davvero il lavoro.</p>
-    </div>
-
-    <div class="article">
-      <div class="num">VI</div>
-      <h3>Marketing</h3>
-      <p>Portare tutto questo davanti alle persone giuste, con attività proporzionate a quello che vuoi ottenere.</p>
-    </div>
-
-  </div>
-
-  <div class="articles-close">
-    <p>La differenza fondamentale è questa:</p>
-    <p>non <strong>“questi sono i nostri servizi, scegli il tuo”</strong>.</p>
-    <p>
-      Ma:
-      <strong>
-        “questo è quello che sappiamo fare; vediamo insieme quale parte ti serve davvero.”
-      </strong>
-    </p>
-  </div>
-
 </div>
 
   </section>
