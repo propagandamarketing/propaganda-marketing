@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://propagandamarketing.online/sitemap.xml
