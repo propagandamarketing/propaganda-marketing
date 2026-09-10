@@ -126,14 +126,25 @@
     display: block;
     animation-delay: 0.12s;
   }
-  .hero h1 span { display: block; opacity: 0; transform: translateY(14px); animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards; }
+  .hero h1 span {
+    display: block;
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
+  }
   .hero h1 span:nth-child(2) { animation-delay: 0.1s; }
 
   @keyframes rise {
     to { opacity: 1; transform: translateY(0); }
   }
+
   @media (prefers-reduced-motion: reduce) {
-    .hero h1, .hero h1 span { animation: none; opacity: 1; transform: none; }
+    .hero h1,
+    .hero h1 span {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 
   .hero .lede {
@@ -174,88 +185,123 @@
     border-color: var(--red);
     color: var(--paper);
   }
-  .btn-primary:hover, .btn-primary:focus-visible { background: var(--red-dark); border-color: var(--red-dark); }
+  .btn-primary:hover,
+  .btn-primary:focus-visible {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+  }
   .btn-ghost { color: var(--paper); }
-  .btn-ghost:hover, .btn-ghost:focus-visible { background: var(--paper); color: var(--black); }
-  .btn:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+  .btn-ghost:hover,
+  .btn-ghost:focus-visible {
+    background: var(--paper);
+    color: var(--black);
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+  }
 
   /* ---------- BANNER SCORREVOLE PARTNERSHIP ---------- */
   .partners-banner {
-    padding: 36px 0;
-    border-top: 1px solid var(--line);
-    background: var(--black-deep);
+    padding: 24px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    background: #ffffff;
     overflow: hidden;
   }
 
   .partners-label {
     text-align: center;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--rust);
-    margin-bottom: 24px;
+    color: #777777;
+    margin-bottom: 16px;
   }
 
   .marquee-container {
-    display: flex;
+    width: 100%;
     overflow: hidden;
     user-select: none;
     position: relative;
-    /* Effetto sfumatura ai lati */
-    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
   }
 
   .marquee-track {
     display: flex;
     width: max-content;
+    animation: marquee-scroll 32s linear infinite;
   }
 
   .marquee-content {
     display: flex;
     align-items: center;
-    gap: 72px;
-    padding-right: 72px;
-    animation: marquee-scroll 30s linear infinite;
+    gap: 64px;
+    padding-right: 64px;
+    flex-shrink: 0;
   }
 
-  /* Si ferma se l'utente ci passa sopra col mouse */
-  .marquee-container:hover .marquee-content {
+  .marquee-container:hover .marquee-track {
     animation-play-state: paused;
   }
 
+  /* Area comune di ogni logo */
   .partner-logo {
+    width: 180px;
+    height: 60px;
+    flex: 0 0 180px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 38px;
+    overflow: visible;
   }
 
-  .partner-logo svg,
+  /* PNG trasparente */
   .partner-logo img {
+    display: block;
+    width: 100%;
     height: 100%;
-    width: auto;
-    fill: var(--rust);
-    transition: fill 0.25s ease, opacity 0.25s ease;
-    opacity: 0.7;
+    max-width: 180px;
+    max-height: 60px;
+    object-fit: contain;
+    transform: scale(var(--logo-scale, 1));
+    transform-origin: center center;
+    opacity: 0.85;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  .partner-logo:hover svg,
   .partner-logo:hover img {
-    fill: var(--paper);
     opacity: 1;
   }
 
+  /* Loop continuo */
   @keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 
-  /* Disabilita animazione se l'utente preferisce ridurre i movimenti */
   @media (prefers-reduced-motion: reduce) {
-    .marquee-content { animation: none; }
-    .marquee-container { overflow-x: auto; }
+    .marquee-track {
+      animation: none;
+    }
   }
 
   /* ---------- Manifesto statement ---------- */
@@ -381,8 +427,14 @@
     border-bottom: 2px solid var(--red);
     padding-bottom: 4px;
   }
-  .contact .email-link:hover, .contact .email-link:focus-visible { color: var(--red); }
-  .contact .email-link:focus-visible { outline: 2px solid var(--red); outline-offset: 6px; }
+  .contact .email-link:hover,
+  .contact .email-link:focus-visible {
+    color: var(--red);
+  }
+  .contact .email-link:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 6px;
+  }
 
   form {
     border: 1.5px solid var(--line);
@@ -411,7 +463,10 @@
     outline: none;
     border-bottom-color: var(--red);
   }
-  textarea { resize: vertical; min-height: 96px; }
+  textarea {
+    resize: vertical;
+    min-height: 96px;
+  }
   .field-submit { margin-top: 28px; }
   button[type="submit"] {
     width: 100%;
@@ -436,17 +491,55 @@
     color: var(--rust);
     text-decoration: none;
   }
-  footer a:hover, footer a:focus-visible {
+  footer a:hover,
+  footer a:focus-visible {
     color: var(--paper-dim);
   }
 
   @media (max-width: 760px) {
     .wrap { padding: 0 22px; }
-    .article { grid-template-columns: 1fr; gap: 8px; }
-    .article .num { padding-top: 0; }
-    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-    header nav { display: none; }
-    .marquee-content { gap: 48px; padding-right: 48px; }
+
+    .article {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .article .num {
+      padding-top: 0;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    header nav {
+      display: none;
+    }
+
+    .partners-banner {
+      padding: 20px 0;
+    }
+
+    .partners-label {
+      margin-bottom: 12px;
+    }
+
+    .marquee-content {
+      gap: 48px;
+      padding-right: 48px;
+    }
+
+    .partner-logo {
+      width: 150px;
+      height: 52px;
+      flex-basis: 150px;
+    }
+
+    .partner-logo img {
+      max-width: 150px;
+      max-height: 52px;
+    }
   }
 </style>
 </head>
@@ -456,10 +549,13 @@
   <div class="wrap">
     <div class="wordmark">
       <span class="mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F2EEE4" stroke-width="3" stroke-linecap="square"><path d="M4 12 L9 17 L20 5"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F2EEE4" stroke-width="3" stroke-linecap="square">
+          <path d="M4 12 L9 17 L20 5"/>
+        </svg>
       </span>
       PROPAGANDA<span>MARKETING</span>
     </div>
+
     <nav aria-label="Navigazione principale">
       <a href="#cosa-facciamo">Cosa facciamo</a>
       &nbsp;&nbsp;&nbsp;
@@ -473,14 +569,20 @@
   <section class="hero">
     <div class="wrap">
       <span class="stamp">Studio di comunicazione e marketing</span>
+
       <h1>
         <span>PROPAGANDA</span>
         <span class="line2">MARKETING</span>
       </h1>
+
       <p class="lede">
         STRATEGIA, COMUNICAZIONE E MARKETING CHE TI SERVONO DAVVERO.
-        <strong>PROPAGANDA mette ordine, costruisce strumenti e fa <span class="thin">ri-</span>partire le cose.</strong>
+        <strong>
+          PROPAGANDA mette ordine, costruisce strumenti e fa
+          <span class="thin">ri-</span>partire le cose.
+        </strong>
       </p>
+
       <div class="cta-row">
         <a class="btn btn-primary" href="#contatti">Scrivici</a>
         <a class="btn btn-ghost" href="#cosa-facciamo">Cosa facciamo</a>
@@ -491,46 +593,66 @@
   <!-- SEZIONE PARTNER SCORREVOLE -->
   <section class="partners-banner">
     <div class="partners-label">Hanno ri-partito con noi</div>
-    
+
     <div class="marquee-container">
       <div class="marquee-track">
-        
+
         <!-- BLOCCO LOGHI 1 -->
         <div class="marquee-content">
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M10 30 L20 10 L30 30 Z M40 10 H55 V30 H40 Z M65 10 L80 30 H65 Z M90 10 H110 V15 H90 Z"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner01.png" alt="" aria-hidden="true">
           </div>
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="12"/><rect x="40" y="10" width="15" height="20"/><polygon points="70,10 85,30 70,30"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner02.png" alt="" aria-hidden="true">
           </div>
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M5 20 Q 20 5, 35 20 T 65 20 M75 10 H110 V30 H75 Z"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner03.png" alt="" aria-hidden="true">
           </div>
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="20" height="20" rx="4"/><circle cx="50" cy="20" r="10"/><path d="M70 10 L90 10 L80 30 Z"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner04.png" alt="" aria-hidden="true">
           </div>
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 H30 V30 H10 Z M45 10 L60 25 L75 10 M90 10 H110 V20 H90 Z"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner05.png" alt="" aria-hidden="true">
           </div>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner06.png" alt="" aria-hidden="true">
+          </div>
+
         </div>
 
-        <!-- BLOCCO LOGHI 2 (Duplicato esatto per scorrimento continuo) -->
+        <!-- BLOCCO LOGHI 2 — DUPLICATO PER LOOP CONTINUO -->
         <div class="marquee-content" aria-hidden="true">
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M10 30 L20 10 L30 30 Z M40 10 H55 V30 H40 Z M65 10 L80 30 H65 Z M90 10 H110 V15 H90 Z"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner01.png" alt="">
           </div>
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="12"/><rect x="40" y="10" width="15" height="20"/><polygon points="70,10 85,30 70,30"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner02.png" alt="">
           </div>
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M5 20 Q 20 5, 35 20 T 65 20 M75 10 H110 V30 H75 Z"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner03.png" alt="">
           </div>
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="20" height="20" rx="4"/><circle cx="50" cy="20" r="10"/><path d="M70 10 L90 10 L80 30 Z"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner04.png" alt="">
           </div>
-          <div class="partner-logo">
-            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 H30 V30 H10 Z M45 10 L60 25 L75 10 M90 10 H110 V20 H90 Z"/></svg>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner05.png" alt="">
           </div>
+
+          <div class="partner-logo" style="--logo-scale: 1;">
+            <img src="logos/partner06.png" alt="">
+          </div>
+
         </div>
 
       </div>
@@ -539,65 +661,91 @@
 
   <section class="statement">
     <div class="wrap">
-      <p><em>Partiamo da te:</em> da come lavori, da cosa ti serve e da cosa può davvero funzionare. Costruiamo la comunicazione partendo da quello, non da un pacchetto da vendere.</p>
+      <p>
+        <em>Partiamo da te:</em> da come lavori, da cosa ti serve e da cosa può davvero funzionare.
+        Costruiamo la comunicazione partendo da quello, non da un pacchetto da vendere.
+      </p>
     </div>
   </section>
 
   <section class="articles" id="cosa-facciamo">
     <div class="wrap">
+
       <div class="section-head">
         <h2>Cosa facciamo</h2>
         <p>Le aree in cui lavoriamo — ma non come pacchetti.</p>
       </div>
 
       <div class="article-list">
+
         <div class="article">
           <div class="num">I</div>
           <h3>Strategia</h3>
           <p>Capire dove intervenire, cosa cambiare e cosa lasciare perdere.</p>
         </div>
+
         <div class="article">
           <div class="num">II</div>
           <h3>Comunicazione</h3>
           <p>Trovare il modo giusto per raccontare quello che fai, senza trasformarlo in qualcosa che non sei.</p>
         </div>
+
         <div class="article">
           <div class="num">III</div>
           <h3>Contenuti</h3>
           <p>Creare cose che abbiano una funzione, non semplicemente qualcosa da pubblicare.</p>
         </div>
+
         <div class="article">
           <div class="num">IV</div>
           <h3>Branding</h3>
           <p>Dare coerenza a ciò che sei, a come ti presenti e a come vieni riconosciuto.</p>
         </div>
+
         <div class="article">
           <div class="num">V</div>
           <h3>Strumenti digitali</h3>
           <p>Siti, landing, sistemi e automazioni solo quando migliorano davvero il lavoro.</p>
         </div>
+
         <div class="article">
           <div class="num">VI</div>
           <h3>Marketing</h3>
           <p>Portare tutto questo davanti alle persone giuste, con attività proporzionate a quello che vuoi ottenere.</p>
         </div>
+
       </div>
 
       <div class="articles-close">
         <p>La differenza fondamentale è questa:</p>
         <p>non <strong>“questi sono i nostri servizi, scegli il tuo”</strong>.</p>
-        <p>Ma: <strong>“questo è quello che sappiamo fare; vediamo insieme quale parte ti serve davvero.”</strong></p>
+        <p>
+          Ma:
+          <strong>
+            “questo è quello che sappiamo fare; vediamo insieme quale parte ti serve davvero.”
+          </strong>
+        </p>
       </div>
+
     </div>
   </section>
 
   <section class="contact" id="contatti">
     <div class="wrap">
+
       <div class="contact-grid">
+
         <div>
           <h2>Parliamone</h2>
-          <p class="intro">Raccontaci cosa stai costruendo. Rispondiamo di persona, non con un modulo automatico che finisce in un CRM.</p>
-          <a class="email-link" href="mailto:info@propagandamarketing.online">info@propagandamarketing.online</a>
+
+          <p class="intro">
+            Raccontaci cosa stai costruendo. Rispondiamo di persona,
+            non con un modulo automatico che finisce in un CRM.
+          </p>
+
+          <a class="email-link" href="mailto:info@propagandamarketing.online">
+            info@propagandamarketing.online
+          </a>
         </div>
 
         <form action="https://formsubmit.co/info@propagandamarketing.online" method="POST">
@@ -609,18 +757,25 @@
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="Nome" required>
           </div>
+
           <div class="field">
             <label for="email">Email</label>
             <input type="email" id="email" name="Email" required>
           </div>
+
           <div class="field">
             <label for="messaggio">Messaggio</label>
             <input type="text" id="messaggio" name="Messaggio" required>
           </div>
+
           <div class="field field-submit">
-            <button type="submit" class="btn btn-primary">Invia messaggio</button>
+            <button type="submit" class="btn btn-primary">
+              Invia messaggio
+            </button>
           </div>
+
         </form>
+
       </div>
     </div>
   </section>
@@ -629,7 +784,12 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 ☑ Propaganda Marketing di Fiorillo Vincenzo — P.IVA 01843770080 — Ventimiglia (IM) — PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a></span>
+    <span>
+      © 2026 ☑ Propaganda Marketing di Fiorillo Vincenzo —
+      P.IVA 01843770080 — Ventimiglia (IM) —
+      PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a>
+    </span>
+
     <span>Comunicazione e marketing per imprese</span>
   </div>
 </footer>
