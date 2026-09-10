@@ -179,6 +179,85 @@
   .btn-ghost:hover, .btn-ghost:focus-visible { background: var(--paper); color: var(--black); }
   .btn:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
 
+  /* ---------- BANNER SCORREVOLE PARTNERSHIP ---------- */
+  .partners-banner {
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+    background: var(--black-deep);
+    overflow: hidden;
+  }
+
+  .partners-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--rust);
+    margin-bottom: 24px;
+  }
+
+  .marquee-container {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    position: relative;
+    /* Effetto sfumatura ai lati */
+    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+  }
+
+  .marquee-content {
+    display: flex;
+    align-items: center;
+    gap: 72px;
+    padding-right: 72px;
+    animation: marquee-scroll 30s linear infinite;
+  }
+
+  /* Si ferma se l'utente ci passa sopra col mouse */
+  .marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+  }
+
+  .partner-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+  }
+
+  .partner-logo svg,
+  .partner-logo img {
+    height: 100%;
+    width: auto;
+    fill: var(--rust);
+    transition: fill 0.25s ease, opacity 0.25s ease;
+    opacity: 0.7;
+  }
+
+  .partner-logo:hover svg,
+  .partner-logo:hover img {
+    fill: var(--paper);
+    opacity: 1;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+
+  /* Disabilita animazione se l'utente preferisce ridurre i movimenti */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-content { animation: none; }
+    .marquee-container { overflow-x: auto; }
+  }
+
   /* ---------- Manifesto statement ---------- */
   .statement {
     padding: 72px 0;
@@ -367,6 +446,7 @@
     .article .num { padding-top: 0; }
     .contact-grid { grid-template-columns: 1fr; gap: 48px; }
     header nav { display: none; }
+    .marquee-content { gap: 48px; padding-right: 48px; }
   }
 </style>
 </head>
@@ -404,6 +484,55 @@
       <div class="cta-row">
         <a class="btn btn-primary" href="#contatti">Scrivici</a>
         <a class="btn btn-ghost" href="#cosa-facciamo">Cosa facciamo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEZIONE PARTNER SCORREVOLE -->
+  <section class="partners-banner">
+    <div class="partners-label">Hanno ri-partito con noi</div>
+    
+    <div class="marquee-container">
+      <div class="marquee-track">
+        
+        <!-- BLOCCO LOGHI 1 -->
+        <div class="marquee-content">
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M10 30 L20 10 L30 30 Z M40 10 H55 V30 H40 Z M65 10 L80 30 H65 Z M90 10 H110 V15 H90 Z"/></svg>
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="12"/><rect x="40" y="10" width="15" height="20"/><polygon points="70,10 85,30 70,30"/></svg>
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M5 20 Q 20 5, 35 20 T 65 20 M75 10 H110 V30 H75 Z"/></svg>
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="20" height="20" rx="4"/><circle cx="50" cy="20" r="10"/><path d="M70 10 L90 10 L80 30 Z"/></svg>
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 H30 V30 H10 Z M45 10 L60 25 L75 10 M90 10 H110 V20 H90 Z"/></svg>
+          </div>
+        </div>
+
+        <!-- BLOCCO LOGHI 2 (Duplicato esatto per scorrimento continuo) -->
+        <div class="marquee-content" aria-hidden="true">
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M10 30 L20 10 L30 30 Z M40 10 H55 V30 H40 Z M65 10 L80 30 H65 Z M90 10 H110 V15 H90 Z"/></svg>
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="12"/><rect x="40" y="10" width="15" height="20"/><polygon points="70,10 85,30 70,30"/></svg>
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M5 20 Q 20 5, 35 20 T 65 20 M75 10 H110 V30 H75 Z"/></svg>
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="20" height="20" rx="4"/><circle cx="50" cy="20" r="10"/><path d="M70 10 L90 10 L80 30 Z"/></svg>
+          </div>
+          <div class="partner-logo">
+            <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 H30 V30 H10 Z M45 10 L60 25 L75 10 M90 10 H110 V20 H90 Z"/></svg>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -486,7 +615,7 @@
           </div>
           <div class="field">
             <label for="messaggio">Messaggio</label>
-            <textarea id="messaggio" name="Messaggio" required></textarea>
+            <input type="text" id="messaggio" name="Messaggio" required>
           </div>
           <div class="field field-submit">
             <button type="submit" class="btn btn-primary">Invia messaggio</button>
