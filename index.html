@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PROPAGANDA Marketing — Comunicazione personalizzata per aziende </title>
+<title>PROPAGANDA Marketing — Comunicazione personalizzata per aziende</title>
 <meta name="description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23C81E1E'/%3E%3Crect x='96' y='96' width='320' height='320' fill='none' stroke='%23F2EEE4' stroke-width='22'/%3E%3Cpath d='M155 264 L226 335 L360 175' fill='none' stroke='%23F2EEE4' stroke-width='30' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E">
 <style>
   :root {
@@ -137,12 +137,22 @@
   }
 
   .hero .lede {
-    max-width: 560px;
+    max-width: 780px;
     margin-top: 32px;
-    font-size: 19px;
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(20px, 2.2vw, 25px);
+    line-height: 1.35;
+    font-weight: 700;
     color: var(--paper-dim);
   }
-  .hero .lede strong { color: var(--paper); font-weight: 600; }
+  .hero .lede strong {
+    color: var(--paper);
+    font-weight: 900;
+    display: block;
+    margin-top: 12px;
+    font-size: clamp(22px, 2.5vw, 28px);
+  }
+  .hero .lede strong .thin { font-weight: 400; }
 
   .hero .cta-row {
     margin-top: 40px;
@@ -223,44 +233,43 @@
   .article .num {
     font-family: 'Anton', sans-serif;
     color: var(--red);
-    font-size: 15px;
-    letter-spacing: 0.04em;
-    padding-top: 6px;
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1;
+    letter-spacing: 0.05em;
+    padding-top: 2px;
   }
   .article h3 {
-    font-size: 26px;
+    font-size: 28px;
     color: var(--paper);
   }
   .article p {
     color: var(--paper-dim);
     margin: 0;
-    font-size: 15.5px;
+    font-size: 16px;
     max-width: 46ch;
   }
 
+  /* ---------- Articles Close Fluid Mobile-First ---------- */
   .articles-close {
     margin-top: 56px;
     padding-top: 40px;
     border-top: 1px solid var(--line);
-    max-width: 640px;
+    width: 100%;
   }
   .articles-close p {
-    margin: 0 0 10px;
-    font-size: 17px;
+    margin: 0 0 12px;
+    font-family: 'Archivo', sans-serif;
+    font-size: clamp(18px, 2vw, 24px);
     font-weight: 400;
-    font-style: normal;
+    line-height: 1.35;
     color: var(--paper-dim);
+    font-style: normal;
   }
-  .articles-close p:last-child { margin-bottom: 0; }
-  .articles-close .no {
-    font-style: italic;
-    color: var(--rust);
-  }
-  .articles-close .yes {
-    font-size: 19px;
-    font-weight: 600;
+  .articles-close p strong {
+    font-weight: 800;
     color: var(--paper);
   }
+  .articles-close p:last-child { margin-bottom: 0; }
 
   /* ---------- Contact ---------- */
   .contact {
@@ -337,12 +346,13 @@
     border-top: 1px solid var(--line);
     font-size: 13px;
     color: var(--rust);
+  }
+  footer .wrap {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 8px;
   }
-
   footer a {
     color: var(--rust);
     text-decoration: none;
@@ -387,8 +397,10 @@
         <span>PROPAGANDA</span>
         <span class="line2">MARKETING</span>
       </h1>
-      <p class="lede">STRATEGIA, COMUNICAZIONE E MARKETING CHE TI SERVONO DAVVERO</p>
-	<p class="lede"><strong> PROPAGANDA mette ordine, costruisce strumenti e fa partire le cose.</strong></p>
+      <p class="lede">
+        STRATEGIA, COMUNICAZIONE E MARKETING CHE TI SERVONO DAVVERO.
+        <strong>PROPAGANDA mette ordine, costruisce strumenti e fa <span class="thin">ri-</span>partire le cose.</strong>
+      </p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contatti">Scrivici</a>
         <a class="btn btn-ghost" href="#cosa-facciamo">Cosa facciamo</a>
@@ -397,7 +409,9 @@
   </section>
 
   <section class="statement">
-  <div class="wrap"> <p><em>Partiamo da te:</em> da come lavori, da cosa ti serve e da cosa può davvero funzionare. Costruiamo la comunicazione partendo da quello, non da un pacchetto da vendere.</p> </div>
+    <div class="wrap">
+      <p><em>Partiamo da te:</em> da come lavori, da cosa ti serve e da cosa può davvero funzionare. Costruiamo la comunicazione partendo da quello, non da un pacchetto da vendere.</p>
+    </div>
   </section>
 
   <section class="articles" id="cosa-facciamo">
@@ -434,7 +448,7 @@
           <p>Siti, landing, sistemi e automazioni solo quando migliorano davvero il lavoro.</p>
         </div>
         <div class="article">
-          <div class="num">AVI</div>
+          <div class="num">VI</div>
           <h3>Marketing</h3>
           <p>Portare tutto questo davanti alle persone giuste, con attività proporzionate a quello che vuoi ottenere.</p>
         </div>
@@ -442,9 +456,8 @@
 
       <div class="articles-close">
         <p>La differenza fondamentale è questa:</p>
-        <p class="no">non “questi sono i nostri servizi, scegli il tuo”.</p>
-        <p>Ma:</p>
-        <p class="yes">“questo è quello che sappiamo fare; vediamo insieme quale parte ti serve davvero.”</p>
+        <p>non <strong>“questi sono i nostri servizi, scegli il tuo”</strong>.</p>
+        <p>Ma: <strong>“questo è quello che sappiamo fare; vediamo insieme quale parte ti serve davvero.”</strong></p>
       </div>
     </div>
   </section>
@@ -486,7 +499,7 @@
 </main>
 
 <footer>
-  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; width:100%;">
+  <div class="wrap">
     <span>© 2026 ☑ Propaganda Marketing di Fiorillo Vincenzo — P.IVA 01843770080 — Ventimiglia (IM) — PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a></span>
     <span>Comunicazione e marketing per imprese</span>
   </div>
