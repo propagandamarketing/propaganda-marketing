@@ -1,10 +1,429 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Propaganda Marketing</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propaganda Marketing — Comunicazione e marketing per imprese</title>
+<meta name="description" content="Propaganda Marketing: comunicazione, strategia e strumenti digitali per imprese che vogliono farsi notare senza raccontarsela.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #141210;
+    --black-deep: #0d0b0a;
+    --paper: #F2EEE4;
+    --paper-dim: #C9C4B6;
+    --red: #C81E1E;
+    --red-dark: #8f1515;
+    --rust: #6E6A61;
+    --line: #2c2924;
+    --max-w: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--black);
+    color: var(--paper);
+    font-family: 'Archivo', sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.92;
+    margin: 0;
+    letter-spacing: 0.005em;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  header .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .wordmark {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .wordmark span { color: var(--red); }
+  header nav a {
+    text-decoration: none;
+    color: var(--paper-dim);
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  header nav a:hover, header nav a:focus-visible {
+    color: var(--paper);
+    border-color: var(--red);
+  }
+  header nav a:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 96px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .stamp {
+    font-family: 'Archivo', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--red);
+    border: 1.5px solid var(--red);
+    display: inline-block;
+    padding: 5px 12px;
+    margin-bottom: 28px;
+    transform: rotate(-2deg);
+  }
+  .hero h1 {
+    font-size: clamp(56px, 11vw, 132px);
+    color: var(--paper);
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
+  }
+  .hero h1 .line2 {
+    color: var(--red);
+    display: block;
+    animation-delay: 0.12s;
+  }
+  .hero h1 span { display: block; opacity: 0; transform: translateY(14px); animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards; }
+  .hero h1 span:nth-child(2) { animation-delay: 0.1s; }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1, .hero h1 span { animation: none; opacity: 1; transform: none; }
+  }
+
+  .hero .lede {
+    max-width: 560px;
+    margin-top: 32px;
+    font-size: 19px;
+    color: var(--paper-dim);
+  }
+  .hero .lede strong { color: var(--paper); font-weight: 600; }
+
+  .hero .cta-row {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 15px 28px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1.5px solid var(--paper);
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--paper);
+  }
+  .btn-primary:hover, .btn-primary:focus-visible { background: var(--red-dark); border-color: var(--red-dark); }
+  .btn-ghost { color: var(--paper); }
+  .btn-ghost:hover, .btn-ghost:focus-visible { background: var(--paper); color: var(--black); }
+  .btn:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+  /* ---------- Manifesto statement ---------- */
+  .statement {
+    padding: 72px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .statement p {
+    font-family: 'Anton', sans-serif;
+    text-transform: none;
+    font-size: clamp(24px, 3.4vw, 38px);
+    line-height: 1.28;
+    max-width: 880px;
+    color: var(--paper);
+  }
+  .statement p em {
+    font-style: normal;
+    color: var(--red);
+  }
+
+  /* ---------- Articles / services ---------- */
+  .articles { padding: 96px 0; }
+  .articles .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+  .articles h2 {
+    font-size: clamp(34px, 5vw, 54px);
+    color: var(--paper);
+  }
+  .articles .section-head p {
+    color: var(--rust);
+    font-size: 15px;
+    max-width: 320px;
+    margin: 0;
+  }
+
+  .article-list {
+    border-top: 1px solid var(--line);
+  }
+  .article {
+    display: grid;
+    grid-template-columns: 140px 1fr 1.1fr;
+    gap: 32px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .article .num {
+    font-family: 'Anton', sans-serif;
+    color: var(--red);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    padding-top: 6px;
+  }
+  .article h3 {
+    font-size: 26px;
+    color: var(--paper);
+  }
+  .article p {
+    color: var(--paper-dim);
+    margin: 0;
+    font-size: 15.5px;
+    max-width: 46ch;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact {
+    padding: 96px 0 110px;
+    border-top: 1px solid var(--line);
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .contact h2 {
+    font-size: clamp(34px, 5vw, 54px);
+    color: var(--paper);
+    margin-bottom: 20px;
+  }
+  .contact .intro {
+    color: var(--paper-dim);
+    max-width: 42ch;
+    margin-bottom: 32px;
+  }
+  .contact .email-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    text-decoration: none;
+    color: var(--paper);
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 4px;
+  }
+  .contact .email-link:hover, .contact .email-link:focus-visible { color: var(--red); }
+  .contact .email-link:focus-visible { outline: 2px solid var(--red); outline-offset: 6px; }
+
+  form {
+    border: 1.5px solid var(--line);
+    padding: 32px;
+  }
+  .field { margin-bottom: 20px; }
+  .field:last-of-type { margin-bottom: 0; }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--paper-dim);
+    margin-bottom: 8px;
+  }
+  input, textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--line);
+    color: var(--paper);
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    padding: 10px 2px;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    border-bottom-color: var(--red);
+  }
+  textarea { resize: vertical; min-height: 96px; }
+  .field-submit { margin-top: 28px; }
+  button[type="submit"] {
+    width: 100%;
+    cursor: pointer;
+    font-family: 'Archivo', sans-serif;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--rust);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 22px; }
+    .article { grid-template-columns: 1fr; gap: 8px; }
+    .article .num { padding-top: 0; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    header nav { display: none; }
+  }
+</style>
 </head>
-<body style="background:#000;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">
-  <h1>PROPAGANDA MARKETING</h1>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark">PROPAGANDA<span>MARKETING</span></div>
+    <nav aria-label="Navigazione principale">
+      <a href="#cosa-facciamo">Cosa facciamo</a>
+      &nbsp;&nbsp;&nbsp;
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="stamp">Studio di comunicazione e marketing</span>
+      <h1>
+        <span>PROPAGANDA</span>
+        <span class="line2">MARKETING</span>
+      </h1>
+      <p class="lede">Comunicazione e marketing per imprese che hanno qualcosa da dire e non hanno voglia di dirlo come tutti gli altri. <strong>Strategia, contenuti, branding, strumenti digitali.</strong></p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#contatti">Scrivici</a>
+        <a class="btn btn-ghost" href="#cosa-facciamo">Cosa facciamo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="wrap">
+      <p>Non vendiamo <em>ecosistemi omnichannel</em>. Costruiamo comunicazione che si ricorda, per aziende ed enti che preferiscono essere chiari piuttosto che impressionare.</p>
+    </div>
+  </section>
+
+  <section class="articles" id="cosa-facciamo">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Cosa facciamo</h2>
+        <p>Quattro aree di lavoro. Le usiamo insieme o separate, a seconda di cosa serve davvero.</p>
+      </div>
+
+      <div class="article-list">
+        <div class="article">
+          <div class="num">ARTICOLO I</div>
+          <h3>Strategia</h3>
+          <p>Posizionamento, piani di comunicazione e decisioni su cosa dire, a chi, e perché — prima di produrre qualsiasi cosa.</p>
+        </div>
+        <div class="article">
+          <div class="num">ARTICOLO II</div>
+          <h3>Contenuti</h3>
+          <p>Testi, campagne, materiali editoriali e social pensati per essere letti fino in fondo, non scrollati via.</p>
+        </div>
+        <div class="article">
+          <div class="num">ARTICOLO III</div>
+          <h3>Branding</h3>
+          <p>Identità visive e verbali che reggono nel tempo: nome, tono di voce, sistema visivo, materiali di base.</p>
+        </div>
+        <div class="article">
+          <div class="num">ARTICOLO IV</div>
+          <h3>Strumenti digitali</h3>
+          <p>Siti, landing page e strumenti su misura — costruiti per funzionare, non solo per essere belli da vedere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contatti">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <h2>Parliamone</h2>
+          <p class="intro">Raccontaci cosa stai costruendo. Rispondiamo di persona, non con un modulo automatico che finisce in un CRM.</p>
+          <a class="email-link" href="mailto:info@propagandamarketing.online">info@propagandamarketing.online</a>
+        </div>
+
+        <form action="https://formsubmit.co/info@propagandamarketing.online" method="POST">
+          <input type="hidden" name="_subject" value="Nuovo contatto da propagandamarketing.online">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="Nome" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required>
+          </div>
+          <div class="field">
+            <label for="messaggio">Messaggio</label>
+            <textarea id="messaggio" name="Messaggio" required></textarea>
+          </div>
+          <div class="field field-submit">
+            <button type="submit" class="btn btn-primary">Invia messaggio</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; width:100%;">
+    <span>© 2026 Propaganda Marketing</span>
+    <span>Comunicazione e marketing per imprese</span>
+  </div>
+</footer>
+
 </body>
 </html>
