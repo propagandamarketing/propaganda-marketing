@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Propaganda Marketing — Comunicazione e marketing </title>
-<meta name="description" content="Propaganda Marketing: comunicazione, strategia e strumenti digitali per imprese">
+<title>PROPAGANDA Marketing — Comunicazione personalizzata per aziende </title>
+<meta name="description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23C81E1E'/%3E%3Crect x='96' y='96' width='320' height='320' fill='none' stroke='%23F2EEE4' stroke-width='22'/%3E%3Cpath d='M155 264 L226 335 L360 175' fill='none' stroke='%23F2EEE4' stroke-width='30' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E">
 <style>
   :root {
     --black: #141210;
@@ -63,12 +64,25 @@
     align-items: center;
   }
   .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-family: 'Anton', sans-serif;
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 0.02em;
   }
   .wordmark span { color: var(--red); }
+  .wordmark .mark {
+    width: 26px;
+    height: 26px;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .wordmark .mark svg { width: 16px; height: 16px; }
   header nav a {
     text-decoration: none;
     color: var(--paper-dim);
@@ -224,6 +238,30 @@
     max-width: 46ch;
   }
 
+  .articles-close {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+    max-width: 640px;
+  }
+  .articles-close p {
+    margin: 0 0 10px;
+    font-size: 17px;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--paper-dim);
+  }
+  .articles-close p:last-child { margin-bottom: 0; }
+  .articles-close .no {
+    font-style: italic;
+    color: var(--rust);
+  }
+  .articles-close .yes {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--paper);
+  }
+
   /* ---------- Contact ---------- */
   .contact {
     padding: 96px 0 110px;
@@ -326,7 +364,12 @@
 
 <header>
   <div class="wrap">
-    <div class="wordmark">PROPAGANDA<span>MARKETING</span></div>
+    <div class="wordmark">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F2EEE4" stroke-width="3" stroke-linecap="square"><path d="M4 12 L9 17 L20 5"/></svg>
+      </span>
+      PROPAGANDA<span>MARKETING</span>
+    </div>
     <nav aria-label="Navigazione principale">
       <a href="#cosa-facciamo">Cosa facciamo</a>
       &nbsp;&nbsp;&nbsp;
@@ -344,7 +387,8 @@
         <span>PROPAGANDA</span>
         <span class="line2">MARKETING</span>
       </h1>
-      <p class="lede">Strategia, comunicazione e marketing che ti servono davvero. <strong>Propaganda mette ordine, costruisce strumenti e fa partire le cose.</strong></p>
+      <p class="lede">STRATEGIA, COMUNICAZIONE E MARKETING CHE TI SERVONO DAVVERO</p>
+	<p class="lede"><strong> PROPAGANDA mette ordine, costruisce strumenti e fa partire le cose.</strong></p>
       <div class="cta-row">
         <a class="btn btn-primary" href="#contatti">Scrivici</a>
         <a class="btn btn-ghost" href="#cosa-facciamo">Cosa facciamo</a>
@@ -360,30 +404,47 @@
     <div class="wrap">
       <div class="section-head">
         <h2>Cosa facciamo</h2>
-        <p>Quattro aree di lavoro. Le usiamo insieme o separate, a seconda di cosa serve davvero.</p>
+        <p>Le aree in cui lavoriamo — ma non come pacchetti.</p>
       </div>
 
       <div class="article-list">
         <div class="article">
-          <div class="num">ARTICOLO I</div>
+          <div class="num">I</div>
           <h3>Strategia</h3>
-          <p>Posizionamento, piani di comunicazione e decisioni su cosa dire, a chi, e perché — prima di produrre qualsiasi cosa.</p>
+          <p>Capire dove intervenire, cosa cambiare e cosa lasciare perdere.</p>
         </div>
         <div class="article">
-          <div class="num">ARTICOLO II</div>
+          <div class="num">II</div>
+          <h3>Comunicazione</h3>
+          <p>Trovare il modo giusto per raccontare quello che fai, senza trasformarlo in qualcosa che non sei.</p>
+        </div>
+        <div class="article">
+          <div class="num">III</div>
           <h3>Contenuti</h3>
-          <p>Testi, campagne, materiali editoriali e social pensati per essere letti fino in fondo, non scrollati via.</p>
+          <p>Creare cose che abbiano una funzione, non semplicemente qualcosa da pubblicare.</p>
         </div>
         <div class="article">
-          <div class="num">ARTICOLO III</div>
+          <div class="num">IV</div>
           <h3>Branding</h3>
-          <p>Identità visive e verbali che reggono nel tempo: nome, tono di voce, sistema visivo, materiali di base.</p>
+          <p>Dare coerenza a ciò che sei, a come ti presenti e a come vieni riconosciuto.</p>
         </div>
         <div class="article">
-          <div class="num">ARTICOLO IV</div>
+          <div class="num">V</div>
           <h3>Strumenti digitali</h3>
-          <p>Siti, landing page e strumenti su misura — costruiti per funzionare, non solo per essere belli da vedere.</p>
+          <p>Siti, landing, sistemi e automazioni solo quando migliorano davvero il lavoro.</p>
         </div>
+        <div class="article">
+          <div class="num">AVI</div>
+          <h3>Marketing</h3>
+          <p>Portare tutto questo davanti alle persone giuste, con attività proporzionate a quello che vuoi ottenere.</p>
+        </div>
+      </div>
+
+      <div class="articles-close">
+        <p>La differenza fondamentale è questa:</p>
+        <p class="no">non “questi sono i nostri servizi, scegli il tuo”.</p>
+        <p>Ma:</p>
+        <p class="yes">“questo è quello che sappiamo fare; vediamo insieme quale parte ti serve davvero.”</p>
       </div>
     </div>
   </section>
@@ -426,7 +487,7 @@
 
 <footer>
   <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; width:100%;">
-    <span>© 2026 ☑ PROPAGANDA Marketing di Fiorillo Vincenzo — P.IVA 01843770080 — Ventimiglia (IM) — PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a></span>
+    <span>© 2026 ☑ Propaganda Marketing di Fiorillo Vincenzo — P.IVA 01843770080 — Ventimiglia (IM) — PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a></span>
     <span>Comunicazione e marketing per imprese</span>
   </div>
 </footer>
