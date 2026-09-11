@@ -61,7 +61,7 @@
     /* SCALA TIPOGRAFICA UNIFORMATA */
     --size-h1: clamp(62px, 10.4vw, 110px);
     --size-h2: clamp(32px, 5vw, 44px);
-    --size-h3: clamp(28px, 2.5vw, 36px); /* Ingrandito titolo servizio */
+    --size-h3: clamp(28px, 2.5vw, 36px);
     --size-manifesto: clamp(24px, 3.2vw, 36px);
     --size-body: 18px;
     --size-ui: 14px;
@@ -271,6 +271,13 @@ header nav a:hover, header nav a:focus-visible {
   margin: 0;
 }
 
+.statement p .title-h2 {
+  font-size: var(--size-h2);
+  line-height: 0.95;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
 .statement p .red-text {
   color: var(--red);
   text-transform: uppercase;
@@ -280,7 +287,7 @@ header nav a:hover, header nav a:focus-visible {
   font-size: 0.8em;
 }
 
-/* ---------- Situations (INGRANDITE DEL 1.4) ---------- */
+/* ---------- Situations ---------- */
 .situations {
   padding: 64px 0;
   border-bottom: 1px solid var(--line);
@@ -315,7 +322,7 @@ header nav a:hover, header nav a:focus-visible {
   color: var(--red);
 }
 
-/* ---------- Articles / Services (AGGIORNATI) ---------- */
+/* ---------- Articles / Services ---------- */
 .articles { padding: 64px 0; border-bottom: 1px solid var(--line); }
 .articles-title { grid-column: span 12; margin-bottom: 24px; }
 
@@ -337,7 +344,7 @@ header nav a:hover, header nav a:focus-visible {
 .article .num {
   font-family: var(--font-display);
   color: var(--red);
-  font-size: clamp(40px, 4.5vw, 56px); /* Ingrandito numero romano */
+  font-size: clamp(40px, 4.5vw, 56px);
   line-height: 0.9;
   margin-bottom: 12px;
 }
@@ -346,7 +353,7 @@ header nav a:hover, header nav a:focus-visible {
   font-weight: 600;
   text-transform: uppercase;
   color: var(--paper-dim);
-  font-size: 16px; /* Ingrandito eyebrow */
+  font-size: 16px;
   letter-spacing: 0.05em;
   margin: 0 0 10px;
 }
@@ -695,7 +702,7 @@ footer a:hover { color: var(--paper); }
     <div class="wrap-full">
       <div class="grid-12">
         <p>
-          <span class="red-text">UN UFFICIO MARKETING ESTERNO.</span><br />
+          <span class="red-text title-h2">UN UFFICIO MARKETING ESTERNO.</span><br />
           <span class="sub-text">Senza assumere un ufficio marketing. Senza coordinare cinque fornitori. PROPAGANDA entra quando serve, lavora dove serve e rimane quando serve.</span>
         </p>
       </div>
@@ -783,12 +790,33 @@ footer a:hover { color: var(--paper); }
       <span>
         © 2026 PROPAGANDA Marketing di Fiorillo Vincenzo —
         P.IVA 01843770080 — Ventimiglia (IM) —
+        <span id="tel-wrap">Tel: </span> —
         PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a>
       </span>
       <span>Studio di comunicazione e marketing</span>
     </div>
   </div>
 </footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var p1 = "+39 ";
+    var p2 = "371 ";
+    var p3 = "612 ";
+    var p4 = "63 ";
+    var p5 = "58";
+    var num = p1 + p2 + p3 + p4 + p5;
+    var raw = num.replace(/\s+/g, '');
+    var wrap = document.getElementById("tel-wrap");
+    if(wrap) {
+      var a = document.createElement("a");
+      a.href = "tel:" + raw;
+      a.setAttribute("rel", "nofollow");
+      a.textContent = num;
+      wrap.appendChild(a);
+    }
+  });
+</script>
 
 </body>
 </html>
