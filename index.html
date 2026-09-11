@@ -15,11 +15,16 @@
 <meta property="og:url" content="https://propagandamarketing.online/" />
 <meta property="og:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
 <meta property="og:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
+<meta property="og:image" content="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
+<meta name="twitter:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
+<meta name="twitter:image" content="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta.jpg" />
 
 <!-- Fonts & Favicon -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&amp;family=Oswald:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39;%3E%3Crect width=&#39;512&#39; height=&#39;512&#39; fill=&#39;%23C81E1E&#39;/%3E%3Crect x=&#39;96&#39; y=&#39;96&#39; width=&#39;320&#39; height=&#39;320&#39; fill=&#39;none&#39; stroke=&#39;%23F2EEE4&#39; stroke-width=&#39;22&#39;/%3E%3Cpath d=&#39;M155 264 L226 335 L360 175&#39; fill=&#39;none&#39; stroke=&#39;%23F2EEE4&#39; stroke-width=&#39;30&#39; stroke-linecap=&#39;square&#39; stroke-linejoin=&#39;miter&#39;/%3E%3C/svg%3E" />
 
 <!-- Schema.org JSON-LD (Dati Strutturati per Google) -->
@@ -49,7 +54,6 @@
     --paper-dim: #C9C4B6;
     --red: #C81E1E;
     --red-dark: #8f1515;
-    --rust: #6E6A61;
     --line: #2c2924;
     --max-w: 1120px;
   }
@@ -69,7 +73,7 @@ letter-spacing: 0.01em;
 -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .display {
+h1, h2, h3 {
 font-family: 'Anton', sans-serif;
 font-weight: 400;
 text-transform: uppercase;
@@ -117,10 +121,11 @@ flex-shrink: 0;
 }
 .wordmark .mark svg { width: 16px; height: 16px; }
 header nav a {
+font-family: 'Oswald', sans-serif;
+font-weight: 600;
 text-decoration: none;
 color: var(--paper-dim);
 font-size: 16px;
-font-weight: 400;
 border-bottom: 1px solid transparent;
 transition: border-color 0.15s ease, color 0.15s ease;
 }
@@ -137,9 +142,9 @@ position: relative;
 overflow: hidden;
 }
 .hero .stamp {
-font-family: 'Anton', sans-serif;
+font-family: 'Oswald', sans-serif;
+font-weight: 700;
 font-size: 15px;
-font-weight: 400;
 color: var(--red);
 border: 1.5px solid var(--red);
 display: inline-block;
@@ -165,7 +170,6 @@ opacity: 0;
 transform: translateY(14px);
 animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
 }
-.hero h1 span:nth-child(2) { animation-delay: 0.1s; }
 
 @keyframes rise {
 to { opacity: 1; transform: translateY(0); }
@@ -191,6 +195,8 @@ color: var(--paper);
 white-space: nowrap;
 }
 .hero .lede .lede-second {
+font-family: 'Oswald', sans-serif;
+font-weight: 400;
 color: var(--paper);
 display: block;
 margin-top: 12px;
@@ -246,7 +252,8 @@ overflow: hidden;
 
 .partners-label {
 text-align: center;
-font-family: 'Anton', sans-serif;
+font-family: 'Oswald', sans-serif;
+font-weight: 700;
 font-size: 13px;
 text-transform: uppercase;
 letter-spacing: 0.15em;
@@ -275,6 +282,11 @@ transparent 100%
 );
 }
 
+.marquee-container:focus-visible {
+outline: 2px solid var(--red);
+outline-offset: 4px;
+}
+
 .marquee-track {
 display: flex;
 width: max-content;
@@ -289,7 +301,8 @@ padding-right: 64px;
 flex-shrink: 0;
 }
 
-.marquee-container:hover .marquee-track {
+.marquee-container:hover .marquee-track,
+.marquee-container:focus-within .marquee-track {
 animation-play-state: paused;
 }
 
@@ -365,36 +378,55 @@ font-style: normal;
 color: var(--red);
 }
 
-/* ---------- Articles / services ---------- */
-.articles { padding: 96px 0; }
-.articles .section-head {
-display: flex;
-justify-content: space-between;
-align-items: flex-end;
-gap: 24px;
-margin-bottom: 56px;
-flex-wrap: wrap;
+/* ---------- Situations ("Ci chiamano quando...") ---------- */
+.situations {
+padding: 72px 0;
+border-bottom: 1px solid var(--line);
 }
-.articles h2 {
+.situations h2 {
 font-size: clamp(34px, 5vw, 54px);
 color: var(--paper);
+margin-bottom: 40px;
 }
-.articles .section-head p {
+.situations-list {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1px;
+background: var(--line);
+border-top: 1px solid var(--line);
+border-left: 1px solid var(--line);
+}
+.situation {
+background: var(--black);
+padding: 26px 30px 26px 40px;
+position: relative;
+font-family: 'Oswald', sans-serif;
+text-transform: none;
+font-weight: 400;
+font-size: clamp(16px, 1.5vw, 19px);
+line-height: 1.3;
 color: var(--paper);
-font-size: 22px;
-max-width: 700px;
-white-space: nowrap;
-margin: 0;
-line-height: 1.2;
 }
+.situation::before {
+content: "—";
+position: absolute;
+left: 14px;
+color: var(--red);
+}
+@media (max-width: 760px) {
+.situations-list { grid-template-columns: 1fr; }
+}
+
+/* ---------- Articles / services ---------- */
+.articles { padding: 96px 0; }
 
 .article-list {
 border-top: 1px solid var(--line);
 }
 .article {
 display: grid;
-grid-template-columns: 140px 1fr 1.1fr;
-gap: 32px;
+grid-template-columns: 140px 1fr;
+gap: 12px;
 padding: 36px 0;
 border-bottom: 1px solid var(--line);
 align-items: start;
@@ -407,15 +439,19 @@ line-height: 1;
 letter-spacing: 0.05em;
 padding-top: 2px;
 }
-.article h3 {
-font-size: 30px;
-color: var(--paper);
+.article .eyebrow {
+font-family: 'Oswald', sans-serif;
+font-weight: 700;
+text-transform: uppercase;
+color: var(--paper-dim);
+font-size: clamp(13px, 1.2vw, 15px);
+letter-spacing: 0.08em;
+margin: 0 0 8px;
+line-height: 1.3;
 }
-.article p {
+.article h3 {
+font-size: clamp(26px, 3.4vw, 34px);
 color: var(--paper);
-margin: 0;
-font-size: 18px;
-max-width: 46ch;
 }
 
 /* ---------- Articles Close (Normal style, rosso sull'ultima risposta) ---------- */
@@ -455,6 +491,8 @@ color: var(--paper);
 margin-bottom: 20px;
 }
 .contact .intro {
+font-family: 'Oswald', sans-serif;
+font-weight: 400;
 color: var(--paper);
 max-width: 42ch;
 margin-bottom: 32px;
@@ -488,8 +526,9 @@ padding: 32px;
 .field:last-of-type { margin-bottom: 0; }
 label {
 display: block;
+font-family: 'Oswald', sans-serif;
 font-size: 15px;
-font-weight: 400;
+font-weight: 600;
 color: var(--paper);
 margin-bottom: 8px;
 letter-spacing: 0.05em;
@@ -500,7 +539,8 @@ background: transparent;
 border: none;
 border-bottom: 1.5px solid var(--line);
 color: var(--paper);
-font-family: 'Anton', sans-serif;
+font-family: 'Oswald', sans-serif;
+font-weight: 400;
 font-size: 18px;
 padding: 10px 2px;
 }
@@ -519,13 +559,22 @@ cursor: pointer;
 font-family: 'Anton', sans-serif;
 }
 
+/* honeypot: nascosto agli umani, visibile ai bot che compilano tutto */
+.hp-field {
+position: absolute;
+left: -9999px;
+width: 1px;
+height: 1px;
+overflow: hidden;
+}
+
 /* ---------- Footer ---------- */
 footer {
 padding: 28px 0;
 border-top: 1px solid var(--line);
 font-family: 'Archivo', sans-serif;
 font-size: 13px;
-color: var(--rust);
+color: var(--paper-dim);
 }
 footer .wrap {
 display: flex;
@@ -534,17 +583,16 @@ flex-wrap: wrap;
 gap: 8px;
 }
 footer a {
-color: var(--rust);
+color: var(--paper-dim);
 text-decoration: none;
 }
 footer a:hover,
 footer a:focus-visible {
-color: var(--paper-dim);
+color: var(--paper);
 }
 
-@media (max-width: 1250px) {
-  .hero .lede,
-  .articles .section-head p {
+@media (max-width: 1550px) {
+  .hero .lede {
     white-space: normal;
   }
 }
@@ -651,15 +699,33 @@ Entriamo dove c'è qualcosa da sistemare, costruire o far <span class="thin">ri-
 
   <!-- SEZIONE VIGNETTA / CONCEPT -->
   <section class="concept-vignette">
-    <img src="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta.jpg" alt="" />
+    <img src="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta.jpg" alt="Fumetto: un personaggio scoraggiato chiede &quot;Sì, ma alla fine... che cosa fate???&quot; a un impiegato di PROPAGANDA Marketing seduto alla scrivania Ufficio Marketing in Affitto, con una bacheca di post-it che elenca strategia digitale, direzione creativa, analisi dei dati, consulenza aziendale, piano editoriale, sviluppo brand e gestione campagne." loading="lazy" decoding="async" />
   </section>
 
   <section class="statement">
     <div class="wrap">
       <p>
-        <em>Partiamo da te:</em> da come lavori, da cosa ti serve e da cosa può davvero funzionare.
-        Costruiamo la comunicazione partendo da quello, non da un pacchetto da vendere.
+        <em>Non facciamo marketing perché "bisogna esserci".</em>
+        Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
+        Se serve, si fa. Se non serve, si lascia perdere.
       </p>
+    </div>
+  </section>
+
+  <section class="situations">
+    <div class="wrap">
+      <h2>Ci chiamano quando...</h2>
+
+      <div class="situations-list">
+        <div class="situation">L'azienda è cresciuta, ma comunica ancora come cinque anni fa.</div>
+        <div class="situation">Il sito c'è, ma non serve a niente.</div>
+        <div class="situation">Bisogna lanciare qualcosa.</div>
+        <div class="situation">Nessuno capisce bene cosa facciamo.</div>
+        <div class="situation">I social ci sono, ma non succede niente.</div>
+        <div class="situation">Abbiamo un problema e non sappiamo quale strumento serva.</div>
+        <div class="situation">Serve qualcuno che coordini tutto senza assumere un ufficio marketing.</div>
+        <div class="situation">C'è qualcosa da fare e nessuno vuole perdere tre mesi a capire da dove iniziare.</div>
+      </div>
     </div>
   </section>
 
@@ -670,60 +736,79 @@ Entriamo dove c'è qualcosa da sistemare, costruire o far <span class="thin">ri-
 
     <div class="article">
       <div class="num">I</div>
-      <h3>Strategia</h3>
-      <p>Capire dove intervenire, cosa cambiare e cosa lasciare perdere.</p>
+      <div>
+        <p class="eyebrow">Quando non sai da dove partire</p>
+        <h3>Strategia.</h3>
+      </div>
     </div>
 
     <div class="article">
       <div class="num">II</div>
-      <h3>Comunicazione</h3>
-      <p>Trovare il modo giusto per raccontare quello che fai, senza trasformarlo in qualcosa che non sei.</p>
+      <div>
+        <p class="eyebrow">Quando la tua azienda non si capisce</p>
+        <h3>Comunicazione.</h3>
+      </div>
     </div>
 
     <div class="article">
       <div class="num">III</div>
-      <h3>Contenuti</h3>
-      <p>Creare cose che abbiano una funzione, non semplicemente qualcosa da pubblicare.</p>
+      <div>
+        <p class="eyebrow">Quando hai qualcosa da dire</p>
+        <h3>Contenuti.</h3>
+      </div>
     </div>
 
     <div class="article">
       <div class="num">IV</div>
-      <h3>Branding</h3>
-      <p>Dare coerenza a ciò che sei, a come ti presenti e a come vieni riconosciuto.</p>
+      <div>
+        <p class="eyebrow">Quando ti presenti male</p>
+        <h3>Branding.</h3>
+      </div>
     </div>
 
     <div class="article">
       <div class="num">V</div>
-      <h3>Strumenti digitali</h3>
-      <p>Siti, landing, sistemi e automazioni solo quando migliorano davvero il lavoro.</p>
+      <div>
+        <p class="eyebrow">Quando ti serve uno strumento</p>
+        <h3>Siti, landing, sistemi digitali.</h3>
+      </div>
     </div>
 
     <div class="article">
       <div class="num">VI</div>
-      <h3>Marketing</h3>
-      <p>Portare tutto questo davanti alle persone giuste, con attività proporzionate a quello che vuoi ottenere.</p>
+      <div>
+        <p class="eyebrow">Quando devi far arrivare il messaggio</p>
+        <h3>Marketing.</h3>
+      </div>
     </div>
 
   </div>
 
   <div class="articles-close">
-    <p>NON DEVI COMPRARE UN PACCHETTO.
-
-DEVI RISOLVERE UN PROBLEMA.
-
-      Noi capiamo quale.
-    </p>
+    <p>NON DEVI COMPRARE UN PACCHETTO.</p>
+    <p>DEVI RISOLVERE UNA COSA.</p>
+    <p class="service-right">Noi capiamo quale.</p>
   </div>
 
 </div>
 
   </section>
 
+  <section class="statement">
+    <div class="wrap">
+      <p>
+        <em>Un ufficio marketing esterno.</em>
+        Senza assumere un ufficio marketing. Senza coordinare cinque fornitori.
+        PROPAGANDA entra quando serve, lavora dove serve e rimane quando serve.
+      </p>
+    </div>
+  </section>
+
   <!-- SEZIONE PARTNER SCORREVOLE -->
   <section class="partners-banner">
     <div class="partners-label">Hanno ri-partito con noi</div>
 
-<div class="marquee-container">
+<div class="marquee-container" tabindex="0" role="region" aria-label="Loghi partner, scorrimento automatico. Passa il mouse o porta il focus qui per mettere in pausa.">
   <div class="marquee-track">
 
     <!-- BLOCCO LOGHI 1 -->
@@ -803,14 +888,14 @@ DEVI RISOLVERE UN PROBLEMA.
   <div class="contact-grid">
 
     <div>
-      <h2>Parliamone</h2>
+      <h2>Hai una cosa da sistemare?</h2>
 
       <p class="intro">
-        Raccontaci cosa stai costruendo. Rispondiamo di persona,
-        non con un modulo automatico che finisce in un CRM.
+        Raccontaci cosa stai costruendo, cosa non funziona o cosa vuoi far partire.
+        Rispondiamo di persona, non con un modulo automatico che finisce in un CRM.
       </p>
 
-      <a class="email-link" href="mailto:info@propagandamarketing.online">
+      <a class="email-link" href="mailto:info@propagandamarketing.online" rel="nofollow">
         info@propagandamarketing.online
       </a>
     </div>
@@ -818,7 +903,8 @@ DEVI RISOLVERE UN PROBLEMA.
     <form action="https://formsubmit.co/info@propagandamarketing.online" method="POST">
       <input type="hidden" name="_subject" value="Nuovo contatto da propagandamarketing.online" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
       <div class="field">
         <label for="nome">Nome</label>
@@ -858,7 +944,7 @@ DEVI RISOLVERE UN PROBLEMA.
       PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a>
     </span>
 
-<span>Comunicazione e marketing per imprese</span>
+<span>Studio di comunicazione e marketing</span>
 
   </div>
 </footer>
