@@ -1,1197 +1,1647 @@
+```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PROPAGANDA Marketing</title>
-<meta name="description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
-
-<link rel="canonical" href="https://propagandamarketing.online/" />
-
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://propagandamarketing.online/" />
-<meta property="og:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
-<meta property="og:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
-<meta property="og:image" content="https://propagandamarketing.online/og-image.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="PROPAGANDA Marketing — Non vendiamo pacchetti di marketing" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
-<meta name="twitter:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
-<meta name="twitter:image" content="https://propagandamarketing.online/og-image.jpg" />
-
-<!-- FAVICON & APP ICONS -->
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
-
-<style>
-@font-face {
-  font-family: 'Anton';
-  src: url('/font/Anton-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Oswald';
-  src: url('/font/Oswald-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Oswald';
-  src: url('/font/Oswald-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Oswald';
-  src: url('/font/Oswald-SemiBold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Oswald';
-  src: url('/font/Oswald-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-</style>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "PROPAGANDA Marketing",
-  "url": "https://propagandamarketing.online/",
-  "description": "PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Ventimiglia",
-    "addressRegion": "IM",
-    "addressCountry": "IT"
-  },
-  "vatID": "IT01843770080",
-  "email": "info@propagandamarketing.online"
-}
-</script>
-
-<style>
-  :root {
-    --black: #141210;
-    --black-deep: #0d0b0a;
-    --paper: #F2EEE4;
-    --paper-dim: #C9C4B6;
-    --red: #C81E1E;
-    --red-dark: #8f1515;
-    --line: #2c2924;
-    --font-display: 'Anton', sans-serif;
-    --font-body: 'Oswald', sans-serif;
-    --size-h1: clamp(62px, 10.4vw, 110px);
-    --size-h2: clamp(32px, 5vw, 44px);
-    --size-h3: clamp(28px, 2.5vw, 36px);
-    --size-manifesto: clamp(24px, 3.2vw, 36px);
-    --size-body: 18px;
-    --size-ui: 14px;
-  }
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  background: var(--black);
-  color: var(--paper);
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: var(--size-body);
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  text-transform: uppercase;
-  line-height: 0.95;
-  margin: 0;
-  letter-spacing: 0.01em;
-}
-
-h1 { font-size: var(--size-h1); }
-h2 { font-size: var(--size-h2); }
-h3 { font-size: var(--size-h3); }
-a { color: inherit; }
-
-.wrap-full {
-  width: 100%;
-  padding: 0 5vw;
-}
-
-.grid-12 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 32px;
-  align-items: start;
-}
-
-header {
-  padding: 24px 0;
-  border-bottom: 1px solid var(--line);
-  width: 100%;
-}
-
-header .header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.wordmark {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.wordmark img {
-  display: block;
-  width: auto;
-  height: 42px;
-  max-width: 240px;
-  object-fit: contain;
-}
-
-.menu-toggle { display: none; }
-
-header nav a {
-  font-family: var(--font-body);
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--paper-dim);
-  font-size: var(--size-ui);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-left: 24px;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-
-header nav a:hover,
-header nav a:focus-visible {
-  color: var(--paper);
-  border-color: var(--red);
-}
-
-.hero {
-  padding: 80px 0 64px;
-  border-bottom: 1px solid var(--line);
-}
-
-.hero-content { grid-column: span 12; }
-
-.hero .stamp {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: var(--size-ui);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--red);
-  border: 1.5px solid var(--red);
-  display: inline-block;
-  padding: 4px 10px;
-  margin-bottom: 24px;
-  transform: rotate(-2deg);
-}
-
-.hero h1 {
-  color: var(--paper);
-  opacity: 0;
-  transform: translateY(14px);
-  animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
-}
-
-.hero h1 .line2 {
-  color: var(--red);
-  display: block;
-}
-
-@keyframes rise {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero h1 { animation: none; opacity: 1; transform: none; }
-}
-
-.hero .lede {
-  grid-column: span 12;
-  margin-top: 28px;
-  font-family: var(--font-display);
-  font-size: var(--size-manifesto);
-  line-height: 1.05;
-  color: var(--paper);
-}
-
-.hero .lede .lede-second {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--font-display);
-  font-size: calc(var(--size-manifesto) * 0.8);
-  line-height: 1.05;
-  color: var(--paper);
-}
-
-.hero .lede .red-text {
-  color: var(--red);
-  text-transform: uppercase;
-}
-
-.hero .cta-row {
-  grid-column: span 12;
-  margin-top: 24px;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-block;
-  padding: 14px 28px;
-  font-family: var(--font-display);
-  font-size: var(--size-body);
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1.5px solid var(--paper);
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-}
-
-.btn-primary {
-  background: var(--red);
-  border-color: var(--red);
-  color: var(--paper);
-}
-
-.btn-primary:hover,
-.btn-primary:focus-visible {
-  background: var(--red-dark);
-  border-color: var(--red-dark);
-}
-
-.btn-ghost { color: var(--paper); }
-
-.btn-ghost:hover,
-.btn-ghost:focus-visible {
-  background: var(--paper);
-  color: var(--black);
-}
-
-.statement {
-  padding: 64px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.statement p {
-  grid-column: span 12;
-  font-family: var(--font-display);
-  font-size: var(--size-manifesto);
-  line-height: 1.05;
-  color: var(--paper);
-  margin: 0;
-}
-
-.statement p .title-h2 {
-  font-size: var(--size-h2);
-  line-height: 0.95;
-  display: inline-block;
-  margin-bottom: 8px;
-}
-
-.statement p .red-text {
-  color: var(--red);
-  text-transform: uppercase;
-}
-
-.statement p .sub-text { font-size: 0.8em; }
-
-.situations {
-  padding: 64px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.situations h2 {
-  grid-column: span 12;
-  margin-bottom: 20px;
-}
-
-.situations-grid {
-  grid-column: span 12;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-
-.situation {
-  background: var(--black);
-  padding: 28px 24px;
-  position: relative;
-  font-family: var(--font-body);
-  font-size: calc(var(--size-body) * 1.4);
-  line-height: 1.25;
-  color: var(--paper);
-  min-height: 140px;
-  display: flex;
-  align-items: center;
-}
-
-.situation::before {
-  content: "—";
-  margin-right: 10px;
-  color: var(--red);
-}
-
-.articles {
-  padding: 64px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.articles-title {
-  grid-column: span 12;
-  margin-bottom: 24px;
-}
-
-.article-grid {
-  grid-column: span 12;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.article {
-  border: 1px solid var(--line);
-  padding: 40px 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: var(--black-deep);
-  gap: 20px;
-}
-
-.article .num {
-  font-family: var(--font-display);
-  color: var(--red);
-  font-size: clamp(40px, 4.5vw, 56px);
-  line-height: 0.9;
-  margin-bottom: 12px;
-}
-
-.article .eyebrow {
-  font-family: var(--font-body);
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--paper-dim);
-  font-size: 16px;
-  letter-spacing: 0.05em;
-  margin: 0 0 10px;
-}
-
-.articles-close {
-  grid-column: span 12;
-  margin-top: 32px;
-  padding-top: 32px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.articles-close p {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: calc(var(--size-manifesto) * 0.8);
-  line-height: 1.05;
-  color: var(--paper);
-}
-
-.articles-close p.service-right { color: var(--red); }
-
-.partners-banner {
-  padding: 32px 0;
-  border-bottom: 1px solid var(--line);
-  background: #ffffff;
-  overflow: hidden;
-  width: 100%;
-}
-
-.partners-label {
-  text-align: center;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: var(--size-ui);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #777777;
-  margin-bottom: 20px;
-}
-
-.marquee-container {
-  width: 100%;
-  overflow: hidden;
-  user-select: none;
-  position: relative;
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 32s linear infinite;
-}
-
-.marquee-content {
-  display: flex;
-  align-items: center;
-  gap: 64px;
-  padding-right: 64px;
-  flex-shrink: 0;
-}
-
-.partner-logo {
-  width: 180px;
-  min-height: 80px;
-  flex: 0 0 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.partner-logo img {
-  display: block;
-  width: auto;
-  height: calc(40px * var(--logo-scale, 1));
-  max-height: 70px;
-  max-width: 100%;
-  object-fit: contain;
-  opacity: 0.85;
-}
-
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.contact {
-  padding: 80px 0 100px;
-}
-
-.contact-left { grid-column: span 6; }
-.contact-right { grid-column: span 6; }
-
-.contact h2.contact-title {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 6vw, 76px);
-  line-height: 0.95;
-  color: var(--paper);
-  text-transform: uppercase;
-  margin-bottom: 28px;
-  letter-spacing: 0.01em;
-}
-
-.contact .intro {
-  font-family: var(--font-body);
-  color: var(--paper);
-  margin-bottom: 0;
-  font-size: clamp(20px, 2.2vw, 26px);
-  line-height: 1.25;
-  max-width: 32ch;
-}
-
-form {
-  border: 1.5px solid var(--line);
-  padding: 32px;
-  background: var(--black-deep);
-}
-
-.field { margin-bottom: 16px; }
-
-label {
-  display: block;
-  font-family: var(--font-body);
-  font-size: var(--size-ui);
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--paper-dim);
-  margin-bottom: 6px;
-  letter-spacing: 0.05em;
-}
-
-input, textarea {
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1.5px solid var(--line);
-  color: var(--paper);
-  font-family: var(--font-body);
-  font-size: var(--size-body);
-  padding: 8px 2px;
-}
-
-input:focus, textarea:focus {
-  outline: none;
-  border-bottom-color: var(--red);
-}
-
-textarea { resize: vertical; min-height: 80px; }
-.field-submit { margin-top: 24px; }
-button[type="submit"] { width: 100%; cursor: pointer; }
-
-.hp-field {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
-
-footer {
-  padding: 32px 0;
-  border-top: 1px solid var(--line);
-  font-family: var(--font-body);
-  font-size: var(--size-ui);
-  color: var(--paper-dim);
-  width: 100%;
-}
-
-footer .footer-inner {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-footer a {
-  color: var(--paper-dim);
-  text-decoration: none;
-}
-
-footer a:hover { color: var(--paper); }
-
-/* ---------- CONSENSO ANALYTICS ---------- */
-
-#cookie-consent {
-  position: fixed;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  z-index: 9999;
-  max-width: 620px;
-  padding: 22px;
-  background: var(--black-deep);
-  color: var(--paper);
-  border: 1px solid var(--red);
-  box-shadow: 0 12px 40px rgba(0,0,0,.5);
-}
-
-#cookie-consent p {
-  margin: 0 0 18px;
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-#cookie-consent strong {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-.cookie-buttons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.cookie-buttons button {
-  padding: 10px 18px;
-  border: 1px solid var(--paper);
-  background: transparent;
-  color: var(--paper);
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.cookie-buttons button:first-child {
-  background: var(--red);
-  border-color: var(--red);
-}
-
-.cookie-buttons button:hover {
-  opacity: .85;
-}
-
-.cookie-settings {
-  margin-top: 12px;
-  font-size: 12px;
-  color: var(--paper-dim);
-}
-
-.cookie-settings a {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-@media (max-width: 1024px) {
-  .situations-grid { grid-template-columns: repeat(2, 1fr); }
-  .article-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero .lede, .statement p { grid-column: span 12; }
-}
-
-@media (max-width: 768px) {
-  .grid-12 { gap: 16px; }
-  .situations-grid { grid-template-columns: 1fr; }
-  .article-grid { grid-template-columns: 1fr; }
-  .contact-left, .contact-right { grid-column: span 12; }
-  .contact .intro { max-width: 100%; }
-
-  .wordmark img {
-    height: 36px;
-    max-width: 200px;
-  }
-
-  .menu-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 100;
-    position: relative;
-  }
-
-  .hamburger {
-    position: relative;
-    width: 24px;
-    height: 2px;
-    background: var(--paper);
-    transition: all 0.3s ease-in-out;
-  }
-
-  .hamburger::before,
-  .hamburger::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 24px;
-    height: 2px;
-    background: var(--paper);
-    transition: all 0.3s ease-in-out;
-  }
-
-  .hamburger::before { transform: translateY(-8px); }
-  .hamburger::after { transform: translateY(8px); }
-
-  .menu-toggle.is-active .hamburger { background: transparent; }
-  .menu-toggle.is-active .hamburger::before { transform: translateY(0) rotate(45deg); }
-  .menu-toggle.is-active .hamburger::after { transform: translateY(0) rotate(-45deg); }
-
-  header nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--black-deep);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    padding: 24px;
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 99;
-  }
-
-  header nav.is-open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-
-  header nav a {
-    margin: 0;
-    font-size: clamp(24px, 6vw, 36px);
-  }
-
-  #cookie-consent {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    padding: 18px;
-  }
-}
-</style>
-
-</head>
-<body>
-
-<header>
-  <div class="wrap-full">
-    <div class="header-inner">
-
-      <a href="/" class="wordmark">
-        <img src="logo-PROPAGANDAmarketing.png" alt="PROPAGANDA Marketing" />
-      </a>
-
-      <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false">
-        <span class="hamburger"></span>
-      </button>
-
-      <nav aria-label="Navigazione principale">
-        <a href="#cosa-facciamo">Cosa facciamo</a>
-        <a href="#contatti">Contatti</a>
-      </nav>
-
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <section class="hero">
-    <div class="wrap-full">
-      <div class="grid-12">
-        <div class="hero-content">
-          <span class="stamp">Studio di comunicazione e marketing</span>
-          <h1>
-            <span>PROPAGANDA</span>
-            <span class="line2">MARKETING</span>
-          </h1>
-        </div>
-
-        <p class="lede">
-          <span class="red-text">NON VENDIAMO PACCHETTI DI MARKETING.</span>
-          <span class="lede-second">
-            Entriamo dove c'è qualcosa da sistemare, costruire o far ri-funzionare.
-          </span>
-        </p>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#contatti">Scrivici</a>
-          <a class="btn btn-ghost" href="#cosa-facciamo">Cosa facciamo</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="statement">
-    <div class="wrap-full">
-      <div class="grid-12">
-        <p>
-          <span class="red-text">NON FACCIAMO MARKETING PERCHÉ "BISOGNA ESSERCI".</span><br />
-          <span class="sub-text">Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare. Se serve, si fa. Se non serve, si lascia perdere.</span>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="situations">
-    <div class="wrap-full">
-      <div class="grid-12">
-        <h2>Ci chiamano quando...</h2>
-
-        <div class="situations-grid">
-          <div class="situation">L'azienda è cresciuta, ma comunica ancora come cinque anni fa.</div>
-          <div class="situation">Il sito c'è, ma non serve a niente.</div>
-          <div class="situation">Bisogna lanciare qualcosa.</div>
-          <div class="situation">Nessuno capisce bene cosa facciamo.</div>
-          <div class="situation">I social ci sono, ma non succede niente.</div>
-          <div class="situation">Abbiamo un problema e non sappiamo quale strumento serva.</div>
-          <div class="situation">Serve qualcuno che coordini tutto senza assumere un ufficio marketing.</div>
-          <div class="situation">C'è qualcosa da fare e nessuno vuole perdere tre mesi a capire da dove iniziare.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="articles" id="cosa-facciamo">
-    <div class="wrap-full">
-      <div class="grid-12">
-        <h2 class="articles-title">Cosa facciamo</h2>
-
-        <div class="article-grid">
-          <div class="article">
-            <div class="num">I</div>
-            <div>
-              <p class="eyebrow">Quando non sai da dove partire</p>
-              <h3>Strategia.</h3>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="num">II</div>
-            <div>
-              <p class="eyebrow">Quando la tua azienda non si capisce</p>
-              <h3>Comunicazione.</h3>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="num">III</div>
-            <div>
-              <p class="eyebrow">Quando hai qualcosa da dire</p>
-              <h3>Contenuti.</h3>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="num">IV</div>
-            <div>
-              <p class="eyebrow">Quando ti presenti male</p>
-              <h3>Branding.</h3>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="num">V</div>
-            <div>
-              <p class="eyebrow">Quando ti serve uno strumento</p>
-              <h3>Siti, landing, sistemi digitali.</h3>
-            </div>
-          </div>
-
-          <div class="article">
-            <div class="num">VI</div>
-            <div>
-              <p class="eyebrow">Quando devi far arrivare il messaggio</p>
-              <h3>Marketing.</h3>
-            </div>
-          </div>
-        </div>
-
-        <div class="articles-close">
-          <p>Non devi comprare un pacchetto.</p>
-          <p>Devi risolvere una cosa.</p>
-          <p class="service-right">Noi capiamo quale.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="statement">
-    <div class="wrap-full">
-      <div class="grid-12">
-        <p>
-          <span class="red-text title-h2">UN UFFICIO MARKETING ESTERNO.</span><br />
-          <span class="sub-text">Senza assumere un ufficio marketing. Senza coordinare cinque fornitori. PROPAGANDA entra quando serve, lavora dove serve e rimane quando serve.</span>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="partners-banner">
-    <div class="partners-label">Hanno ri-partito con noi</div>
-
-    <div class="marquee-container" tabindex="0" role="region" aria-label="Loghi partner">
-      <div class="marquee-track">
-
-        <div class="marquee-content">
-          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner1.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner2.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner3.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner4.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1.25;"><img src="logos/partner5.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner6.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner7.png" alt="" /></div>
-        </div>
-
-        <div class="marquee-content" aria-hidden="true">
-          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner1.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner2.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner3.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner4.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1.25;"><img src="logos/partner5.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner6.png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner7.png" alt="" /></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contatti">
-    <div class="wrap-full">
-      <div class="grid-12">
-
-        <div class="contact-left">
-          <h2 class="contact-title">HAI UNA COSA DA SISTEMARE?</h2>
-
-          <p class="intro">
-            Raccontaci cosa stai costruendo, cosa non funziona o cosa vuoi far partire. Rispondiamo di persona, non con un modulo automatico che finisce in un CRM.
-          </p>
-        </div>
-
-        <div class="contact-right">
-
-          <form action="https://formsubmit.co/info@propagandamarketing.online" method="POST">
-
-            <input type="hidden" name="_subject" value="Nuovo contatto da propagandamarketing.online" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="true" />
-            <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-            <div class="field">
-              <label for="nome">Nome</label>
-              <input type="text" id="nome" name="Nome" required />
-            </div>
-
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="Email" required />
-            </div>
-
-            <div class="field">
-              <label for="messaggio">Messaggio</label>
-              <textarea id="messaggio" name="Messaggio" required></textarea>
-            </div>
-
-            <div class="field" style="display: flex; gap: 8px; align-items: flex-start; margin-bottom: 24px;">
-              <input type="checkbox" id="privacy" name="Privacy" required style="width: auto; margin-top: 4px;" />
-
-              <label for="privacy" style="font-size: 12px; text-transform: none; letter-spacing: normal;">
-                Ho letto e accetto la <a href="/privacy-policy" style="text-decoration: underline;">Privacy Policy</a>.
-              </label>
-            </div>
-
-            <div class="field field-submit">
-              <button type="submit" class="btn btn-primary">
-                Invia messaggio
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap-full">
-    <div class="footer-inner">
-
-      <span>
-        © 2026 PROPAGANDA Marketing di Fiorillo Vincenzo —
-        P.IVA 01843770080 — Ventimiglia (IM) —
-        <span id="tel-wrap">Tel: </span> —
-        PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a>
-      </span>
-
-      <span>
-        Studio di comunicazione e marketing —
-        <a href="#" id="cookie-settings">Cookie</a>
-      </span>
-
-    </div>
-  </div>
-</footer>
-
-<!-- BANNER CONSENSO -->
-
-<div id="cookie-consent" role="dialog" aria-label="Consenso Google Analytics" hidden>
-
-  <p>
-    <strong>Cookie</strong><br>
-    Utilizziamo Google Analytics per capire come viene utilizzato il sito.
-    Puoi accettare o rifiutare l'analisi statistica.
-  </p>
-
-  <div class="cookie-buttons">
-    <button type="button" id="cookie-accept">Accetta</button>
-    <button type="button" id="cookie-reject">Rifiuta</button>
-  </div>
-
-</div>
-
-<script>
-(function() {
-
-  const GA_ID = 'G-T2KSBQGNFQ';
-  const CONSENT_KEY = 'analytics-consent';
-
-  function loadGoogleAnalytics() {
-
-    if (window.__gaLoaded) return;
-
-    window.__gaLoaded = true;
-
-    const script = document.createElement('script');
-
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-
-    document.head.appendChild(script);
-
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      window.dataLayer.push(arguments);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PROPAGANDA Marketing</title>
+  <meta name="description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese.">
+  <link rel="canonical" href="https://propagandamarketing.online/">
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://propagandamarketing.online/">
+  <meta property="og:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende">
+  <meta property="og:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese.">
+  <meta property="og:image" content="https://propagandamarketing.online/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PROPAGANDA Marketing — Non vendiamo pacchetti di marketing">
+
+  <!-- TWITTER / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende">
+  <meta name="twitter:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese.">
+  <meta name="twitter:image" content="https://propagandamarketing.online/og-image.jpg">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+
+  <!-- FONT -->
+  <style>
+    @font-face {
+      font-family: "Anton";
+      src: url("/font/Anton-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
     }
 
-    window.gtag = gtag;
+    @font-face {
+      font-family: "Oswald";
+      src: url("/font/Oswald-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
 
-    gtag('js', new Date());
-    gtag('config', GA_ID);
+    @font-face {
+      font-family: "Oswald";
+      src: url("/font/Oswald-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
 
+    @font-face {
+      font-family: "Oswald";
+      src: url("/font/Oswald-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Oswald";
+      src: url("/font/Oswald-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
+  <!-- STRUCTURED DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "PROPAGANDA Marketing",
+    "url": "https://propagandamarketing.online/",
+    "description": "PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ventimiglia",
+      "addressRegion": "IM",
+      "addressCountry": "IT"
+    },
+    "vatID": "IT01843770080",
+    "email": "info@propagandamarketing.online"
   }
+  </script>
 
-  const banner = document.getElementById('cookie-consent');
-  const accept = document.getElementById('cookie-accept');
-  const reject = document.getElementById('cookie-reject');
-  const settings = document.getElementById('cookie-settings');
+  <style>
+    :root {
+      --black: #141210;
+      --black-deep: #0d0b0a;
+      --paper: #f2eee4;
+      --paper-dim: #c9c4b6;
+      --red: #c81e1e;
+      --red-dark: #8f1515;
+      --line: #2c2924;
 
-  function showBanner() {
-    banner.hidden = false;
-  }
+      --font-display: "Anton", sans-serif;
+      --font-body: "Oswald", sans-serif;
 
-  function hideBanner() {
-    banner.hidden = true;
-  }
+      --size-h1: clamp(62px, 10.4vw, 110px);
+      --size-h2: clamp(32px, 5vw, 44px);
+      --size-h3: clamp(28px, 2.5vw, 36px);
+      --size-manifesto: clamp(24px, 3.2vw, 36px);
+      --size-body: 18px;
+      --size-ui: 14px;
+    }
 
-  const choice = localStorage.getItem(CONSENT_KEY);
+    /* ---------- RESET ---------- */
 
-  if (choice === 'accepted') {
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-    loadGoogleAnalytics();
+    html {
+      scroll-behavior: smooth;
+    }
 
-  } else if (!choice) {
+    body {
+      margin: 0;
+      background: var(--black);
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: var(--size-body);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    showBanner();
+    img {
+      max-width: 100%;
+    }
 
-  }
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
 
-  accept.addEventListener('click', function() {
+    a {
+      color: inherit;
+    }
 
-    localStorage.setItem(CONSENT_KEY, 'accepted');
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
 
-    hideBanner();
+    h1 {
+      font-size: var(--size-h1);
+    }
 
-    loadGoogleAnalytics();
+    h2 {
+      font-size: var(--size-h2);
+    }
 
-  });
+    h3 {
+      font-size: var(--size-h3);
+    }
 
-  reject.addEventListener('click', function() {
+    /* ---------- LAYOUT ---------- */
 
-    localStorage.setItem(CONSENT_KEY, 'rejected');
+    .wrap-full {
+      width: 100%;
+      padding-inline: 5vw;
+    }
 
-    hideBanner();
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 32px;
+      align-items: start;
+    }
 
-  });
+    /* ---------- HEADER ---------- */
 
-  settings.addEventListener('click', function(event) {
+    header {
+      width: 100%;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
 
-    event.preventDefault();
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    showBanner();
+    .wordmark {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
 
-  });
+    .wordmark img {
+      display: block;
+      width: auto;
+      height: 42px;
+      max-width: 240px;
+      object-fit: contain;
+    }
 
-})();
-</script>
+    header nav a {
+      margin-left: 24px;
+      border-bottom: 1px solid transparent;
+      color: var(--paper-dim);
+      font-size: var(--size-ui);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+    }
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
+    header nav a:hover,
+    header nav a:focus-visible {
+      color: var(--paper);
+      border-color: var(--red);
+    }
 
-  var p1 = "+39 ";
-  var p2 = "371 ";
-  var p3 = "612 ";
-  var p4 = "63 ";
-  var p5 = "58";
+    .menu-toggle {
+      display: none;
+    }
 
-  var num = p1 + p2 + p3 + p4 + p5;
-  var raw = num.replace(/\s+/g, '');
-  var wrap = document.getElementById("tel-wrap");
+    /* ---------- HERO ---------- */
 
-  if(wrap) {
+    .hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--line);
+    }
 
-    var a = document.createElement("a");
+    .hero-content {
+      grid-column: span 12;
+    }
 
-    a.href = "tel:" + raw;
-    a.setAttribute("rel", "nofollow");
-    a.textContent = num;
+    .hero .stamp {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 4px 10px;
+      border: 1.5px solid var(--red);
+      color: var(--red);
+      font-size: var(--size-ui);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
 
-    wrap.appendChild(a);
+    .hero h1 {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
+    }
 
-  }
+    .hero h1 .line2 {
+      display: block;
+      color: var(--red);
+    }
 
-  const menuToggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('header nav');
-  const navLinks = document.querySelectorAll('header nav a');
+    .hero .lede {
+      grid-column: span 12;
+      margin: 28px 0 0;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: var(--size-manifesto);
+      line-height: 1.05;
+    }
 
-  if (menuToggle && nav) {
+    .hero .lede .red-text {
+      color: var(--red);
+      text-transform: uppercase;
+    }
 
-    menuToggle.addEventListener('click', function() {
+    .hero .lede-second {
+      display: block;
+      margin-top: 6px;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: 0.8em;
+      line-height: 1.05;
+    }
 
-      menuToggle.classList.toggle('is-active');
-      nav.classList.toggle('is-open');
+    .cta-row {
+      display: flex;
+      grid-column: span 12;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 24px;
+    }
 
-      const isExpanded =
-        menuToggle.getAttribute('aria-expanded') === 'true';
+    /* ---------- BUTTONS ---------- */
 
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border: 1.5px solid var(--paper);
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: var(--size-body);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+    }
 
-      document.body.style.overflow =
-        isExpanded ? 'auto' : 'hidden';
+    .btn-primary {
+      border-color: var(--red);
+      background: var(--red);
+      color: var(--paper);
+    }
 
-    });
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      border-color: var(--red-dark);
+      background: var(--red-dark);
+    }
 
-    navLinks.forEach(link => {
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: var(--paper);
+      color: var(--black);
+    }
 
-      link.addEventListener('click', () => {
+    /* ---------- STATEMENTS ---------- */
 
-        menuToggle.classList.remove('is-active');
-        nav.classList.remove('is-open');
+    .statement {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
 
-        menuToggle.setAttribute('aria-expanded', 'false');
+    .statement p {
+      grid-column: span 12;
+      margin: 0;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: var(--size-manifesto);
+      line-height: 1.05;
+    }
 
-        document.body.style.overflow = 'auto';
+    .statement .red-text {
+      color: var(--red);
+      text-transform: uppercase;
+    }
 
-      });
+    .statement .title-h2 {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: var(--size-h2);
+      line-height: 0.95;
+    }
 
-    });
+    .statement .sub-text {
+      font-size: 0.8em;
+    }
 
-  }
+    /* ---------- SITUATIONS ---------- */
 
-});
-</script>
+    .situations {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .situations h2 {
+      grid-column: span 12;
+      margin-bottom: 20px;
+    }
+
+    .situations-grid {
+      display: grid;
+      grid-column: span 12;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .situation {
+      display: flex;
+      align-items: center;
+      min-height: 140px;
+      padding: 28px 24px;
+      background: var(--black);
+      color: var(--paper);
+      font-size: calc(var(--size-body) * 1.4);
+      line-height: 1.25;
+    }
+
+    .situation::before {
+      flex: 0 0 auto;
+      margin-right: 10px;
+      color: var(--red);
+      content: "—";
+    }
+
+    /* ---------- SERVICES ---------- */
+
+    .articles {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .articles-title {
+      grid-column: span 12;
+      margin-bottom: 24px;
+    }
+
+    .article-grid {
+      display: grid;
+      grid-column: span 12;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .article {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 220px;
+      padding: 40px 32px;
+      border: 1px solid var(--line);
+      background: var(--black-deep);
+    }
+
+    .article .num {
+      margin-bottom: 12px;
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(40px, 4.5vw, 56px);
+      line-height: 0.9;
+    }
+
+    .article .eyebrow {
+      margin: 0 0 10px;
+      color: var(--paper-dim);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .articles-close {
+      display: flex;
+      flex-direction: column;
+      grid-column: span 12;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+    }
+
+    .articles-close p {
+      margin: 0;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: calc(var(--size-manifesto) * 0.8);
+      line-height: 1.05;
+    }
+
+    .articles-close .service-right {
+      color: var(--red);
+    }
+
+    /* ---------- PARTNERS ---------- */
+
+    .partners-banner {
+      width: 100%;
+      overflow: hidden;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .partners-label {
+      margin-bottom: 20px;
+      color: #777;
+      font-size: var(--size-ui);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .marquee-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      user-select: none;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+      );
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 32s linear infinite;
+    }
+
+    .marquee-content {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 64px;
+      padding-right: 64px;
+    }
+
+    .partner-logo {
+      display: flex;
+      flex: 0 0 180px;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      min-height: 80px;
+    }
+
+    .partner-logo img {
+      display: block;
+      width: auto;
+      height: calc(40px * var(--logo-scale, 1));
+      max-width: 100%;
+      max-height: 70px;
+      object-fit: contain;
+      opacity: 0.85;
+    }
+
+    /* ---------- CONTACT ---------- */
+
+    .contact {
+      padding: 80px 0 100px;
+    }
+
+    .contact-left,
+    .contact-right {
+      grid-column: span 6;
+    }
+
+    .contact-title {
+      margin-bottom: 28px;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .contact .intro {
+      max-width: 32ch;
+      margin: 0;
+      color: var(--paper);
+      font-size: clamp(20px, 2.2vw, 26px);
+      line-height: 1.25;
+    }
+
+    /* ---------- FORM ---------- */
+
+    form {
+      padding: 32px;
+      border: 1.5px solid var(--line);
+      background: var(--black-deep);
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--paper-dim);
+      font-size: var(--size-ui);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px 2px;
+      border: 0;
+      border-bottom: 1.5px solid var(--line);
+      outline: none;
+      background: transparent;
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: var(--size-body);
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-bottom-color: var(--red);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .privacy-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .privacy-field input[type="checkbox"] {
+      flex: 0 0 auto;
+      width: auto;
+      margin: 4px 0 0;
+      padding: 0;
+      accent-color: var(--red);
+    }
+
+    .privacy-field label {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+    }
+
+    .privacy-field a {
+      text-decoration: underline;
+    }
+
+    .field-submit {
+      margin-top: 24px;
+      margin-bottom: 0;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      width: 100%;
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      color: var(--paper-dim);
+      font-size: var(--size-ui);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    footer a {
+      color: var(--paper-dim);
+      text-decoration: none;
+    }
+
+    footer a:hover,
+    footer a:focus-visible {
+      color: var(--paper);
+    }
+
+    #cookie-settings {
+      text-decoration: underline;
+    }
+
+    /* ---------- COOKIE CONSENT ---------- */
+
+    #cookie-consent {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      left: 20px;
+      z-index: 9999;
+      max-width: 620px;
+      padding: 22px;
+      border: 1px solid var(--red);
+      background: var(--black-deep);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      color: var(--paper);
+    }
+
+    #cookie-consent p {
+      margin: 0 0 18px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    #cookie-consent strong {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .cookie-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cookie-buttons button {
+      padding: 10px 18px;
+      border: 1px solid var(--paper);
+      background: transparent;
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .cookie-buttons button:first-child {
+      border-color: var(--red);
+      background: var(--red);
+    }
+
+    .cookie-buttons button:hover,
+    .cookie-buttons button:focus-visible {
+      opacity: 0.85;
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes marquee-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero h1 {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      .marquee-track {
+        animation: none;
+      }
+    }
+
+    /* ---------- TABLET ---------- */
+
+    @media (max-width: 1024px) {
+      .situations-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .article-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 768px) {
+      .grid-12 {
+        gap: 16px;
+      }
+
+      .situations-grid,
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-left,
+      .contact-right {
+        grid-column: span 12;
+      }
+
+      .contact .intro {
+        max-width: none;
+      }
+
+      .wordmark img {
+        height: 36px;
+        max-width: 200px;
+      }
+
+      /* Mobile menu */
+
+      .menu-toggle {
+        position: relative;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .hamburger,
+      .hamburger::before,
+      .hamburger::after {
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background: var(--paper);
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .hamburger {
+        position: relative;
+      }
+
+      .hamburger::before,
+      .hamburger::after {
+        left: 0;
+        content: "";
+      }
+
+      .hamburger::before {
+        transform: translateY(-8px);
+      }
+
+      .hamburger::after {
+        transform: translateY(8px);
+      }
+
+      .menu-toggle.is-active .hamburger {
+        background: transparent;
+      }
+
+      .menu-toggle.is-active .hamburger::before {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      .menu-toggle.is-active .hamburger::after {
+        transform: translateY(0) rotate(-45deg);
+      }
+
+      header nav {
+        position: fixed;
+        inset: 0;
+        z-index: 99;
+        display: flex;
+        visibility: hidden;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 40px;
+        padding: 24px;
+        background: var(--black-deep);
+        opacity: 0;
+        transform: translateY(-100%);
+        transition:
+          transform 0.4s cubic-bezier(0.77, 0, 0.175, 1),
+          opacity 0.4s ease,
+          visibility 0.4s ease;
+      }
+
+      header nav.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      header nav a {
+        margin: 0;
+        font-size: clamp(24px, 6vw, 36px);
+      }
+
+      /* Cookie */
+
+      #cookie-consent {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        padding: 18px;
+      }
+
+      /* Form */
+
+      form {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="wrap-full">
+      <div class="header-inner">
+
+        <a href="/" class="wordmark" aria-label="PROPAGANDA Marketing — Home">
+          <img
+            src="/logo-PROPAGANDAmarketing.png"
+            alt="PROPAGANDA Marketing"
+            width="240"
+            height="42"
+          >
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Apri menu"
+          aria-expanded="false"
+          aria-controls="main-navigation"
+        >
+          <span class="hamburger"></span>
+        </button>
+
+        <nav id="main-navigation" aria-label="Navigazione principale">
+          <a href="#cosa-facciamo">Cosa facciamo</a>
+          <a href="#contatti">Contatti</a>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="wrap-full">
+        <div class="grid-12">
+
+          <div class="hero-content">
+
+            <span class="stamp">
+              Studio di comunicazione e marketing
+            </span>
+
+            <h1>
+              <span>PROPAGANDA</span>
+              <span class="line2">MARKETING</span>
+            </h1>
+
+          </div>
+
+          <p class="lede">
+            <span class="red-text">
+              NON VENDIAMO PACCHETTI DI MARKETING.
+            </span>
+
+            <span class="lede-second">
+              Entriamo dove c'è qualcosa da sistemare, costruire o far ri-funzionare.
+            </span>
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contatti">
+              Scrivici
+            </a>
+
+            <a class="btn btn-ghost" href="#cosa-facciamo">
+              Cosa facciamo
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- STATEMENT -->
+
+    <section class="statement">
+      <div class="wrap-full">
+        <div class="grid-12">
+
+          <p>
+            <span class="red-text">
+              NON FACCIAMO MARKETING PERCHÉ "BISOGNA ESSERCI".
+            </span>
+            <br>
+
+            <span class="sub-text">
+              Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
+              Se serve, si fa. Se non serve, si lascia perdere.
+            </span>
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SITUATIONS -->
+
+    <section class="situations">
+      <div class="wrap-full">
+        <div class="grid-12">
+
+          <h2>Ci chiamano quando...</h2>
+
+          <div class="situations-grid">
+
+            <div class="situation">
+              L'azienda è cresciuta, ma comunica ancora come cinque anni fa.
+            </div>
+
+            <div class="situation">
+              Il sito c'è, ma non serve a niente.
+            </div>
+
+            <div class="situation">
+              Bisogna lanciare qualcosa.
+            </div>
+
+            <div class="situation">
+              Nessuno capisce bene cosa facciamo.
+            </div>
+
+            <div class="situation">
+              I social ci sono, ma non succede niente.
+            </div>
+
+            <div class="situation">
+              Abbiamo un problema e non sappiamo quale strumento serva.
+            </div>
+
+            <div class="situation">
+              Serve qualcuno che coordini tutto senza assumere un ufficio marketing.
+            </div>
+
+            <div class="situation">
+              C'è qualcosa da fare e nessuno vuole perdere tre mesi a capire da dove iniziare.
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+
+    <section class="articles" id="cosa-facciamo">
+      <div class="wrap-full">
+        <div class="grid-12">
+
+          <h2 class="articles-title">
+            Cosa facciamo
+          </h2>
+
+          <div class="article-grid">
+
+            <article class="article">
+              <div class="num">I</div>
+              <div>
+                <p class="eyebrow">Quando non sai da dove partire</p>
+                <h3>Strategia.</h3>
+              </div>
+            </article>
+
+            <article class="article">
+              <div class="num">II</div>
+              <div>
+                <p class="eyebrow">Quando la tua azienda non si capisce</p>
+                <h3>Comunicazione.</h3>
+              </div>
+            </article>
+
+            <article class="article">
+              <div class="num">III</div>
+              <div>
+                <p class="eyebrow">Quando hai qualcosa da dire</p>
+                <h3>Contenuti.</h3>
+              </div>
+            </article>
+
+            <article class="article">
+              <div class="num">IV</div>
+              <div>
+                <p class="eyebrow">Quando ti presenti male</p>
+                <h3>Branding.</h3>
+              </div>
+            </article>
+
+            <article class="article">
+              <div class="num">V</div>
+              <div>
+                <p class="eyebrow">Quando ti serve uno strumento</p>
+                <h3>Siti, landing, sistemi digitali.</h3>
+              </div>
+            </article>
+
+            <article class="article">
+              <div class="num">VI</div>
+              <div>
+                <p class="eyebrow">Quando devi far arrivare il messaggio</p>
+                <h3>Marketing.</h3>
+              </div>
+            </article>
+
+          </div>
+
+          <div class="articles-close">
+            <p>Non devi comprare un pacchetto.</p>
+            <p>Devi risolvere una cosa.</p>
+            <p class="service-right">Noi capiamo quale.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXTERNAL MARKETING OFFICE -->
+
+    <section class="statement">
+      <div class="wrap-full">
+        <div class="grid-12">
+
+          <p>
+            <span class="red-text title-h2">
+              UN UFFICIO MARKETING ESTERNO.
+            </span>
+            <br>
+
+            <span class="sub-text">
+              Senza assumere un ufficio marketing. Senza coordinare cinque fornitori.
+              PROPAGANDA entra quando serve, lavora dove serve e rimane quando serve.
+            </span>
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+
+    <section class="partners-banner" aria-label="Partner">
+
+      <div class="partners-label">
+        Hanno ri-partito con noi
+      </div>
+
+      <div
+        class="marquee-container"
+        role="region"
+        aria-label="Loghi partner"
+      >
+
+        <div class="marquee-track">
+
+          <div class="marquee-content">
+
+            <div class="partner-logo">
+              <img src="/logos/partner1.png" alt="Partner 1" style="--logo-scale: 1.5;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner2.png" alt="Partner 2" style="--logo-scale: 1.5;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner3.png" alt="Partner 3" style="--logo-scale: 1;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner4.png" alt="Partner 4" style="--logo-scale: 1;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner5.png" alt="Partner 5" style="--logo-scale: 1.25;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner6.png" alt="Partner 6" style="--logo-scale: 0.8;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner7.png" alt="Partner 7" style="--logo-scale: 1;">
+            </div>
+
+          </div>
+
+          <div class="marquee-content" aria-hidden="true">
+
+            <div class="partner-logo">
+              <img src="/logos/partner1.png" alt="" style="--logo-scale: 1.5;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner2.png" alt="" style="--logo-scale: 1.5;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner3.png" alt="" style="--logo-scale: 1;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner4.png" alt="" style="--logo-scale: 1;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner5.png" alt="" style="--logo-scale: 1.25;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner6.png" alt="" style="--logo-scale: 0.8;">
+            </div>
+
+            <div class="partner-logo">
+              <img src="/logos/partner7.png" alt="" style="--logo-scale: 1;">
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="contact" id="contatti">
+      <div class="wrap-full">
+        <div class="grid-12">
+
+          <div class="contact-left">
+
+            <h2 class="contact-title">
+              HAI UNA COSA DA SISTEMARE?
+            </h2>
+
+            <p class="intro">
+              Raccontaci cosa stai costruendo, cosa non funziona o cosa vuoi far partire.
+              Rispondiamo di persona, non con un modulo automatico che finisce in un CRM.
+            </p>
+
+          </div>
+
+          <div class="contact-right">
+
+            <form
+              action="https://formsubmit.co/info@propagandamarketing.online"
+              method="POST"
+            >
+
+              <input
+                type="hidden"
+                name="_subject"
+                value="Nuovo contatto da propagandamarketing.online"
+              >
+
+              <input
+                type="hidden"
+                name="_template"
+                value="table"
+              >
+
+              <input
+                type="hidden"
+                name="_captcha"
+                value="true"
+              >
+
+              <!--
+                Se crei una pagina grazie.html,
+                puoi attivare il redirect aggiungendo:
+
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://propagandamarketing.online/grazie.html"
+                >
+              -->
+
+              <input
+                type="text"
+                name="_honey"
+                class="hp-field"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+              >
+
+              <div class="field">
+                <label for="nome">Nome</label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="Nome"
+                  autocomplete="name"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="Email"
+                  autocomplete="email"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="messaggio">Messaggio</label>
+                <textarea
+                  id="messaggio"
+                  name="Messaggio"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="privacy-field">
+
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  name="Privacy"
+                  value="Accettata"
+                  required
+                >
+
+                <label for="privacy">
+                  Ho letto e accetto la
+                  <a href="/privacy-policy">
+                    Privacy Policy
+                  </a>.
+                </label>
+
+              </div>
+
+              <div class="field field-submit">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Invia messaggio
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="wrap-full">
+
+      <div class="footer-inner">
+
+        <span>
+          © 2026 PROPAGANDA Marketing di Fiorillo Vincenzo —
+          P.IVA 01843770080 —
+          Ventimiglia (IM) —
+          <span id="tel-wrap">Tel: </span> —
+          PEC:
+          <a href="mailto:iv@pec-studio.it">
+            iv@pec-studio.it
+          </a>
+        </span>
+
+        <span>
+          Studio di comunicazione e marketing —
+          <a href="#" id="cookie-settings">
+            Cookie
+          </a>
+        </span>
+
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- COOKIE CONSENT -->
+
+  <div
+    id="cookie-consent"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="cookie-title"
+    hidden
+  >
+
+    <p>
+      <strong id="cookie-title">Cookie</strong><br>
+      Utilizziamo Google Analytics per capire come viene utilizzato il sito.
+      Google Analytics viene attivato solo con il tuo consenso.
+      Puoi accettare o rifiutare l'analisi statistica.
+    </p>
+
+    <div class="cookie-buttons">
+
+      <button type="button" id="cookie-accept">
+        Accetta
+      </button>
+
+      <button type="button" id="cookie-reject">
+        Rifiuta
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+    (() => {
+      "use strict";
+
+      /* ---------- GOOGLE ANALYTICS ---------- */
+
+      const GA_ID = "G-T2KSBQGNFQ";
+      const CONSENT_KEY = "analytics-consent";
+
+      const banner = document.getElementById("cookie-consent");
+      const acceptButton = document.getElementById("cookie-accept");
+      const rejectButton = document.getElementById("cookie-reject");
+      const settingsButton = document.getElementById("cookie-settings");
+
+      function loadGoogleAnalytics() {
+        if (window.__gaLoaded) {
+          return;
+        }
+
+        window.__gaLoaded = true;
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+
+        window.gtag = gtag;
+
+        gtag("js", new Date());
+        gtag("config", GA_ID);
+
+        const script = document.createElement("script");
+
+        script.async = true;
+        script.src =
+          "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+
+        document.head.appendChild(script);
+      }
+
+      function showCookieBanner() {
+        if (banner) {
+          banner.hidden = false;
+        }
+      }
+
+      function hideCookieBanner() {
+        if (banner) {
+          banner.hidden = true;
+        }
+      }
+
+      function getConsent() {
+        try {
+          return localStorage.getItem(CONSENT_KEY);
+        } catch {
+          return null;
+        }
+      }
+
+      function setConsent(value) {
+        try {
+          localStorage.setItem(CONSENT_KEY, value);
+        } catch {
+          /* Storage non disponibile: il sito continua a funzionare. */
+        }
+      }
+
+      const consent = getConsent();
+
+      if (consent === "accepted") {
+        loadGoogleAnalytics();
+      } else if (!consent) {
+        showCookieBanner();
+      }
+
+      if (acceptButton) {
+        acceptButton.addEventListener("click", () => {
+          setConsent("accepted");
+          hideCookieBanner();
+          loadGoogleAnalytics();
+        });
+      }
+
+      if (rejectButton) {
+        rejectButton.addEventListener("click", () => {
+          setConsent("rejected");
+          hideCookieBanner();
+        });
+      }
+
+      if (settingsButton) {
+        settingsButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          showCookieBanner();
+        });
+      }
+
+
+      /* ---------- MOBILE MENU ---------- */
+
+      const menuToggle = document.querySelector(".menu-toggle");
+      const nav = document.getElementById("main-navigation");
+      const navLinks = document.querySelectorAll("#main-navigation a");
+
+      function closeMenu() {
+        if (!menuToggle || !nav) {
+          return;
+        }
+
+        menuToggle.classList.remove("is-active");
+        nav.classList.remove("is-open");
+        menuToggle.setAttribute("aria-expanded", "false");
+
+        document.body.style.overflow = "";
+      }
+
+      if (menuToggle && nav) {
+
+        menuToggle.addEventListener("click", () => {
+
+          const isOpen =
+            menuToggle.getAttribute("aria-expanded") === "true";
+
+          menuToggle.classList.toggle("is-active", !isOpen);
+          nav.classList.toggle("is-open", !isOpen);
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            String(!isOpen)
+          );
+
+          document.body.style.overflow =
+            isOpen ? "" : "hidden";
+        });
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", closeMenu);
+        });
+
+      }
+
+
+      /* ---------- TELEPHONE ---------- */
+
+      const phoneParts = [
+        "+39",
+        "371",
+        "612",
+        "63",
+        "58"
+      ];
+
+      const phoneNumber = phoneParts.join(" ");
+      const phoneRaw = phoneNumber.replace(/\s+/g, "");
+      const phoneContainer = document.getElementById("tel-wrap");
+
+      if (phoneContainer) {
+
+        const phoneLink = document.createElement("a");
+
+        phoneLink.href = "tel:" + phoneRaw;
+        phoneLink.rel = "nofollow";
+        phoneLink.textContent = phoneNumber;
+
+        phoneContainer.appendChild(phoneLink);
+      }
+
+    })();
+  </script>
 
 </body>
 </html>
+```
