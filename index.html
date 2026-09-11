@@ -154,25 +154,16 @@ header .header-inner {
 .wordmark {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-display);
-  font-size: 24px;
-  text-transform: uppercase;
 }
 
-.wordmark span { color: var(--red); }
-
-.wordmark .mark {
-  width: 26px;
-  height: 26px;
-  background: var(--red);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.wordmark img {
+  display: block;
+  width: auto;
+  height: 42px;
+  max-width: 240px;
+  object-fit: contain;
 }
 
-.wordmark .mark svg { width: 16px; height: 16px; }
 .menu-toggle { display: none; }
 
 header nav a {
@@ -671,6 +662,11 @@ footer a:hover { color: var(--paper); }
   .contact-left, .contact-right { grid-column: span 12; }
   .contact .intro { max-width: 100%; }
 
+  .wordmark img {
+    height: 36px;
+    max-width: 200px;
+  }
+
   .menu-toggle {
     display: flex;
     align-items: center;
@@ -757,13 +753,9 @@ footer a:hover { color: var(--paper); }
 <header>
   <div class="wrap-full">
     <div class="header-inner">
+
       <div class="wordmark">
-        <span class="mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#F2EEE4" stroke-width="3" stroke-linecap="square">
-            <path d="M4 12 L9 17 L20 5"></path>
-          </svg>
-        </span>
-        PROPAGANDA<span>MARKETING</span>
+        <img src="logo-PROPAGANDAmarketing.png" alt="PROPAGANDA Marketing" />
       </div>
 
       <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false">
@@ -774,6 +766,7 @@ footer a:hover { color: var(--paper); }
         <a href="#cosa-facciamo">Cosa facciamo</a>
         <a href="#contatti">Contatti</a>
       </nav>
+
     </div>
   </div>
 </header>
@@ -916,6 +909,7 @@ footer a:hover { color: var(--paper); }
 
     <div class="marquee-container" tabindex="0" role="region" aria-label="Loghi partner">
       <div class="marquee-track">
+
         <div class="marquee-content">
           <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner1.png" alt="" /></div>
           <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner2.png" alt="" /></div>
@@ -935,6 +929,7 @@ footer a:hover { color: var(--paper); }
           <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner6.png" alt="" /></div>
           <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner7.png" alt="" /></div>
         </div>
+
       </div>
     </div>
   </section>
@@ -942,6 +937,7 @@ footer a:hover { color: var(--paper); }
   <section class="contact" id="contatti">
     <div class="wrap-full">
       <div class="grid-12">
+
         <div class="contact-left">
           <h2 class="contact-title">HAI UNA COSA DA SISTEMARE?</h2>
 
@@ -951,7 +947,9 @@ footer a:hover { color: var(--paper); }
         </div>
 
         <div class="contact-right">
+
           <form action="https://formsubmit.co/info@propagandamarketing.online" method="POST">
+
             <input type="hidden" name="_subject" value="Nuovo contatto da propagandamarketing.online" />
             <input type="hidden" name="_template" value="table" />
             <input type="hidden" name="_captcha" value="true" />
@@ -974,6 +972,7 @@ footer a:hover { color: var(--paper); }
 
             <div class="field" style="display: flex; gap: 8px; align-items: flex-start; margin-bottom: 24px;">
               <input type="checkbox" id="privacy" name="Privacy" required style="width: auto; margin-top: 4px;" />
+
               <label for="privacy" style="font-size: 12px; text-transform: none; letter-spacing: normal;">
                 Ho letto e accetto la <a href="/privacy-policy" style="text-decoration: underline;">Privacy Policy</a>.
               </label>
@@ -984,7 +983,9 @@ footer a:hover { color: var(--paper); }
                 Invia messaggio
               </button>
             </div>
+
           </form>
+
         </div>
       </div>
     </div>
@@ -995,6 +996,7 @@ footer a:hover { color: var(--paper); }
 <footer>
   <div class="wrap-full">
     <div class="footer-inner">
+
       <span>
         © 2026 PROPAGANDA Marketing di Fiorillo Vincenzo —
         P.IVA 01843770080 — Ventimiglia (IM) —
@@ -1006,12 +1008,15 @@ footer a:hover { color: var(--paper); }
         Studio di comunicazione e marketing —
         <a href="#" id="cookie-settings">Cookie</a>
       </span>
+
     </div>
   </div>
 </footer>
 
 <!-- BANNER CONSENSO -->
+
 <div id="cookie-consent" role="dialog" aria-label="Consenso Google Analytics" hidden>
+
   <p>
     <strong>Cookie</strong><br>
     Utilizziamo Google Analytics per capire come viene utilizzato il sito.
@@ -1022,20 +1027,26 @@ footer a:hover { color: var(--paper); }
     <button type="button" id="cookie-accept">Accetta</button>
     <button type="button" id="cookie-reject">Rifiuta</button>
   </div>
+
 </div>
 
 <script>
 (function() {
+
   const GA_ID = 'G-T2KSBQGNFQ';
   const CONSENT_KEY = 'analytics-consent';
 
   function loadGoogleAnalytics() {
+
     if (window.__gaLoaded) return;
+
     window.__gaLoaded = true;
 
     const script = document.createElement('script');
+
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+
     document.head.appendChild(script);
 
     window.dataLayer = window.dataLayer || [];
@@ -1048,6 +1059,7 @@ footer a:hover { color: var(--paper); }
 
     gtag('js', new Date());
     gtag('config', GA_ID);
+
   }
 
   const banner = document.getElementById('cookie-consent');
@@ -1066,26 +1078,41 @@ footer a:hover { color: var(--paper); }
   const choice = localStorage.getItem(CONSENT_KEY);
 
   if (choice === 'accepted') {
+
     loadGoogleAnalytics();
+
   } else if (!choice) {
+
     showBanner();
+
   }
 
   accept.addEventListener('click', function() {
+
     localStorage.setItem(CONSENT_KEY, 'accepted');
+
     hideBanner();
+
     loadGoogleAnalytics();
+
   });
 
   reject.addEventListener('click', function() {
+
     localStorage.setItem(CONSENT_KEY, 'rejected');
+
     hideBanner();
+
   });
 
   settings.addEventListener('click', function(event) {
+
     event.preventDefault();
+
     showBanner();
+
   });
+
 })();
 </script>
 
@@ -1103,11 +1130,15 @@ document.addEventListener("DOMContentLoaded", function() {
   var wrap = document.getElementById("tel-wrap");
 
   if(wrap) {
+
     var a = document.createElement("a");
+
     a.href = "tel:" + raw;
     a.setAttribute("rel", "nofollow");
     a.textContent = num;
+
     wrap.appendChild(a);
+
   }
 
   const menuToggle = document.querySelector('.menu-toggle');
@@ -1115,7 +1146,9 @@ document.addEventListener("DOMContentLoaded", function() {
   const navLinks = document.querySelectorAll('header nav a');
 
   if (menuToggle && nav) {
+
     menuToggle.addEventListener('click', function() {
+
       menuToggle.classList.toggle('is-active');
       nav.classList.toggle('is-open');
 
@@ -1126,20 +1159,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
       document.body.style.overflow =
         isExpanded ? 'auto' : 'hidden';
+
     });
 
     navLinks.forEach(link => {
+
       link.addEventListener('click', () => {
+
         menuToggle.classList.remove('is-active');
         nav.classList.remove('is-open');
+
         menuToggle.setAttribute('aria-expanded', 'false');
+
         document.body.style.overflow = 'auto';
+
       });
+
     });
+
   }
+
 });
 </script>
 
 </body>
 </html>
-```
