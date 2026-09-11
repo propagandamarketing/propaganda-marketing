@@ -15,19 +15,17 @@
 <meta property="og:url" content="https://propagandamarketing.online/" />
 <meta property="og:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
 <meta property="og:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
-<meta property="og:image" content="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
 <meta name="twitter:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
-<meta name="twitter:image" content="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta.jpg" />
 
-<!-- Fonts & Favicon -->
+<!-- Fonts & Favicon (Soli 2 FONT: Anton + Oswald) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&amp;family=Oswald:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39;%3E%3Crect width=&#39;512&#39; height=&#39;512&#39; fill=&#39;%23C81E1E&#39;/%3E%3Crect x=&#39;96&#39; y=&#39;96&#39; width=&#39;320&#39; height=&#39;320&#39; fill=&#39;none&#39; stroke=&#39;%23F2EEE4&#39; stroke-width=&#39;22&#39;/%3E%3Cpath d=&#39;M155 264 L226 335 L360 175&#39; fill=&#39;none&#39; stroke=&#39;%23F2EEE4&#39; stroke-width=&#39;30&#39; stroke-linecap=&#39;square&#39; stroke-linejoin=&#39;miter&#39;/%3E%3C/svg%3E" />
 
-<!-- Schema.org JSON-LD (Dati Strutturati per Google) -->
+<!-- Schema.org JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,7 +53,18 @@
     --red: #C81E1E;
     --red-dark: #8f1515;
     --line: #2c2924;
-    --max-w: 1120px;
+
+    /* REGOLE TIPOGRAFICHE */
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Oswald', sans-serif;
+
+    /* SCALA TIPOGRAFICA UNIFORMATA */
+    --size-h1: clamp(62px, 10.4vw, 110px);
+    --size-h2: clamp(32px, 5vw, 44px);
+    --size-h3: clamp(28px, 2.5vw, 36px); /* Ingrandito titolo servizio */
+    --size-manifesto: clamp(24px, 3.2vw, 36px);
+    --size-body: 18px;
+    --size-ui: 14px;
   }
 
 * { box-sizing: border-box; }
@@ -63,584 +72,477 @@
 html { scroll-behavior: smooth; }
 
 body {
-margin: 0;
-background: var(--black);
-color: var(--paper);
-font-family: 'Anton', sans-serif;
-font-size: 19px;
-line-height: 1.25;
-letter-spacing: 0.01em;
--webkit-font-smoothing: antialiased;
+  margin: 0;
+  background: var(--black);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--size-body);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* HEADINGS */
 h1, h2, h3 {
-font-family: 'Anton', sans-serif;
-font-weight: 400;
-text-transform: uppercase;
-line-height: 0.92;
-margin: 0;
-letter-spacing: 0.005em;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin: 0;
+  letter-spacing: 0.01em;
 }
+
+h1 { font-size: var(--size-h1); }
+h2 { font-size: var(--size-h2); }
+h3 { font-size: var(--size-h3); }
 
 a { color: inherit; }
 
-.wrap {
-max-width: var(--max-w);
-margin: 0 auto;
-padding: 0 32px;
+/* BALANCED GRID & FULL-WIDTH WRAPPER */
+.wrap-full {
+  width: 100%;
+  padding: 0 5vw;
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
+  align-items: start;
 }
 
 /* ---------- Header ---------- */
 header {
-padding: 28px 0;
-border-bottom: 1px solid var(--line);
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+  width: 100%;
 }
-header .wrap {
-display: flex;
-justify-content: space-between;
-align-items: center;
+header .header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .wordmark {
-display: flex;
-align-items: center;
-gap: 10px;
-font-family: 'Anton', sans-serif;
-font-size: 20px;
-text-transform: uppercase;
-letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  text-transform: uppercase;
 }
 .wordmark span { color: var(--red); }
 .wordmark .mark {
-width: 26px;
-height: 26px;
-background: var(--red);
-display: flex;
-align-items: center;
-justify-content: center;
-flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  background: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 .wordmark .mark svg { width: 16px; height: 16px; }
+
 header nav a {
-font-family: 'Oswald', sans-serif;
-font-weight: 600;
-text-decoration: none;
-color: var(--paper-dim);
-font-size: 16px;
-border-bottom: 1px solid transparent;
-transition: border-color 0.15s ease, color 0.15s ease;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--paper-dim);
+  font-size: var(--size-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 24px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 header nav a:hover, header nav a:focus-visible {
-color: var(--paper);
-border-color: var(--red);
+  color: var(--paper);
+  border-color: var(--red);
 }
-header nav a:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
 
 /* ---------- Hero ---------- */
 .hero {
-padding: 96px 0 80px;
-position: relative;
-overflow: hidden;
+  padding: 80px 0 64px;
+  border-bottom: 1px solid var(--line);
+}
+.hero-content {
+  grid-column: span 12;
 }
 .hero .stamp {
-font-family: 'Oswald', sans-serif;
-font-weight: 700;
-font-size: 15px;
-color: var(--red);
-border: 1.5px solid var(--red);
-display: inline-block;
-padding: 5px 12px;
-margin-bottom: 28px;
-transform: rotate(-2deg);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--size-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--red);
+  border: 1.5px solid var(--red);
+  display: inline-block;
+  padding: 4px 10px;
+  margin-bottom: 24px;
+  transform: rotate(-2deg);
 }
 .hero h1 {
-font-size: clamp(56px, 11vw, 132px);
-color: var(--paper);
-opacity: 0;
-transform: translateY(14px);
-animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
+  color: var(--paper);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
 }
 .hero h1 .line2 {
-color: var(--red);
-display: block;
-animation-delay: 0.12s;
-}
-.hero h1 span {
-display: block;
-opacity: 0;
-transform: translateY(14px);
-animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
+  color: var(--red);
+  display: block;
 }
 
 @keyframes rise {
-to { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-.hero h1,
-.hero h1 span {
-animation: none;
-opacity: 1;
-transform: none;
-}
+  .hero h1 { animation: none; opacity: 1; transform: none; }
 }
 
 .hero .lede {
-max-width: 100%;
-margin-top: 32px;
-font-family: 'Anton', sans-serif;
-font-size: clamp(16px, 2.1vw, 32px);
-line-height: 1.25;
-font-weight: 400;
-color: var(--paper);
-white-space: nowrap;
+  grid-column: span 12;
+  margin-top: 28px;
+  font-family: var(--font-display);
+  font-size: var(--size-manifesto);
+  line-height: 1.05;
+  color: var(--paper);
 }
+
 .hero .lede .lede-second {
-font-family: 'Oswald', sans-serif;
-font-weight: 400;
-color: var(--paper);
-display: block;
-margin-top: 12px;
-font-size: clamp(15px, 1.8vw, 25px);
-white-space: normal;
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: calc(var(--size-manifesto) * 0.8);
+  line-height: 1.05;
+  color: var(--paper);
 }
-.hero .lede .lede-second .thin { font-weight: 400; }
+
+.hero .lede .red-text {
+  color: var(--red);
+  text-transform: uppercase;
+}
 
 .hero .cta-row {
-margin-top: 40px;
-display: flex;
-gap: 16px;
-flex-wrap: wrap;
+  grid-column: span 12;
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 .btn {
-display: inline-block;
-padding: 15px 28px;
-font-family: 'Anton', sans-serif;
-font-size: 17px;
-text-decoration: none;
-border: 1.5px solid var(--paper);
-transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  display: inline-block;
+  padding: 14px 28px;
+  font-family: var(--font-display);
+  font-size: var(--size-body);
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid var(--paper);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 .btn-primary {
-background: var(--red);
-border-color: var(--red);
-color: var(--paper);
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--paper);
 }
 .btn-primary:hover,
 .btn-primary:focus-visible {
-background: var(--red-dark);
-border-color: var(--red-dark);
+  background: var(--red-dark);
+  border-color: var(--red-dark);
 }
 .btn-ghost { color: var(--paper); }
 .btn-ghost:hover,
 .btn-ghost:focus-visible {
-background: var(--paper);
-color: var(--black);
-}
-.btn:focus-visible {
-outline: 2px solid var(--red);
-outline-offset: 3px;
+  background: var(--paper);
+  color: var(--black);
 }
 
-/* ---------- BANNER SCORREVOLE PARTNERSHIP ---------- */
+/* ---------- Statements ---------- */
+.statement {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--line);
+}
+.statement p {
+  grid-column: span 12;
+  font-family: var(--font-display);
+  font-size: var(--size-manifesto);
+  line-height: 1.05;
+  color: var(--paper);
+  margin: 0;
+}
+
+.statement p .red-text {
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.statement p .sub-text {
+  font-size: 0.8em;
+}
+
+/* ---------- Situations (INGRANDITE DEL 1.4) ---------- */
+.situations {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--line);
+}
+.situations h2 {
+  grid-column: span 12;
+  margin-bottom: 20px;
+}
+.situations-grid {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.situation {
+  background: var(--black);
+  padding: 28px 24px;
+  position: relative;
+  font-family: var(--font-body);
+  font-size: calc(var(--size-body) * 1.4);
+  line-height: 1.25;
+  color: var(--paper);
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+}
+.situation::before {
+  content: "—";
+  margin-right: 10px;
+  color: var(--red);
+}
+
+/* ---------- Articles / Services (AGGIORNATI) ---------- */
+.articles { padding: 64px 0; border-bottom: 1px solid var(--line); }
+.articles-title { grid-column: span 12; margin-bottom: 24px; }
+
+.article-grid {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.article {
+  border: 1px solid var(--line);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--black-deep);
+  gap: 20px;
+}
+.article .num {
+  font-family: var(--font-display);
+  color: var(--red);
+  font-size: clamp(40px, 4.5vw, 56px); /* Ingrandito numero romano */
+  line-height: 0.9;
+  margin-bottom: 12px;
+}
+.article .eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  font-size: 16px; /* Ingrandito eyebrow */
+  letter-spacing: 0.05em;
+  margin: 0 0 10px;
+}
+
+/* CLOSING SERVICES */
+.articles-close {
+  grid-column: span 12;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.articles-close p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: calc(var(--size-manifesto) * 0.8);
+  line-height: 1.05;
+  color: var(--paper);
+}
+.articles-close p.service-right { 
+  color: var(--red); 
+}
+
+/* ---------- Partner Marquee ---------- */
 .partners-banner {
-padding: 40px 0;
-border-top: 1px solid #e5e5e5;
-border-bottom: 1px solid #e5e5e5;
-background: #ffffff;
-overflow: hidden;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  background: #ffffff;
+  overflow: hidden;
+  width: 100%;
 }
 
 .partners-label {
-text-align: center;
-font-family: 'Oswald', sans-serif;
-font-weight: 700;
-font-size: 13px;
-text-transform: uppercase;
-letter-spacing: 0.15em;
-color: #777777;
-margin-bottom: 24px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--size-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #777777;
+  margin-bottom: 20px;
 }
 
 .marquee-container {
-width: 100%;
-overflow: hidden;
-user-select: none;
-position: relative;
-mask-image: linear-gradient(
-to right,
-transparent 0%,
-black 8%,
-black 92%,
-transparent 100%
-);
--webkit-mask-image: linear-gradient(
-to right,
-transparent 0%,
-black 8%,
-black 92%,
-transparent 100%
-);
-}
-
-.marquee-container:focus-visible {
-outline: 2px solid var(--red);
-outline-offset: 4px;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 .marquee-track {
-display: flex;
-width: max-content;
-animation: marquee-scroll 32s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
 }
 
 .marquee-content {
-display: flex;
-align-items: center;
-gap: 64px;
-padding-right: 64px;
-flex-shrink: 0;
-}
-
-.marquee-container:hover .marquee-track,
-.marquee-container:focus-within .marquee-track {
-animation-play-state: paused;
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  padding-right: 64px;
+  flex-shrink: 0;
 }
 
 .partner-logo {
-width: 180px;
-min-height: 100px;
-flex: 0 0 180px;
-display: flex;
-align-items: center;
-justify-content: center;
+  width: 180px;
+  min-height: 80px;
+  flex: 0 0 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .partner-logo img {
-display: block;
-width: auto;
-height: calc(50px * var(--logo-scale, 1));
-max-height: 95px;
-max-width: 100%;
-object-fit: contain;
-opacity: 0.85;
-transition: opacity 0.2s ease;
-}
-
-.partner-logo:hover img {
-opacity: 1;
+  display: block;
+  width: auto;
+  height: calc(40px * var(--logo-scale, 1));
+  max-height: 70px;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.85;
 }
 
 @keyframes marquee-scroll {
-from {
-transform: translateX(0);
-}
-to {
-transform: translateX(-50%);
-}
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-.marquee-track {
-animation: none;
-}
-}
-
-/* ---------- SEZIONE VIGNETTA CONCEPT ---------- */
-.concept-vignette {
-padding: 0;
-border-bottom: 1px solid var(--line);
-background: var(--black-deep);
-}
-.concept-vignette img {
-width: 100%;
-height: auto;
-display: block;
-border: none;
-box-shadow: none;
-}
-
-/* ---------- Manifesto statement ---------- */
-.statement {
-padding: 72px 0;
-border-top: 1px solid var(--line);
-border-bottom: 1px solid var(--line);
-}
-.statement p {
-font-family: 'Anton', sans-serif;
-text-transform: none;
-font-size: clamp(24px, 3.4vw, 38px);
-line-height: 1.25;
-max-width: 880px;
-color: var(--paper);
-}
-.statement p em {
-font-style: normal;
-color: var(--red);
-}
-
-/* ---------- Situations ("Ci chiamano quando...") ---------- */
-.situations {
-padding: 72px 0;
-border-bottom: 1px solid var(--line);
-}
-.situations h2 {
-font-size: clamp(34px, 5vw, 54px);
-color: var(--paper);
-margin-bottom: 40px;
-}
-.situations-list {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 1px;
-background: var(--line);
-border-top: 1px solid var(--line);
-border-left: 1px solid var(--line);
-}
-.situation {
-background: var(--black);
-padding: 26px 30px 26px 40px;
-position: relative;
-font-family: 'Oswald', sans-serif;
-text-transform: none;
-font-weight: 400;
-font-size: clamp(16px, 1.5vw, 19px);
-line-height: 1.3;
-color: var(--paper);
-}
-.situation::before {
-content: "—";
-position: absolute;
-left: 14px;
-color: var(--red);
-}
-@media (max-width: 760px) {
-.situations-list { grid-template-columns: 1fr; }
-}
-
-/* ---------- Articles / services ---------- */
-.articles { padding: 96px 0; }
-
-.article-list {
-border-top: 1px solid var(--line);
-}
-.article {
-display: grid;
-grid-template-columns: 140px 1fr;
-gap: 12px;
-padding: 36px 0;
-border-bottom: 1px solid var(--line);
-align-items: start;
-}
-.article .num {
-font-family: 'Anton', sans-serif;
-color: var(--red);
-font-size: clamp(24px, 3vw, 36px);
-line-height: 1;
-letter-spacing: 0.05em;
-padding-top: 2px;
-}
-.article .eyebrow {
-font-family: 'Oswald', sans-serif;
-font-weight: 700;
-text-transform: uppercase;
-color: var(--paper-dim);
-font-size: clamp(13px, 1.2vw, 15px);
-letter-spacing: 0.08em;
-margin: 0 0 8px;
-line-height: 1.3;
-}
-.article h3 {
-font-size: clamp(26px, 3.4vw, 34px);
-color: var(--paper);
-}
-
-/* ---------- Articles Close (Normal style, rosso sull'ultima risposta) ---------- */
-.articles-close {
-margin-top: 56px;
-padding-top: 40px;
-border-top: 1px solid var(--line);
-width: 100%;
-}
-.articles-close p {
-margin: 0 0 12px;
-font-family: 'Anton', sans-serif;
-font-size: clamp(20px, 2.2vw, 26px);
-font-weight: 400;
-line-height: 1.25;
-color: var(--paper);
-font-style: normal;
-}
-.articles-close p.service-right {
-  color: var(--red); /* Colore rosso nell'ultima risposta senza bold/italic */
-}
-.articles-close p:last-child { margin-bottom: 0; }
-
-/* ---------- Contact ---------- */
+/* ---------- Contact Section ---------- */
 .contact {
-padding: 96px 0 110px;
-border-top: 1px solid var(--line);
+  padding: 80px 0 100px;
 }
-.contact-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 64px;
+.contact-left {
+  grid-column: span 6;
 }
-.contact h2 {
-font-size: clamp(34px, 5vw, 54px);
-color: var(--paper);
-margin-bottom: 20px;
+.contact-right {
+  grid-column: span 6;
 }
+
+.contact h2.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 76px);
+  line-height: 0.95;
+  color: var(--paper);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  letter-spacing: 0.01em;
+}
+
 .contact .intro {
-font-family: 'Oswald', sans-serif;
-font-weight: 400;
-color: var(--paper);
-max-width: 42ch;
-margin-bottom: 32px;
-font-size: 18px;
-}
-.contact .email-link {
-display: inline-flex;
-align-items: baseline;
-gap: 10px;
-font-family: 'Anton', sans-serif;
-font-size: clamp(24px, 3vw, 32px);
-text-decoration: none;
-color: var(--paper);
-border-bottom: 2px solid var(--red);
-padding-bottom: 4px;
-}
-.contact .email-link:hover,
-.contact .email-link:focus-visible {
-color: var(--red);
-}
-.contact .email-link:focus-visible {
-outline: 2px solid var(--red);
-outline-offset: 6px;
+  font-family: var(--font-body);
+  color: var(--paper);
+  margin-bottom: 0;
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1.25;
+  max-width: 32ch;
 }
 
 form {
-border: 1.5px solid var(--line);
-padding: 32px;
+  border: 1.5px solid var(--line);
+  padding: 32px;
+  background: var(--black-deep);
 }
-.field { margin-bottom: 20px; }
-.field:last-of-type { margin-bottom: 0; }
+.field { margin-bottom: 16px; }
 label {
-display: block;
-font-family: 'Oswald', sans-serif;
-font-size: 15px;
-font-weight: 600;
-color: var(--paper);
-margin-bottom: 8px;
-letter-spacing: 0.05em;
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--size-ui);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
 }
 input, textarea {
-width: 100%;
-background: transparent;
-border: none;
-border-bottom: 1.5px solid var(--line);
-color: var(--paper);
-font-family: 'Oswald', sans-serif;
-font-weight: 400;
-font-size: 18px;
-padding: 10px 2px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--line);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  padding: 8px 2px;
 }
 input:focus, textarea:focus {
-outline: none;
-border-bottom-color: var(--red);
+  outline: none;
+  border-bottom-color: var(--red);
 }
-textarea {
-resize: vertical;
-min-height: 96px;
-}
-.field-submit { margin-top: 28px; }
-button[type="submit"] {
-width: 100%;
-cursor: pointer;
-font-family: 'Anton', sans-serif;
-}
+textarea { resize: vertical; min-height: 80px; }
+.field-submit { margin-top: 24px; }
+button[type="submit"] { width: 100%; cursor: pointer; }
 
-/* honeypot: nascosto agli umani, visibile ai bot che compilano tutto */
 .hp-field {
-position: absolute;
-left: -9999px;
-width: 1px;
-height: 1px;
-overflow: hidden;
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 /* ---------- Footer ---------- */
 footer {
-padding: 28px 0;
-border-top: 1px solid var(--line);
-font-family: 'Archivo', sans-serif;
-font-size: 13px;
-color: var(--paper-dim);
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-size: var(--size-ui);
+  color: var(--paper-dim);
+  width: 100%;
 }
-footer .wrap {
-display: flex;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 8px;
+footer .footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
 }
-footer a {
-color: var(--paper-dim);
-text-decoration: none;
-}
-footer a:hover,
-footer a:focus-visible {
-color: var(--paper);
+footer a { color: var(--paper-dim); text-decoration: none; }
+footer a:hover { color: var(--paper); }
+
+/* RESPONSIVE LAYOUT ADJUSTMENTS */
+@media (max-width: 1024px) {
+  .situations-grid { grid-template-columns: repeat(2, 1fr); }
+  .article-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero .lede, .statement p { grid-column: span 12; }
 }
 
-@media (max-width: 1550px) {
-  .hero .lede {
-    white-space: normal;
-  }
-}
-
-@media (max-width: 760px) {
-.wrap { padding: 0 22px; }
-
-.article {
-  grid-template-columns: 1fr;
-  gap: 8px;
-}
-
-.article .num {
-  padding-top: 0;
-}
-
-.contact-grid {
-  grid-template-columns: 1fr;
-  gap: 48px;
-}
-
-header nav {
-  display: none;
-}
-
-.partners-banner {
-  padding: 28px 0;
-}
-
-.partners-label {
-  margin-bottom: 16px;
-}
-
-.marquee-content {
-  gap: 48px;
-  padding-right: 48px;
-}
-
-.partner-logo {
-  width: 140px;
-  min-height: 80px;
-  flex-basis: 140px;
-}
-
-.partner-logo img {
-  height: calc(38px * var(--logo-scale, 1));
-  max-height: 70px;
-}
+@media (max-width: 768px) {
+  .grid-12 { gap: 16px; }
+  .situations-grid { grid-template-columns: 1fr; }
+  .article-grid { grid-template-columns: 1fr; }
+  .contact-left, .contact-right { grid-column: span 12; }
+  header nav { display: none; }
+  .contact .intro { max-width: 100%; }
 }
 </style>
 
@@ -648,304 +550,243 @@ header nav {
 <body>
 
 <header>
-  <div class="wrap">
-    <div class="wordmark">
-      <span class="mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#F2EEE4" stroke-width="3" stroke-linecap="square">
-          <path d="M4 12 L9 17 L20 5"></path>
-        </svg>
-      </span>
-      PROPAGANDA<span>MARKETING</span>
+  <div class="wrap-full">
+    <div class="header-inner">
+      <div class="wordmark">
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F2EEE4" stroke-width="3" stroke-linecap="square">
+            <path d="M4 12 L9 17 L20 5"></path>
+          </svg>
+        </span>
+        PROPAGANDA<span>MARKETING</span>
+      </div>
+
+      <nav aria-label="Navigazione principale">
+        <a href="#cosa-facciamo">Cosa facciamo</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
     </div>
-
-<nav aria-label="Navigazione principale">
-  <a href="#cosa-facciamo">Cosa facciamo</a>
-      
-  <a href="#contatti">Contatti</a>
-</nav>
-
   </div>
 </header>
 
 <main>
 
   <section class="hero">
-    <div class="wrap">
-      <span class="stamp">Studio di comunicazione e marketing</span>
+    <div class="wrap-full">
+      <div class="grid-12">
+        <div class="hero-content">
+          <span class="stamp">Studio di comunicazione e marketing</span>
+          <h1>
+            <span>PROPAGANDA</span>
+            <span class="line2">MARKETING</span>
+          </h1>
+        </div>
 
-  <h1>
-    <span>PROPAGANDA</span>
-    <span class="line2">MARKETING</span>
-  </h1>
+        <p class="lede">
+          <span class="red-text">NON VENDIAMO PACCHETTI DI MARKETING.</span>
+          <span class="lede-second">
+            Entriamo dove c'è qualcosa da sistemare, costruire o far ri-funzionare.
+          </span>
+        </p>
 
-  <p class="lede">
-    PROPAGANDA
-METTE ORDINE.
-COSTRUISCE STRUMENTI.
-FA RIPARTIRE LE COSE
-    <span class="lede-second">
-      Non vendiamo pacchetti di marketing.
-Entriamo dove c'è qualcosa da sistemare, costruire o far <span class="thin">ri-</span>funzionare.
-        </span>
-  </p>
-
-  <div class="cta-row">
-    <a class="btn btn-primary" href="#contatti">Scrivici</a>
-    <a class="btn btn-ghost" href="#cosa-facciamo">Cosa facciamo</a>
-  </div>
-</div>
-
-  </section>
-
-  <!-- SEZIONE VIGNETTA / CONCEPT -->
-  <section class="concept-vignette">
-    <img src="https://raw.githubusercontent.com/propagandamarketing/propaganda-marketing/refs/heads/main/imagevignetta.jpg" alt="Fumetto: un personaggio scoraggiato chiede &quot;Sì, ma alla fine... che cosa fate???&quot; a un impiegato di PROPAGANDA Marketing seduto alla scrivania Ufficio Marketing in Affitto, con una bacheca di post-it che elenca strategia digitale, direzione creativa, analisi dei dati, consulenza aziendale, piano editoriale, sviluppo brand e gestione campagne." loading="lazy" decoding="async" />
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contatti">Scrivici</a>
+          <a class="btn btn-ghost" href="#cosa-facciamo">Cosa facciamo</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="statement">
-    <div class="wrap">
-      <p>
-        <em>Non facciamo marketing perché "bisogna esserci".</em>
-        Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
-        Se serve, si fa. Se non serve, si lascia perdere.
-      </p>
+    <div class="wrap-full">
+      <div class="grid-12">
+        <p>
+          <span class="red-text">NON FACCIAMO MARKETING PERCHÉ "BISOGNA ESSERCI".</span><br />
+          <span class="sub-text">Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare. Se serve, si fa. Se non serve, si lascia perdere.</span>
+        </p>
+      </div>
     </div>
   </section>
 
   <section class="situations">
-    <div class="wrap">
-      <h2>Ci chiamano quando...</h2>
+    <div class="wrap-full">
+      <div class="grid-12">
+        <h2>Ci chiamano quando...</h2>
 
-      <div class="situations-list">
-        <div class="situation">L'azienda è cresciuta, ma comunica ancora come cinque anni fa.</div>
-        <div class="situation">Il sito c'è, ma non serve a niente.</div>
-        <div class="situation">Bisogna lanciare qualcosa.</div>
-        <div class="situation">Nessuno capisce bene cosa facciamo.</div>
-        <div class="situation">I social ci sono, ma non succede niente.</div>
-        <div class="situation">Abbiamo un problema e non sappiamo quale strumento serva.</div>
-        <div class="situation">Serve qualcuno che coordini tutto senza assumere un ufficio marketing.</div>
-        <div class="situation">C'è qualcosa da fare e nessuno vuole perdere tre mesi a capire da dove iniziare.</div>
+        <div class="situations-grid">
+          <div class="situation">L'azienda è cresciuta, ma comunica ancora come cinque anni fa.</div>
+          <div class="situation">Il sito c'è, ma non serve a niente.</div>
+          <div class="situation">Bisogna lanciare qualcosa.</div>
+          <div class="situation">Nessuno capisce bene cosa facciamo.</div>
+          <div class="situation">I social ci sono, ma non succede niente.</div>
+          <div class="situation">Abbiamo un problema e non sappiamo quale strumento serva.</div>
+          <div class="situation">Serve qualcuno che coordini tutto senza assumere un ufficio marketing.</div>
+          <div class="situation">C'è qualcosa da fare e nessuno vuole perdere tre mesi a capire da dove iniziare.</div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="articles" id="cosa-facciamo">
-    <div class="wrap">
+    <div class="wrap-full">
+      <div class="grid-12">
+        <h2 class="articles-title">Cosa facciamo</h2>
 
-    <div class="article-list">
+        <div class="article-grid">
+          <div class="article">
+            <div class="num">I</div>
+            <div>
+              <p class="eyebrow">Quando non sai da dove partire</p>
+              <h3>Strategia.</h3>
+            </div>
+          </div>
 
-    <div class="article">
-      <div class="num">I</div>
-      <div>
-        <p class="eyebrow">Quando non sai da dove partire</p>
-        <h3>Strategia.</h3>
+          <div class="article">
+            <div class="num">II</div>
+            <div>
+              <p class="eyebrow">Quando la tua azienda non si capisce</p>
+              <h3>Comunicazione.</h3>
+            </div>
+          </div>
+
+          <div class="article">
+            <div class="num">III</div>
+            <div>
+              <p class="eyebrow">Quando hai qualcosa da dire</p>
+              <h3>Contenuti.</h3>
+            </div>
+          </div>
+
+          <div class="article">
+            <div class="num">IV</div>
+            <div>
+              <p class="eyebrow">Quando ti presenti male</p>
+              <h3>Branding.</h3>
+            </div>
+          </div>
+
+          <div class="article">
+            <div class="num">V</div>
+            <div>
+              <p class="eyebrow">Quando ti serve uno strumento</p>
+              <h3>Siti, landing, sistemi digitali.</h3>
+            </div>
+          </div>
+
+          <div class="article">
+            <div class="num">VI</div>
+            <div>
+              <p class="eyebrow">Quando devi far arrivare il messaggio</p>
+              <h3>Marketing.</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="articles-close">
+          <p>Non devi comprare un pacchetto.</p>
+          <p>Devi risolvere una cosa.</p>
+          <p class="service-right">Noi capiamo quale.</p>
+        </div>
       </div>
     </div>
-
-    <div class="article">
-      <div class="num">II</div>
-      <div>
-        <p class="eyebrow">Quando la tua azienda non si capisce</p>
-        <h3>Comunicazione.</h3>
-      </div>
-    </div>
-
-    <div class="article">
-      <div class="num">III</div>
-      <div>
-        <p class="eyebrow">Quando hai qualcosa da dire</p>
-        <h3>Contenuti.</h3>
-      </div>
-    </div>
-
-    <div class="article">
-      <div class="num">IV</div>
-      <div>
-        <p class="eyebrow">Quando ti presenti male</p>
-        <h3>Branding.</h3>
-      </div>
-    </div>
-
-    <div class="article">
-      <div class="num">V</div>
-      <div>
-        <p class="eyebrow">Quando ti serve uno strumento</p>
-        <h3>Siti, landing, sistemi digitali.</h3>
-      </div>
-    </div>
-
-    <div class="article">
-      <div class="num">VI</div>
-      <div>
-        <p class="eyebrow">Quando devi far arrivare il messaggio</p>
-        <h3>Marketing.</h3>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="articles-close">
-    <p>NON DEVI COMPRARE UN PACCHETTO.</p>
-    <p>DEVI RISOLVERE UNA COSA.</p>
-    <p class="service-right">Noi capiamo quale.</p>
-  </div>
-
-</div>
-
   </section>
 
   <section class="statement">
-    <div class="wrap">
-      <p>
-        <em>Un ufficio marketing esterno.</em>
-        Senza assumere un ufficio marketing. Senza coordinare cinque fornitori.
-        PROPAGANDA entra quando serve, lavora dove serve e rimane quando serve.
-      </p>
+    <div class="wrap-full">
+      <div class="grid-12">
+        <p>
+          <span class="red-text">UN UFFICIO MARKETING ESTERNO.</span><br />
+          <span class="sub-text">Senza assumere un ufficio marketing. Senza coordinare cinque fornitori. PROPAGANDA entra quando serve, lavora dove serve e rimane quando serve.</span>
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- SEZIONE PARTNER SCORREVOLE -->
+  <!-- SEZIONE PARTNER -->
   <section class="partners-banner">
     <div class="partners-label">Hanno ri-partito con noi</div>
 
-<div class="marquee-container" tabindex="0" role="region" aria-label="Loghi partner, scorrimento automatico. Passa il mouse o porta il focus qui per mettere in pausa.">
-  <div class="marquee-track">
-
-    <!-- BLOCCO LOGHI 1 -->
-    <div class="marquee-content">
-
-      <div class="partner-logo" style="--logo-scale: 1.5;">
-        <img src="logos/partner (1).png" alt="" aria-hidden="true" />
+    <div class="marquee-container" tabindex="0" role="region" aria-label="Loghi partner">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner (1).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner (2).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (3).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (4).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.25;"><img src="logos/partner (5).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner (6).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (7).png" alt="" /></div>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner (1).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner (2).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (3).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (4).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.25;"><img src="logos/partner (5).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner (6).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (7).png" alt="" /></div>
+        </div>
       </div>
-
-      <div class="partner-logo" style="--logo-scale: 1.5;">
-        <img src="logos/partner (2).png" alt="" aria-hidden="true" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1;">
-        <img src="logos/partner (3).png" alt="" aria-hidden="true" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1;">
-        <img src="logos/partner (4).png" alt="" aria-hidden="true" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1.25;">
-        <img src="logos/partner (5).png" alt="" aria-hidden="true" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 0.8;">
-        <img src="logos/partner (6).png" alt="" aria-hidden="true" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1;">
-        <img src="logos/partner (7).png" alt="" aria-hidden="true" />
-      </div>
-
     </div>
-
-    <!-- BLOCCO LOGHI 2 — DUPLICATO PER LOOP CONTINUO -->
-    <div class="marquee-content" aria-hidden="true">
-
-      <div class="partner-logo" style="--logo-scale: 1.5;">
-        <img src="logos/partner (1).png" alt="" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1.5;">
-        <img src="logos/partner (2).png" alt="" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1;">
-        <img src="logos/partner (3).png" alt="" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1;">
-        <img src="logos/partner (4).png" alt="" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1.25;">
-        <img src="logos/partner (5).png" alt="" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 0.8;">
-        <img src="logos/partner (6).png" alt="" />
-      </div>
-
-      <div class="partner-logo" style="--logo-scale: 1;">
-        <img src="logos/partner (7).png" alt="" />
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
   </section>
 
+  <!-- CONTATTI -->
   <section class="contact" id="contatti">
-    <div class="wrap">
+    <div class="wrap-full">
+      <div class="grid-12">
+        <div class="contact-left">
+          <h2 class="contact-title">HAI UNA COSA DA SISTEMARE?</h2>
 
-  <div class="contact-grid">
+          <p class="intro">
+            Raccontaci cosa stai costruendo, cosa non funziona o cosa vuoi far partire. Rispondiamo di persona, non con un modulo automatico che finisce in un CRM.
+          </p>
+        </div>
 
-    <div>
-      <h2>Hai una cosa da sistemare?</h2>
+        <div class="contact-right">
+          <form action="https://formsubmit.co/info@propagandamarketing.online" method="POST">
+            <input type="hidden" name="_subject" value="Nuovo contatto da propagandamarketing.online" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="true" />
+            <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
-      <p class="intro">
-        Raccontaci cosa stai costruendo, cosa non funziona o cosa vuoi far partire.
-        Rispondiamo di persona, non con un modulo automatico che finisce in un CRM.
-      </p>
+            <div class="field">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="Nome" required="" />
+            </div>
 
-      <a class="email-link" href="mailto:info@propagandamarketing.online" rel="nofollow">
-        info@propagandamarketing.online
-      </a>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="Email" required="" />
+            </div>
+
+            <div class="field">
+              <label for="messaggio">Messaggio</label>
+              <input type="text" id="messaggio" name="Messaggio" required="" />
+            </div>
+
+            <div class="field field-submit">
+              <button type="submit" class="btn btn-primary">
+                Invia messaggio
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-
-    <form action="https://formsubmit.co/info@propagandamarketing.online" method="POST">
-      <input type="hidden" name="_subject" value="Nuovo contatto da propagandamarketing.online" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="true" />
-      <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
-
-      <div class="field">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="Nome" required="" />
-      </div>
-
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="Email" required="" />
-      </div>
-
-      <div class="field">
-        <label for="messaggio">Messaggio</label>
-        <input type="text" id="messaggio" name="Messaggio" required="" />
-      </div>
-
-      <div class="field field-submit">
-        <button type="submit" class="btn btn-primary">
-          Invia messaggio
-        </button>
-      </div>
-
-    </form>
-
-  </div>
-</div>
-
   </section>
 
 </main>
 
 <footer>
-  <div class="wrap">
-    <span>
-      © 2026 PROPAGANDA Marketing di Fiorillo Vincenzo —
-      P.IVA 01843770080 — Ventimiglia (IM) —
-      PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a>
-    </span>
-
-<span>Studio di comunicazione e marketing</span>
-
+  <div class="wrap-full">
+    <div class="footer-inner">
+      <span>
+        © 2026 PROPAGANDA Marketing di Fiorillo Vincenzo —
+        P.IVA 01843770080 — Ventimiglia (IM) —
+        PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a>
+      </span>
+      <span>Studio di comunicazione e marketing</span>
+    </div>
   </div>
 </footer>
 
