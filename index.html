@@ -101,61 +101,57 @@
 
   <!-- FAVICON / APP ICONS -->
 
-  <link
-    rel="icon"
-    href="https://propagandamarketing.online/favicon/PROPAGANDA%20ICON%20-48X48.ico"
-    sizes="48x48"
-  >
+<link
+  rel="icon"
+  href="/favicon/favicon.ico"
+  type="image/x-icon"
+>
 
-  <link
-    rel="icon"
-    href="/favicon/favicon.ico"
-    type="image/x-icon"
-  >
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon/favicon-16x16.png"
+>
 
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="16x16"
-    href="/favicon/favicon-16x16.png"
-  >
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon/favicon-32x32.png"
+>
 
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="/favicon/favicon-32x32.png"
-  >
+<link
+  rel="icon"
+  type="image/png"
+  sizes="48x48"
+  href="/favicon/propaganda-icon-48x48.png"
+>
 
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="192x192"
-    href="/favicon/android-chrome-192x192.png"
-  >
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/favicon/android-chrome-192x192.png"
+>
 
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="512x512"
-    href="/favicon/android-chrome-512x512.png"
-  >
+<link
+  rel="icon"
+  type="image/png"
+  sizes="512x512"
+  href="/favicon/android-chrome-512x512.png"
+>
 
-  <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="/favicon/apple-touch-icon.png"
-  >
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/favicon/apple-touch-icon.png"
+>
 
-  <link
-    rel="manifest"
-    href="/favicon/site.webmanifest"
-  >
-
-  <meta
-    name="theme-color"
-    content="#141210"
-  >
+<link
+  rel="manifest"
+  href="/favicon/site.webmanifest"
+>
 
   <!-- FONT -->
 
@@ -897,6 +893,24 @@
 
     /* ---------- ANIMATIONS ---------- */
 
+    #intro-wipe {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: var(--black);
+      animation: snapOut 0.45s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+      pointer-events: none;
+    }
+
+    @keyframes snapOut {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+
     @keyframes rise {
       to {
         opacity: 1;
@@ -1082,6 +1096,8 @@
 </head>
 
 <body>
+
+  <div id="intro-wipe"></div>
 
   <!-- HEADER -->
 
