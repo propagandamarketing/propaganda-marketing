@@ -19,10 +19,48 @@
 <meta name="twitter:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
 <meta name="twitter:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
 
-<!-- Fonts & Favicon (Soli 2 FONT: Anton + Oswald) -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- Font locali -->
+<style>
+@font-face {
+  font-family: 'Anton';
+  src: url('/fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/Oswald-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/Oswald-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/Oswald-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oswald';
+  src: url('/fonts/Oswald-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+</style>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39;%3E%3Crect width=&#39;512&#39; height=&#39;512&#39; fill=&#39;%23C81E1E&#39;/%3E%3Crect x=&#39;96&#39; y=&#39;96&#39; width=&#39;320&#39; height=&#39;320&#39; fill=&#39;none&#39; stroke=&#39;%23F2EEE4&#39; stroke-width=&#39;22&#39;/%3E%3Cpath d=&#39;M155 264 L226 335 L360 175&#39; fill=&#39;none&#39; stroke=&#39;%23F2EEE4&#39; stroke-width=&#39;30&#39; stroke-linecap=&#39;square&#39; stroke-linejoin=&#39;miter&#39;/%3E%3C/svg%3E" />
 
 <!-- Schema.org JSON-LD -->
@@ -142,6 +180,11 @@ header .header-inner {
   flex-shrink: 0;
 }
 .wordmark .mark svg { width: 16px; height: 16px; }
+
+/* Stile base (Desktop): nascondo l'hamburger */
+.menu-toggle {
+  display: none;
+}
 
 header nav a {
   font-family: var(--font-body);
@@ -548,8 +591,78 @@ footer a:hover { color: var(--paper); }
   .situations-grid { grid-template-columns: 1fr; }
   .article-grid { grid-template-columns: 1fr; }
   .contact-left, .contact-right { grid-column: span 12; }
-  header nav { display: none; }
   .contact .intro { max-width: 100%; }
+  
+  /* --- STILI MENU MOBILE --- */
+  
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 100; 
+    position: relative;
+  }
+
+  .hamburger {
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background: var(--paper);
+    transition: all 0.3s ease-in-out;
+  }
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--paper);
+    transition: all 0.3s ease-in-out;
+  }
+  .hamburger::before { transform: translateY(-8px); }
+  .hamburger::after { transform: translateY(8px); }
+
+  .menu-toggle.is-active .hamburger { background: transparent; }
+  .menu-toggle.is-active .hamburger::before { transform: translateY(0) rotate(45deg); }
+  .menu-toggle.is-active .hamburger::after { transform: translateY(0) rotate(-45deg); }
+
+  header nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--black-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 24px;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 99;
+  }
+
+  header nav.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  header nav a {
+    margin: 0;
+    font-size: clamp(24px, 6vw, 36px);
+  }
 }
 </style>
 
@@ -567,6 +680,11 @@ footer a:hover { color: var(--paper); }
         </span>
         PROPAGANDA<span>MARKETING</span>
       </div>
+
+      <!-- Bottone Hamburger -->
+      <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
 
       <nav aria-label="Navigazione principale">
         <a href="#cosa-facciamo">Cosa facciamo</a>
@@ -716,22 +834,22 @@ footer a:hover { color: var(--paper); }
     <div class="marquee-container" tabindex="0" role="region" aria-label="Loghi partner">
       <div class="marquee-track">
         <div class="marquee-content">
-          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner (1).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner (2).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (3).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (4).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1.25;"><img src="logos/partner (5).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner (6).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (7).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner1.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner2.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner3.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner4.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.25;"><img src="logos/partner5.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner6.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner7.png" alt="" /></div>
         </div>
         <div class="marquee-content" aria-hidden="true">
-          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner (1).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner (2).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (3).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (4).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1.25;"><img src="logos/partner (5).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner (6).png" alt="" /></div>
-          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner (7).png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner1.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner2.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner3.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner4.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1.25;"><img src="logos/partner5.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner6.png" alt="" /></div>
+          <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner7.png" alt="" /></div>
         </div>
       </div>
     </div>
@@ -768,7 +886,16 @@ footer a:hover { color: var(--paper); }
 
             <div class="field">
               <label for="messaggio">Messaggio</label>
-              <input type="text" id="messaggio" name="Messaggio" required="" />
+              <!-- Sostituito input con textarea -->
+              <textarea id="messaggio" name="Messaggio" required=""></textarea>
+            </div>
+
+            <!-- Aggiunta spunta per la privacy -->
+            <div class="field" style="display: flex; gap: 8px; align-items: flex-start; margin-bottom: 24px;">
+              <input type="checkbox" id="privacy" name="Privacy" required="" style="width: auto; margin-top: 4px;" />
+              <label for="privacy" style="font-size: 12px; text-transform: none; letter-spacing: normal;">
+                Ho letto e accetto la <a href="/privacy-policy" style="text-decoration: underline;">Privacy Policy</a>.
+              </label>
             </div>
 
             <div class="field field-submit">
@@ -800,6 +927,7 @@ footer a:hover { color: var(--paper); }
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
+    // Gestione numero di telefono offuscato
     var p1 = "+39 ";
     var p2 = "371 ";
     var p3 = "612 ";
@@ -814,6 +942,33 @@ footer a:hover { color: var(--paper); }
       a.setAttribute("rel", "nofollow");
       a.textContent = num;
       wrap.appendChild(a);
+    }
+
+    // Gestione Menu Mobile
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+    const navLinks = document.querySelectorAll('header nav a');
+
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('is-active');
+        nav.classList.toggle('is-open');
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+        
+        // Blocca lo scroll della pagina quando il menu è aperto
+        document.body.style.overflow = isExpanded ? 'auto' : 'hidden';
+      });
+
+      // Chiude il menu quando si clicca su un link
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('is-active');
+          nav.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = 'auto'; // Ripristina lo scroll
+        });
+      });
     }
   });
 </script>
