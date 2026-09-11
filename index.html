@@ -1,38 +1,144 @@
+```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
+
+  <!-- GOOGLE TAG / CONSENT MODE -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag("consent", "default", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      wait_for_update: 500
+    });
+
+    gtag("js", new Date());
+    gtag("config", "G-MH6NY7CYV9", {
+      send_page_view: true
+    });
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-MH6NY7CYV9"
+  ></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>PROPAGANDA Marketing</title>
-  <meta name="description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese.">
-  <link rel="canonical" href="https://propagandamarketing.online/">
+  <meta
+    name="description"
+    content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese."
+  >
+
+  <link
+    rel="canonical"
+    href="https://propagandamarketing.online/"
+  >
 
   <!-- OPEN GRAPH -->
+
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://propagandamarketing.online/">
-  <meta property="og:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende">
-  <meta property="og:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese.">
-  <meta property="og:image" content="https://propagandamarketing.online/og-image.jpg">
+
+  <meta
+    property="og:url"
+    content="https://propagandamarketing.online/"
+  >
+
+  <meta
+    property="og:title"
+    content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende"
+  >
+
+  <meta
+    property="og:description"
+    content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese."
+  >
+
+  <meta
+    property="og:image"
+    content="https://propagandamarketing.online/og-image.jpg"
+  >
+
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PROPAGANDA Marketing — Non vendiamo pacchetti di marketing">
+
+  <meta
+    property="og:image:alt"
+    content="PROPAGANDA Marketing — Non vendiamo pacchetti di marketing"
+  >
 
   <!-- TWITTER / X -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende">
-  <meta name="twitter:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese.">
-  <meta name="twitter:image" content="https://propagandamarketing.online/og-image.jpg">
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende"
+  >
+
+  <meta
+    name="twitter:description"
+    content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://propagandamarketing.online/og-image.jpg"
+  >
 
   <!-- FAVICON -->
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="/favicon/favicon-16x16.png"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="/favicon/favicon-32x32.png"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/favicon/apple-touch-icon.png"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="/favicon/android-chrome-192x192.png"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="512x512"
+    href="/favicon/android-chrome-512x512.png"
+  >
 
   <!-- FONT -->
+
   <style>
+
     @font-face {
       font-family: "Anton";
       src: url("/font/Anton-Regular.ttf") format("truetype");
@@ -72,9 +178,11 @@
       font-style: normal;
       font-display: swap;
     }
+
   </style>
 
   <!-- STRUCTURED DATA -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -94,6 +202,7 @@
   </script>
 
   <style>
+
     :root {
       --black: #141210;
       --black-deep: #0d0b0a;
@@ -802,6 +911,7 @@
     /* ---------- TABLET ---------- */
 
     @media (max-width: 1024px) {
+
       .situations-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -809,11 +919,13 @@
       .article-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
     }
 
     /* ---------- MOBILE ---------- */
 
     @media (max-width: 768px) {
+
       .grid-12 {
         gap: 16px;
       }
@@ -860,7 +972,9 @@
         width: 24px;
         height: 2px;
         background: var(--paper);
-        transition: transform 0.3s ease, background 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          background 0.3s ease;
       }
 
       .hamburger {
@@ -938,8 +1052,11 @@
       form {
         padding: 24px;
       }
+
     }
+
   </style>
+
 </head>
 
 <body>
@@ -947,10 +1064,16 @@
   <!-- HEADER -->
 
   <header>
+
     <div class="wrap-full">
+
       <div class="header-inner">
 
-        <a href="/" class="wordmark" aria-label="PROPAGANDA Marketing — Home">
+        <a
+          href="/"
+          class="wordmark"
+          aria-label="PROPAGANDA Marketing — Home"
+        >
           <img
             src="/logo-PROPAGANDAmarketing.png"
             alt="PROPAGANDA Marketing"
@@ -969,13 +1092,23 @@
           <span class="hamburger"></span>
         </button>
 
-        <nav id="main-navigation" aria-label="Navigazione principale">
-          <a href="#cosa-facciamo">Cosa facciamo</a>
-          <a href="#contatti">Contatti</a>
+        <nav
+          id="main-navigation"
+          aria-label="Navigazione principale"
+        >
+          <a href="#cosa-facciamo">
+            Cosa facciamo
+          </a>
+
+          <a href="#contatti">
+            Contatti
+          </a>
         </nav>
 
       </div>
+
     </div>
+
   </header>
 
   <main>
@@ -983,7 +1116,9 @@
     <!-- HERO -->
 
     <section class="hero">
+
       <div class="wrap-full">
+
         <div class="grid-12">
 
           <div class="hero-content">
@@ -1000,6 +1135,7 @@
           </div>
 
           <p class="lede">
+
             <span class="red-text">
               NON VENDIAMO PACCHETTI DI MARKETING.
             </span>
@@ -1007,51 +1143,73 @@
             <span class="lede-second">
               Entriamo dove c'è qualcosa da sistemare, costruire o far ri-funzionare.
             </span>
+
           </p>
 
           <div class="cta-row">
-            <a class="btn btn-primary" href="#contatti">
+
+            <a
+              class="btn btn-primary"
+              href="#contatti"
+            >
               Scrivici
             </a>
 
-            <a class="btn btn-ghost" href="#cosa-facciamo">
+            <a
+              class="btn btn-ghost"
+              href="#cosa-facciamo"
+            >
               Cosa facciamo
             </a>
+
           </div>
 
         </div>
+
       </div>
+
     </section>
 
     <!-- STATEMENT -->
 
     <section class="statement">
+
       <div class="wrap-full">
+
         <div class="grid-12">
 
           <p>
+
             <span class="red-text">
               NON FACCIAMO MARKETING PERCHÉ "BISOGNA ESSERCI".
             </span>
+
             <br>
 
             <span class="sub-text">
               Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
               Se serve, si fa. Se non serve, si lascia perdere.
             </span>
+
           </p>
 
         </div>
+
       </div>
+
     </section>
 
     <!-- SITUATIONS -->
 
     <section class="situations">
+
       <div class="wrap-full">
+
         <div class="grid-12">
 
-          <h2>Ci chiamano quando...</h2>
+          <h2>
+            Ci chiamano quando...
+          </h2>
 
           <div class="situations-grid">
 
@@ -1090,13 +1248,20 @@
           </div>
 
         </div>
+
       </div>
+
     </section>
 
     <!-- SERVICES -->
 
-    <section class="articles" id="cosa-facciamo">
+    <section
+      class="articles"
+      id="cosa-facciamo"
+    >
+
       <div class="wrap-full">
+
         <div class="grid-12">
 
           <h2 class="articles-title">
@@ -1106,90 +1271,184 @@
           <div class="article-grid">
 
             <article class="article">
-              <div class="num">I</div>
-              <div>
-                <p class="eyebrow">Quando non sai da dove partire</p>
-                <h3>Strategia.</h3>
+
+              <div class="num">
+                I
               </div>
+
+              <div>
+
+                <p class="eyebrow">
+                  Quando non sai da dove partire
+                </p>
+
+                <h3>
+                  Strategia.
+                </h3>
+
+              </div>
+
             </article>
 
             <article class="article">
-              <div class="num">II</div>
-              <div>
-                <p class="eyebrow">Quando la tua azienda non si capisce</p>
-                <h3>Comunicazione.</h3>
+
+              <div class="num">
+                II
               </div>
+
+              <div>
+
+                <p class="eyebrow">
+                  Quando la tua azienda non si capisce
+                </p>
+
+                <h3>
+                  Comunicazione.
+                </h3>
+
+              </div>
+
             </article>
 
             <article class="article">
-              <div class="num">III</div>
-              <div>
-                <p class="eyebrow">Quando hai qualcosa da dire</p>
-                <h3>Contenuti.</h3>
+
+              <div class="num">
+                III
               </div>
+
+              <div>
+
+                <p class="eyebrow">
+                  Quando hai qualcosa da dire
+                </p>
+
+                <h3>
+                  Contenuti.
+                </h3>
+
+              </div>
+
             </article>
 
             <article class="article">
-              <div class="num">IV</div>
-              <div>
-                <p class="eyebrow">Quando ti presenti male</p>
-                <h3>Branding.</h3>
+
+              <div class="num">
+                IV
               </div>
+
+              <div>
+
+                <p class="eyebrow">
+                  Quando ti presenti male
+                </p>
+
+                <h3>
+                  Branding.
+                </h3>
+
+              </div>
+
             </article>
 
             <article class="article">
-              <div class="num">V</div>
-              <div>
-                <p class="eyebrow">Quando ti serve uno strumento</p>
-                <h3>Siti, landing, sistemi digitali.</h3>
+
+              <div class="num">
+                V
               </div>
+
+              <div>
+
+                <p class="eyebrow">
+                  Quando ti serve uno strumento
+                </p>
+
+                <h3>
+                  Siti, landing, sistemi digitali.
+                </h3>
+
+              </div>
+
             </article>
 
             <article class="article">
-              <div class="num">VI</div>
-              <div>
-                <p class="eyebrow">Quando devi far arrivare il messaggio</p>
-                <h3>Marketing.</h3>
+
+              <div class="num">
+                VI
               </div>
+
+              <div>
+
+                <p class="eyebrow">
+                  Quando devi far arrivare il messaggio
+                </p>
+
+                <h3>
+                  Marketing.
+                </h3>
+
+              </div>
+
             </article>
 
           </div>
 
           <div class="articles-close">
-            <p>Non devi comprare un pacchetto.</p>
-            <p>Devi risolvere una cosa.</p>
-            <p class="service-right">Noi capiamo quale.</p>
+
+            <p>
+              Non devi comprare un pacchetto.
+            </p>
+
+            <p>
+              Devi risolvere una cosa.
+            </p>
+
+            <p class="service-right">
+              Noi capiamo quale.
+            </p>
+
           </div>
 
         </div>
+
       </div>
+
     </section>
 
     <!-- EXTERNAL MARKETING OFFICE -->
 
     <section class="statement">
+
       <div class="wrap-full">
+
         <div class="grid-12">
 
           <p>
+
             <span class="red-text title-h2">
               UN UFFICIO MARKETING ESTERNO.
             </span>
+
             <br>
 
             <span class="sub-text">
               Senza assumere un ufficio marketing. Senza coordinare cinque fornitori.
               PROPAGANDA entra quando serve, lavora dove serve e rimane quando serve.
             </span>
+
           </p>
 
         </div>
+
       </div>
+
     </section>
 
     <!-- PARTNERS -->
 
-    <section class="partners-banner" aria-label="Partner">
+    <section
+      class="partners-banner"
+      aria-label="Partner"
+    >
 
       <div class="partners-label">
         Hanno ri-partito con noi
@@ -1206,63 +1465,122 @@
           <div class="marquee-content">
 
             <div class="partner-logo">
-              <img src="/logos/partner1.png" alt="Partner 1" style="--logo-scale: 1.5;">
+              <img
+                src="/logos/partner1.png"
+                alt="Partner 1"
+                style="--logo-scale: 1.5;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner2.png" alt="Partner 2" style="--logo-scale: 1.5;">
+              <img
+                src="/logos/partner2.png"
+                alt="Partner 2"
+                style="--logo-scale: 1.5;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner3.png" alt="Partner 3" style="--logo-scale: 1;">
+              <img
+                src="/logos/partner3.png"
+                alt="Partner 3"
+                style="--logo-scale: 1;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner4.png" alt="Partner 4" style="--logo-scale: 1;">
+              <img
+                src="/logos/partner4.png"
+                alt="Partner 4"
+                style="--logo-scale: 1;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner5.png" alt="Partner 5" style="--logo-scale: 1.25;">
+              <img
+                src="/logos/partner5.png"
+                alt="Partner 5"
+                style="--logo-scale: 1.25;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner6.png" alt="Partner 6" style="--logo-scale: 0.8;">
+              <img
+                src="/logos/partner6.png"
+                alt="Partner 6"
+                style="--logo-scale: 0.8;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner7.png" alt="Partner 7" style="--logo-scale: 1;">
+              <img
+                src="/logos/partner7.png"
+                alt="Partner 7"
+                style="--logo-scale: 1;"
+              >
             </div>
 
           </div>
 
-          <div class="marquee-content" aria-hidden="true">
+          <div
+            class="marquee-content"
+            aria-hidden="true"
+          >
 
             <div class="partner-logo">
-              <img src="/logos/partner1.png" alt="" style="--logo-scale: 1.5;">
+              <img
+                src="/logos/partner1.png"
+                alt=""
+                style="--logo-scale: 1.5;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner2.png" alt="" style="--logo-scale: 1.5;">
+              <img
+                src="/logos/partner2.png"
+                alt=""
+                style="--logo-scale: 1.5;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner3.png" alt="" style="--logo-scale: 1;">
+              <img
+                src="/logos/partner3.png"
+                alt=""
+                style="--logo-scale: 1;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner4.png" alt="" style="--logo-scale: 1;">
+              <img
+                src="/logos/partner4.png"
+                alt=""
+                style="--logo-scale: 1;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner5.png" alt="" style="--logo-scale: 1.25;">
+              <img
+                src="/logos/partner5.png"
+                alt=""
+                style="--logo-scale: 1.25;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner6.png" alt="" style="--logo-scale: 0.8;">
+              <img
+                src="/logos/partner6.png"
+                alt=""
+                style="--logo-scale: 0.8;"
+              >
             </div>
 
             <div class="partner-logo">
-              <img src="/logos/partner7.png" alt="" style="--logo-scale: 1;">
+              <img
+                src="/logos/partner7.png"
+                alt=""
+                style="--logo-scale: 1;"
+              >
             </div>
 
           </div>
@@ -1275,8 +1593,13 @@
 
     <!-- CONTACT -->
 
-    <section class="contact" id="contatti">
+    <section
+      class="contact"
+      id="contatti"
+    >
+
       <div class="wrap-full">
+
         <div class="grid-12">
 
           <div class="contact-left">
@@ -1317,17 +1640,6 @@
                 value="true"
               >
 
-              <!--
-                Se crei una pagina grazie.html,
-                puoi attivare il redirect aggiungendo:
-
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://propagandamarketing.online/grazie.html"
-                >
-              -->
-
               <input
                 type="text"
                 name="_honey"
@@ -1338,7 +1650,11 @@
               >
 
               <div class="field">
-                <label for="nome">Nome</label>
+
+                <label for="nome">
+                  Nome
+                </label>
+
                 <input
                   type="text"
                   id="nome"
@@ -1346,10 +1662,15 @@
                   autocomplete="name"
                   required
                 >
+
               </div>
 
               <div class="field">
-                <label for="email">Email</label>
+
+                <label for="email">
+                  Email
+                </label>
+
                 <input
                   type="email"
                   id="email"
@@ -1357,15 +1678,21 @@
                   autocomplete="email"
                   required
                 >
+
               </div>
 
               <div class="field">
-                <label for="messaggio">Messaggio</label>
+
+                <label for="messaggio">
+                  Messaggio
+                </label>
+
                 <textarea
                   id="messaggio"
                   name="Messaggio"
                   required
                 ></textarea>
+
               </div>
 
               <div class="privacy-field">
@@ -1379,21 +1706,26 @@
                 >
 
                 <label for="privacy">
+
                   Ho letto e accetto la
+
                   <a href="/privacy-policy">
                     Privacy Policy
                   </a>.
+
                 </label>
 
               </div>
 
               <div class="field field-submit">
+
                 <button
                   type="submit"
                   class="btn btn-primary"
                 >
                   Invia messaggio
                 </button>
+
               </div>
 
             </form>
@@ -1401,7 +1733,9 @@
           </div>
 
         </div>
+
       </div>
+
     </section>
 
   </main>
@@ -1409,31 +1743,50 @@
   <!-- FOOTER -->
 
   <footer>
+
     <div class="wrap-full">
 
       <div class="footer-inner">
 
         <span>
+
           © 2026 PROPAGANDA Marketing di Fiorillo Vincenzo —
+
           P.IVA 01843770080 —
+
           Ventimiglia (IM) —
-          <span id="tel-wrap">Tel: </span> —
+
+          <span id="tel-wrap">
+            Tel:
+          </span>
+
+          —
+
           PEC:
+
           <a href="mailto:iv@pec-studio.it">
             iv@pec-studio.it
           </a>
+
         </span>
 
         <span>
+
           Studio di comunicazione e marketing —
-          <a href="#" id="cookie-settings">
+
+          <a
+            href="#"
+            id="cookie-settings"
+          >
             Cookie
           </a>
+
         </span>
 
       </div>
 
     </div>
+
   </footer>
 
   <!-- COOKIE CONSENT -->
@@ -1447,19 +1800,32 @@
   >
 
     <p>
-      <strong id="cookie-title">Cookie</strong><br>
+
+      <strong id="cookie-title">
+        Cookie
+      </strong>
+
+      <br>
+
       Utilizziamo Google Analytics per capire come viene utilizzato il sito.
       Google Analytics viene attivato solo con il tuo consenso.
       Puoi accettare o rifiutare l'analisi statistica.
+
     </p>
 
     <div class="cookie-buttons">
 
-      <button type="button" id="cookie-accept">
+      <button
+        type="button"
+        id="cookie-accept"
+      >
         Accetta
       </button>
 
-      <button type="button" id="cookie-reject">
+      <button
+        type="button"
+        id="cookie-reject"
+      >
         Rifiuta
       </button>
 
@@ -1470,150 +1836,293 @@
   <!-- JAVASCRIPT -->
 
   <script>
+
     (() => {
+
       "use strict";
 
-      /* ---------- GOOGLE ANALYTICS ---------- */
+      /* =========================================================
+         COOKIE CONSENT
+         ========================================================= */
 
-      const GA_ID = "G-T2KSBQGNFQ";
       const CONSENT_KEY = "analytics-consent";
 
-      const banner = document.getElementById("cookie-consent");
-      const acceptButton = document.getElementById("cookie-accept");
-      const rejectButton = document.getElementById("cookie-reject");
-      const settingsButton = document.getElementById("cookie-settings");
+      const banner =
+        document.getElementById("cookie-consent");
 
-      function loadGoogleAnalytics() {
-        if (window.__gaLoaded) {
-          return;
+      const acceptButton =
+        document.getElementById("cookie-accept");
+
+      const rejectButton =
+        document.getElementById("cookie-reject");
+
+      const settingsButton =
+        document.getElementById("cookie-settings");
+
+
+      function getConsent() {
+
+        try {
+
+          return localStorage.getItem(
+            CONSENT_KEY
+          );
+
+        } catch (error) {
+
+          return null;
+
         }
 
-        window.__gaLoaded = true;
-
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-          window.dataLayer.push(arguments);
-        }
-
-        window.gtag = gtag;
-
-        gtag("js", new Date());
-        gtag("config", GA_ID);
-
-        const script = document.createElement("script");
-
-        script.async = true;
-        script.src =
-          "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
-
-        document.head.appendChild(script);
       }
 
+
+      function setConsent(value) {
+
+        try {
+
+          localStorage.setItem(
+            CONSENT_KEY,
+            value
+          );
+
+        } catch (error) {
+
+          /* LocalStorage non disponibile */
+
+        }
+
+      }
+
+
       function showCookieBanner() {
+
         if (banner) {
           banner.hidden = false;
         }
+
       }
 
+
       function hideCookieBanner() {
+
         if (banner) {
           banner.hidden = true;
         }
+
       }
 
-      function getConsent() {
-        try {
-          return localStorage.getItem(CONSENT_KEY);
-        } catch {
-          return null;
+
+      function acceptAnalytics() {
+
+        /*
+          L'utente ha accettato.
+          Aggiorniamo il consenso del Google tag
+          senza caricare un secondo tag.
+        */
+
+        if (typeof window.gtag === "function") {
+
+          window.gtag(
+            "consent",
+            "update",
+            {
+              analytics_storage: "granted"
+            }
+          );
+
         }
+
+        setConsent("accepted");
+
+        hideCookieBanner();
+
+        console.log(
+          "Google Analytics: consenso accettato."
+        );
+
       }
 
-      function setConsent(value) {
-        try {
-          localStorage.setItem(CONSENT_KEY, value);
-        } catch {
-          /* Storage non disponibile: il sito continua a funzionare. */
-        }
+
+      function rejectAnalytics() {
+
+        /*
+          Analytics rimane disattivato.
+        */
+
+        setConsent("rejected");
+
+        hideCookieBanner();
+
+        console.log(
+          "Google Analytics: consenso rifiutato."
+        );
+
       }
+
 
       const consent = getConsent();
 
+
       if (consent === "accepted") {
-        loadGoogleAnalytics();
-      } else if (!consent) {
+
+        /*
+          L'utente aveva già accettato in precedenza.
+        */
+
+        if (typeof window.gtag === "function") {
+
+          window.gtag(
+            "consent",
+            "update",
+            {
+              analytics_storage: "granted"
+            }
+          );
+
+        }
+
+        hideCookieBanner();
+
+      } else if (consent === "rejected") {
+
+        hideCookieBanner();
+
+      } else {
+
         showCookieBanner();
+
       }
+
 
       if (acceptButton) {
-        acceptButton.addEventListener("click", () => {
-          setConsent("accepted");
-          hideCookieBanner();
-          loadGoogleAnalytics();
-        });
+
+        acceptButton.addEventListener(
+          "click",
+          acceptAnalytics
+        );
+
       }
+
 
       if (rejectButton) {
-        rejectButton.addEventListener("click", () => {
-          setConsent("rejected");
-          hideCookieBanner();
-        });
+
+        rejectButton.addEventListener(
+          "click",
+          rejectAnalytics
+        );
+
       }
+
 
       if (settingsButton) {
-        settingsButton.addEventListener("click", (event) => {
-          event.preventDefault();
-          showCookieBanner();
-        });
+
+        settingsButton.addEventListener(
+          "click",
+          (event) => {
+
+            event.preventDefault();
+
+            showCookieBanner();
+
+          }
+        );
+
       }
 
 
-      /* ---------- MOBILE MENU ---------- */
+      /* =========================================================
+         MOBILE MENU
+         ========================================================= */
 
-      const menuToggle = document.querySelector(".menu-toggle");
-      const nav = document.getElementById("main-navigation");
-      const navLinks = document.querySelectorAll("#main-navigation a");
+      const menuToggle =
+        document.querySelector(".menu-toggle");
+
+      const nav =
+        document.getElementById("main-navigation");
+
+      const navLinks =
+        document.querySelectorAll(
+          "#main-navigation a"
+        );
+
 
       function closeMenu() {
+
         if (!menuToggle || !nav) {
           return;
         }
 
-        menuToggle.classList.remove("is-active");
-        nav.classList.remove("is-open");
-        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.classList.remove(
+          "is-active"
+        );
+
+        nav.classList.remove(
+          "is-open"
+        );
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
 
         document.body.style.overflow = "";
+
       }
+
 
       if (menuToggle && nav) {
 
-        menuToggle.addEventListener("click", () => {
+        menuToggle.addEventListener(
+          "click",
+          () => {
 
-          const isOpen =
-            menuToggle.getAttribute("aria-expanded") === "true";
+            const isOpen =
+              menuToggle.getAttribute(
+                "aria-expanded"
+              ) === "true";
 
-          menuToggle.classList.toggle("is-active", !isOpen);
-          nav.classList.toggle("is-open", !isOpen);
 
-          menuToggle.setAttribute(
-            "aria-expanded",
-            String(!isOpen)
-          );
+            menuToggle.classList.toggle(
+              "is-active",
+              !isOpen
+            );
 
-          document.body.style.overflow =
-            isOpen ? "" : "hidden";
-        });
+
+            nav.classList.toggle(
+              "is-open",
+              !isOpen
+            );
+
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              String(!isOpen)
+            );
+
+
+            document.body.style.overflow =
+              isOpen ? "" : "hidden";
+
+          }
+        );
+
 
         navLinks.forEach((link) => {
-          link.addEventListener("click", closeMenu);
+
+          link.addEventListener(
+            "click",
+            closeMenu
+          );
+
         });
 
       }
 
 
-      /* ---------- TELEPHONE ---------- */
+      /* =========================================================
+         TELEPHONE
+         ========================================================= */
 
       const phoneParts = [
         "+39",
@@ -1623,23 +2132,47 @@
         "58"
       ];
 
-      const phoneNumber = phoneParts.join(" ");
-      const phoneRaw = phoneNumber.replace(/\s+/g, "");
-      const phoneContainer = document.getElementById("tel-wrap");
+
+      const phoneNumber =
+        phoneParts.join(" ");
+
+
+      const phoneRaw =
+        phoneNumber.replace(/\s+/g, "");
+
+
+      const phoneContainer =
+        document.getElementById("tel-wrap");
+
 
       if (phoneContainer) {
 
-        const phoneLink = document.createElement("a");
+        const phoneLink =
+          document.createElement("a");
 
-        phoneLink.href = "tel:" + phoneRaw;
-        phoneLink.rel = "nofollow";
-        phoneLink.textContent = phoneNumber;
 
-        phoneContainer.appendChild(phoneLink);
+        phoneLink.href =
+          "tel:" + phoneRaw;
+
+
+        phoneLink.rel =
+          "nofollow";
+
+
+        phoneLink.textContent =
+          phoneNumber;
+
+
+        phoneContainer.appendChild(
+          phoneLink
+        );
+
       }
 
     })();
+
   </script>
 
 </body>
 </html>
+```
