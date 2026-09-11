@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -7,10 +8,8 @@
 <title>PROPAGANDA Marketing</title>
 <meta name="description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
 
-<!-- Canonical Tag -->
 <link rel="canonical" href="https://propagandamarketing.online/" />
 
-<!-- Open Graph / Meta Tag Social -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://propagandamarketing.online/" />
 <meta property="og:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
@@ -19,7 +18,6 @@
 <meta name="twitter:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende" />
 <meta name="twitter:description" content="PROPAGANDA Marketing: comunicazione, strategia e strumenti digitali per imprese" />
 
-<!-- Font locali -->
 <style>
 @font-face {
   font-family: 'Anton';
@@ -61,9 +59,9 @@
   font-display: swap;
 }
 </style>
+
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; viewBox=&#39;0 0 512 512&#39;%3E%3Crect width=&#39;512&#39; height=&#39;512&#39; fill=&#39;%23C81E1E&#39;/%3E%3Crect x=&#39;96&#39; y=&#39;96&#39; width=&#39;320&#39; height=&#39;320&#39; fill=&#39;none&#39; stroke=&#39;%23F2EEE4&#39; stroke-width=&#39;22&#39;/%3E%3Cpath d=&#39;M155 264 L226 335 L360 175&#39; fill=&#39;none&#39; stroke=&#39;%23F2EEE4&#39; stroke-width=&#39;30&#39; stroke-linecap=&#39;square&#39; stroke-linejoin=&#39;miter&#39;/%3E%3C/svg%3E" />
 
-<!-- Schema.org JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -91,12 +89,8 @@
     --red: #C81E1E;
     --red-dark: #8f1515;
     --line: #2c2924;
-
-    /* REGOLE TIPOGRAFICHE */
     --font-display: 'Anton', sans-serif;
     --font-body: 'Oswald', sans-serif;
-
-    /* SCALA TIPOGRAFICA UNIFORMATA */
     --size-h1: clamp(62px, 10.4vw, 110px);
     --size-h2: clamp(32px, 5vw, 44px);
     --size-h3: clamp(28px, 2.5vw, 36px);
@@ -106,7 +100,6 @@
   }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
@@ -121,7 +114,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* HEADINGS */
 h1, h2, h3 {
   font-family: var(--font-display);
   font-weight: 400;
@@ -134,10 +126,8 @@ h1, h2, h3 {
 h1 { font-size: var(--size-h1); }
 h2 { font-size: var(--size-h2); }
 h3 { font-size: var(--size-h3); }
-
 a { color: inherit; }
 
-/* BALANCED GRID & FULL-WIDTH WRAPPER */
 .wrap-full {
   width: 100%;
   padding: 0 5vw;
@@ -150,17 +140,18 @@ a { color: inherit; }
   align-items: start;
 }
 
-/* ---------- Header ---------- */
 header {
   padding: 24px 0;
   border-bottom: 1px solid var(--line);
   width: 100%;
 }
+
 header .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .wordmark {
   display: flex;
   align-items: center;
@@ -169,7 +160,9 @@ header .header-inner {
   font-size: 24px;
   text-transform: uppercase;
 }
+
 .wordmark span { color: var(--red); }
+
 .wordmark .mark {
   width: 26px;
   height: 26px;
@@ -179,12 +172,9 @@ header .header-inner {
   justify-content: center;
   flex-shrink: 0;
 }
-.wordmark .mark svg { width: 16px; height: 16px; }
 
-/* Stile base (Desktop): nascondo l'hamburger */
-.menu-toggle {
-  display: none;
-}
+.wordmark .mark svg { width: 16px; height: 16px; }
+.menu-toggle { display: none; }
 
 header nav a {
   font-family: var(--font-body);
@@ -198,19 +188,20 @@ header nav a {
   border-bottom: 1px solid transparent;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
-header nav a:hover, header nav a:focus-visible {
+
+header nav a:hover,
+header nav a:focus-visible {
   color: var(--paper);
   border-color: var(--red);
 }
 
-/* ---------- Hero ---------- */
 .hero {
   padding: 80px 0 64px;
   border-bottom: 1px solid var(--line);
 }
-.hero-content {
-  grid-column: span 12;
-}
+
+.hero-content { grid-column: span 12; }
+
 .hero .stamp {
   font-family: var(--font-body);
   font-weight: 700;
@@ -224,12 +215,14 @@ header nav a:hover, header nav a:focus-visible {
   margin-bottom: 24px;
   transform: rotate(-2deg);
 }
+
 .hero h1 {
   color: var(--paper);
   opacity: 0;
   transform: translateY(14px);
   animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
 }
+
 .hero h1 .line2 {
   color: var(--red);
   display: block;
@@ -273,6 +266,7 @@ header nav a:hover, header nav a:focus-visible {
   gap: 16px;
   flex-wrap: wrap;
 }
+
 .btn {
   display: inline-block;
   padding: 14px 28px;
@@ -283,28 +277,32 @@ header nav a:hover, header nav a:focus-visible {
   border: 1.5px solid var(--paper);
   transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
+
 .btn-primary {
   background: var(--red);
   border-color: var(--red);
   color: var(--paper);
 }
+
 .btn-primary:hover,
 .btn-primary:focus-visible {
   background: var(--red-dark);
   border-color: var(--red-dark);
 }
+
 .btn-ghost { color: var(--paper); }
+
 .btn-ghost:hover,
 .btn-ghost:focus-visible {
   background: var(--paper);
   color: var(--black);
 }
 
-/* ---------- Statements ---------- */
 .statement {
   padding: 64px 0;
   border-bottom: 1px solid var(--line);
 }
+
 .statement p {
   grid-column: span 12;
   font-family: var(--font-display);
@@ -326,19 +324,18 @@ header nav a:hover, header nav a:focus-visible {
   text-transform: uppercase;
 }
 
-.statement p .sub-text {
-  font-size: 0.8em;
-}
+.statement p .sub-text { font-size: 0.8em; }
 
-/* ---------- Situations ---------- */
 .situations {
   padding: 64px 0;
   border-bottom: 1px solid var(--line);
 }
+
 .situations h2 {
   grid-column: span 12;
   margin-bottom: 20px;
 }
+
 .situations-grid {
   grid-column: span 12;
   display: grid;
@@ -347,6 +344,7 @@ header nav a:hover, header nav a:focus-visible {
   background: var(--line);
   border: 1px solid var(--line);
 }
+
 .situation {
   background: var(--black);
   padding: 28px 24px;
@@ -359,15 +357,22 @@ header nav a:hover, header nav a:focus-visible {
   display: flex;
   align-items: center;
 }
+
 .situation::before {
   content: "—";
   margin-right: 10px;
   color: var(--red);
 }
 
-/* ---------- Articles / Services ---------- */
-.articles { padding: 64px 0; border-bottom: 1px solid var(--line); }
-.articles-title { grid-column: span 12; margin-bottom: 24px; }
+.articles {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.articles-title {
+  grid-column: span 12;
+  margin-bottom: 24px;
+}
 
 .article-grid {
   grid-column: span 12;
@@ -375,6 +380,7 @@ header nav a:hover, header nav a:focus-visible {
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
+
 .article {
   border: 1px solid var(--line);
   padding: 40px 32px;
@@ -384,6 +390,7 @@ header nav a:hover, header nav a:focus-visible {
   background: var(--black-deep);
   gap: 20px;
 }
+
 .article .num {
   font-family: var(--font-display);
   color: var(--red);
@@ -391,6 +398,7 @@ header nav a:hover, header nav a:focus-visible {
   line-height: 0.9;
   margin-bottom: 12px;
 }
+
 .article .eyebrow {
   font-family: var(--font-body);
   font-weight: 600;
@@ -401,7 +409,6 @@ header nav a:hover, header nav a:focus-visible {
   margin: 0 0 10px;
 }
 
-/* CLOSING SERVICES */
 .articles-close {
   grid-column: span 12;
   margin-top: 32px;
@@ -411,6 +418,7 @@ header nav a:hover, header nav a:focus-visible {
   flex-direction: column;
   gap: 12px;
 }
+
 .articles-close p {
   margin: 0;
   font-family: var(--font-display);
@@ -418,11 +426,9 @@ header nav a:hover, header nav a:focus-visible {
   line-height: 1.05;
   color: var(--paper);
 }
-.articles-close p.service-right { 
-  color: var(--red); 
-}
 
-/* ---------- Partner Marquee ---------- */
+.articles-close p.service-right { color: var(--red); }
+
 .partners-banner {
   padding: 32px 0;
   border-bottom: 1px solid var(--line);
@@ -489,16 +495,12 @@ header nav a:hover, header nav a:focus-visible {
   to { transform: translateX(-50%); }
 }
 
-/* ---------- Contact Section ---------- */
 .contact {
   padding: 80px 0 100px;
 }
-.contact-left {
-  grid-column: span 6;
-}
-.contact-right {
-  grid-column: span 6;
-}
+
+.contact-left { grid-column: span 6; }
+.contact-right { grid-column: span 6; }
 
 .contact h2.contact-title {
   font-family: var(--font-display);
@@ -524,7 +526,9 @@ form {
   padding: 32px;
   background: var(--black-deep);
 }
+
 .field { margin-bottom: 16px; }
+
 label {
   display: block;
   font-family: var(--font-body);
@@ -535,6 +539,7 @@ label {
   margin-bottom: 6px;
   letter-spacing: 0.05em;
 }
+
 input, textarea {
   width: 100%;
   background: transparent;
@@ -545,10 +550,12 @@ input, textarea {
   font-size: var(--size-body);
   padding: 8px 2px;
 }
+
 input:focus, textarea:focus {
   outline: none;
   border-bottom-color: var(--red);
 }
+
 textarea { resize: vertical; min-height: 80px; }
 .field-submit { margin-top: 24px; }
 button[type="submit"] { width: 100%; cursor: pointer; }
@@ -561,7 +568,6 @@ button[type="submit"] { width: 100%; cursor: pointer; }
   overflow: hidden;
 }
 
-/* ---------- Footer ---------- */
 footer {
   padding: 32px 0;
   border-top: 1px solid var(--line);
@@ -570,16 +576,89 @@ footer {
   color: var(--paper-dim);
   width: 100%;
 }
+
 footer .footer-inner {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
 }
-footer a { color: var(--paper-dim); text-decoration: none; }
+
+footer a {
+  color: var(--paper-dim);
+  text-decoration: none;
+}
+
 footer a:hover { color: var(--paper); }
 
-/* RESPONSIVE LAYOUT ADJUSTMENTS */
+/* ---------- CONSENSO ANALYTICS ---------- */
+
+#cookie-consent {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+  max-width: 620px;
+  padding: 22px;
+  background: var(--black-deep);
+  color: var(--paper);
+  border: 1px solid var(--red);
+  box-shadow: 0 12px 40px rgba(0,0,0,.5);
+}
+
+#cookie-consent p {
+  margin: 0 0 18px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+#cookie-consent strong {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cookie-buttons button {
+  padding: 10px 18px;
+  border: 1px solid var(--paper);
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cookie-buttons button:first-child {
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.cookie-buttons button:hover {
+  opacity: .85;
+}
+
+.cookie-settings {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--paper-dim);
+}
+
+.cookie-settings a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 @media (max-width: 1024px) {
   .situations-grid { grid-template-columns: repeat(2, 1fr); }
   .article-grid { grid-template-columns: repeat(2, 1fr); }
@@ -592,9 +671,7 @@ footer a:hover { color: var(--paper); }
   .article-grid { grid-template-columns: 1fr; }
   .contact-left, .contact-right { grid-column: span 12; }
   .contact .intro { max-width: 100%; }
-  
-  /* --- STILI MENU MOBILE --- */
-  
+
   .menu-toggle {
     display: flex;
     align-items: center;
@@ -605,7 +682,7 @@ footer a:hover { color: var(--paper); }
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 100; 
+    z-index: 100;
     position: relative;
   }
 
@@ -616,6 +693,7 @@ footer a:hover { color: var(--paper); }
     background: var(--paper);
     transition: all 0.3s ease-in-out;
   }
+
   .hamburger::before,
   .hamburger::after {
     content: '';
@@ -626,6 +704,7 @@ footer a:hover { color: var(--paper); }
     background: var(--paper);
     transition: all 0.3s ease-in-out;
   }
+
   .hamburger::before { transform: translateY(-8px); }
   .hamburger::after { transform: translateY(8px); }
 
@@ -663,6 +742,13 @@ footer a:hover { color: var(--paper); }
     margin: 0;
     font-size: clamp(24px, 6vw, 36px);
   }
+
+  #cookie-consent {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 18px;
+  }
 }
 </style>
 
@@ -681,7 +767,6 @@ footer a:hover { color: var(--paper); }
         PROPAGANDA<span>MARKETING</span>
       </div>
 
-      <!-- Bottone Hamburger -->
       <button class="menu-toggle" aria-label="Apri menu" aria-expanded="false">
         <span class="hamburger"></span>
       </button>
@@ -827,7 +912,6 @@ footer a:hover { color: var(--paper); }
     </div>
   </section>
 
-  <!-- SEZIONE PARTNER -->
   <section class="partners-banner">
     <div class="partners-label">Hanno ri-partito con noi</div>
 
@@ -842,6 +926,7 @@ footer a:hover { color: var(--paper); }
           <div class="partner-logo" style="--logo-scale: 0.8;"><img src="logos/partner6.png" alt="" /></div>
           <div class="partner-logo" style="--logo-scale: 1;"><img src="logos/partner7.png" alt="" /></div>
         </div>
+
         <div class="marquee-content" aria-hidden="true">
           <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner1.png" alt="" /></div>
           <div class="partner-logo" style="--logo-scale: 1.5;"><img src="logos/partner2.png" alt="" /></div>
@@ -855,7 +940,6 @@ footer a:hover { color: var(--paper); }
     </div>
   </section>
 
-  <!-- CONTATTI -->
   <section class="contact" id="contatti">
     <div class="wrap-full">
       <div class="grid-12">
@@ -876,23 +960,21 @@ footer a:hover { color: var(--paper); }
 
             <div class="field">
               <label for="nome">Nome</label>
-              <input type="text" id="nome" name="Nome" required="" />
+              <input type="text" id="nome" name="Nome" required />
             </div>
 
             <div class="field">
               <label for="email">Email</label>
-              <input type="email" id="email" name="Email" required="" />
+              <input type="email" id="email" name="Email" required />
             </div>
 
             <div class="field">
               <label for="messaggio">Messaggio</label>
-              <!-- Sostituito input con textarea -->
-              <textarea id="messaggio" name="Messaggio" required=""></textarea>
+              <textarea id="messaggio" name="Messaggio" required></textarea>
             </div>
 
-            <!-- Aggiunta spunta per la privacy -->
             <div class="field" style="display: flex; gap: 8px; align-items: flex-start; margin-bottom: 24px;">
-              <input type="checkbox" id="privacy" name="Privacy" required="" style="width: auto; margin-top: 4px;" />
+              <input type="checkbox" id="privacy" name="Privacy" required style="width: auto; margin-top: 4px;" />
               <label for="privacy" style="font-size: 12px; text-transform: none; letter-spacing: normal;">
                 Ho letto e accetto la <a href="/privacy-policy" style="text-decoration: underline;">Privacy Policy</a>.
               </label>
@@ -920,58 +1002,145 @@ footer a:hover { color: var(--paper); }
         <span id="tel-wrap">Tel: </span> —
         PEC: <a href="mailto:iv@pec-studio.it">iv@pec-studio.it</a>
       </span>
-      <span>Studio di comunicazione e marketing</span>
+
+      <span>
+        Studio di comunicazione e marketing —
+        <a href="#" id="cookie-settings">Cookie</a>
+      </span>
     </div>
   </div>
 </footer>
 
+<!-- BANNER CONSENSO -->
+<div id="cookie-consent" role="dialog" aria-label="Consenso Google Analytics" hidden>
+  <p>
+    <strong>Cookie</strong><br>
+    Utilizziamo Google Analytics per capire come viene utilizzato il sito.
+    Puoi accettare o rifiutare l'analisi statistica.
+  </p>
+
+  <div class="cookie-buttons">
+    <button type="button" id="cookie-accept">Accetta</button>
+    <button type="button" id="cookie-reject">Rifiuta</button>
+  </div>
+</div>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Gestione numero di telefono offuscato
-    var p1 = "+39 ";
-    var p2 = "371 ";
-    var p3 = "612 ";
-    var p4 = "63 ";
-    var p5 = "58";
-    var num = p1 + p2 + p3 + p4 + p5;
-    var raw = num.replace(/\s+/g, '');
-    var wrap = document.getElementById("tel-wrap");
-    if(wrap) {
-      var a = document.createElement("a");
-      a.href = "tel:" + raw;
-      a.setAttribute("rel", "nofollow");
-      a.textContent = num;
-      wrap.appendChild(a);
+(function() {
+  const GA_ID = 'G-T2KSBQGNFQ';
+  const CONSENT_KEY = 'analytics-consent';
+
+  function loadGoogleAnalytics() {
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      window.dataLayer.push(arguments);
     }
 
-    // Gestione Menu Mobile
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('header nav');
-    const navLinks = document.querySelectorAll('header nav a');
+    window.gtag = gtag;
 
-    if (menuToggle && nav) {
-      menuToggle.addEventListener('click', function() {
-        menuToggle.classList.toggle('is-active');
-        nav.classList.toggle('is-open');
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-        
-        // Blocca lo scroll della pagina quando il menu è aperto
-        document.body.style.overflow = isExpanded ? 'auto' : 'hidden';
-      });
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  }
 
-      // Chiude il menu quando si clicca su un link
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          menuToggle.classList.remove('is-active');
-          nav.classList.remove('is-open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = 'auto'; // Ripristina lo scroll
-        });
-      });
-    }
+  const banner = document.getElementById('cookie-consent');
+  const accept = document.getElementById('cookie-accept');
+  const reject = document.getElementById('cookie-reject');
+  const settings = document.getElementById('cookie-settings');
+
+  function showBanner() {
+    banner.hidden = false;
+  }
+
+  function hideBanner() {
+    banner.hidden = true;
+  }
+
+  const choice = localStorage.getItem(CONSENT_KEY);
+
+  if (choice === 'accepted') {
+    loadGoogleAnalytics();
+  } else if (!choice) {
+    showBanner();
+  }
+
+  accept.addEventListener('click', function() {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    hideBanner();
+    loadGoogleAnalytics();
   });
+
+  reject.addEventListener('click', function() {
+    localStorage.setItem(CONSENT_KEY, 'rejected');
+    hideBanner();
+  });
+
+  settings.addEventListener('click', function(event) {
+    event.preventDefault();
+    showBanner();
+  });
+})();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  var p1 = "+39 ";
+  var p2 = "371 ";
+  var p3 = "612 ";
+  var p4 = "63 ";
+  var p5 = "58";
+
+  var num = p1 + p2 + p3 + p4 + p5;
+  var raw = num.replace(/\s+/g, '');
+  var wrap = document.getElementById("tel-wrap");
+
+  if(wrap) {
+    var a = document.createElement("a");
+    a.href = "tel:" + raw;
+    a.setAttribute("rel", "nofollow");
+    a.textContent = num;
+    wrap.appendChild(a);
+  }
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('header nav');
+  const navLinks = document.querySelectorAll('header nav a');
+
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('is-active');
+      nav.classList.toggle('is-open');
+
+      const isExpanded =
+        menuToggle.getAttribute('aria-expanded') === 'true';
+
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+
+      document.body.style.overflow =
+        isExpanded ? 'auto' : 'hidden';
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('is-active');
+        nav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = 'auto';
+      });
+    });
+  }
+});
 </script>
 
 </body>
 </html>
+```
