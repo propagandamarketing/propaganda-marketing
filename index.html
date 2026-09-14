@@ -1007,18 +1007,6 @@
       right: 15%;
     }
 
-    .character-label {
-      position: absolute;
-      left: 50%;
-      bottom: -18px;
-      transform: translateX(-50%);
-      color: var(--paper-dim);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      white-space: nowrap;
-    }
-
     /*
      * Bubbles use the supplied PNG artwork as the visible shape.
      * No rectangular UI container is drawn around them.
@@ -1084,7 +1072,7 @@
       position: absolute;
       overflow-wrap: anywhere;
       font-family: var(--font-display);
-      font-size: clamp(14px, 1.6vw, 21px);
+      font-size: clamp(18px, 2vw, 28px);
       line-height: 1.02;
     }
 
@@ -1105,9 +1093,9 @@
 
     .bubble-copy small {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
       font-family: var(--font-body);
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.09em;
       line-height: 1;
@@ -1117,7 +1105,7 @@
     .bubble-copy strong {
       display: block;
       font-family: var(--font-display);
-      font-size: clamp(18px, 2vw, 28px);
+      font-size: clamp(25px, 2.6vw, 36px);
       line-height: 0.98;
     }
 
@@ -1234,7 +1222,7 @@
       }
 
       .bubble-copy {
-        font-size: clamp(12px, 3.5vw, 17px);
+        font-size: clamp(15px, 4vw, 20px);
       }
 
       .bubble-copy small {
@@ -1242,7 +1230,7 @@
       }
 
       .bubble-copy strong {
-        font-size: clamp(17px, 4.3vw, 22px);
+        font-size: clamp(21px, 5vw, 28px);
       }
 
       .dialogue-pair-indicator {
@@ -1578,8 +1566,7 @@
               src="/vignette/character-left.png"
               alt=""
             >
-            <span class="character-label">AZIENDA</span>
-          </div>
+              </div>
 
           <!-- CHARACTER 2: RIGHT -->
           <div
@@ -1590,8 +1577,7 @@
               src="/vignette/character-right.png"
               alt=""
             >
-            <span class="character-label">PROPAGANDA</span>
-          </div>
+              </div>
 
           <!-- Invisible interaction areas: no visible UI container. -->
           <button
@@ -1615,7 +1601,7 @@
             aria-hidden="true"
           >
             <img
-              src="/vignette/call-bubble.png"
+              src="/vignette/call-bubble"
               alt=""
             >
             <div class="bubble-copy">
@@ -1631,7 +1617,7 @@
             aria-hidden="true"
           >
             <img
-              src="/vignette/solution-bubble.png"
+              src="/vignette/solution-bubble"
               alt=""
             >
             <div class="bubble-copy">
