@@ -1423,30 +1423,36 @@
     }
 
 
-    /* MOBILE — text box: remove the apparent leading empty line.
-       Keep the bubble/artwork untouched. The text itself is laid out
-       as a normal block so its first rendered line starts immediately. */
+    /* MOBILE — bubble text only. Keep artwork and character positioning untouched. */
     @media (max-width: 768px) {
       .propaganda-dialogue .dialogue-bubble > .bubble-copy {
-        display: block !important;
-        top: 23% !important;
-        left: 8% !important;
-        width: 84% !important;
-        height: auto !important;
+        display: flex !important;
+        top: 15% !important;
+        left: 10% !important;
+        width: 80% !important;
+        height: 70% !important;
         margin: 0 !important;
         padding: 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
         text-align: center !important;
         transform: none !important;
-        overflow: visible !important;
+        overflow: hidden !important;
+        white-space: normal !important;
       }
 
       .propaganda-dialogue .bubble-call .bubble-copy span,
       .propaganda-dialogue .bubble-solution .bubble-copy strong {
         display: block !important;
+        width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
         transform: none !important;
-        text-wrap: nowrap !important;
+        text-wrap: wrap !important;
+        white-space: normal !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        hyphens: none !important;
       }
 
       .propaganda-dialogue .bubble-call .bubble-copy span {
