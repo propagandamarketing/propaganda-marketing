@@ -2458,7 +2458,6 @@
           : null;
 
       let activeIndex = null;
-      let manualLock = false;
       let autoTimer = null;
       let transitionTimer = null;
       let restartTimer = null;
@@ -2487,19 +2486,18 @@
           return;
         }
 
+        const token = animationToken;
         const copies = [
           [callBubbleCopy, callBubbleText, pair.problem],
           [solutionBubbleCopy, solutionBubbleText, pair.answer]
         ];
-
-        const token = animationToken;
 
         copies.forEach(([copy, target, value]) => {
           if (!copy || !target) {
             return;
           }
 
-          copy.classList.remove("is-visible");
+          copy.classList.remove("is-visible", "is-new");
           copy.classList.add("is-changing");
 
           window.setTimeout(() => {
@@ -2525,128 +2523,82 @@
 
 
       function showBubbles() {
-
         [callBubble, solutionBubble].forEach((bubble) => {
-
           if (!bubble) {
             return;
           }
 
-          bubble.classList.remove(
-            "is-visible",
-            "is-leaving"
-          );
-
           bubble.style.opacity = "1";
           bubble.style.visibility = "visible";
-
-          bubble.setAttribute(
-            "aria-hidden",
-            "false"
-          );
-
+          bubble.setAttribute("aria-hidden", "false");
         });
-
       }
 
 
-      function hideBubbles() {
-
-        /*
-         * Artwork stays on screen permanently.
-         * Only the text layer changes.
-         */
-
-        showBubbles();
-
-      }
-
-
-      function scheduleAuto() {
-
+      function scheduleAuto(delay = CYCLE_MS) {
         clearTimer(autoTimer);
-        autoTimer = null;
 
-        if (manualLock) {
-          return;
-        }
+        autoTimer = window.setTimeout(() => {
+          const nextIndex =
+            activeIndex === null
+              ? 0
+              : (activeIndex + 1) % PAIRS.length;
 
-        autoTimer =
-          window.setTimeout(() => {
-
-            const nextIndex =
-              activeIndex === null
-                ? 0
-                : (activeIndex + 1) %
-                  PAIRS.length;
-
-            activatePair(
-              nextIndex,
-              true
-            );
-
-          }, CYCLE_MS);
-
+          activatePair(nextIndex, true);
+        }, delay);
       }
 
 
-      function activatePair(
-        index,
-        fromAuto = false
-      ) {
-
+      function activatePair(index, fromAuto = false) {
         const pair = getPair(index);
 
         if (!pair) {
           return;
         }
 
-        if (!fromAuto) {
-          manualLock = true;
-          clearTimer(autoTimer);
-          clearTimer(restartTimer);
-          autoTimer = null;
-          restartTimer = null;
-        }
-
         clearTimer(transitionTimer);
         transitionTimer = null;
 
-        const token =
-          ++animationToken;
+        const token = ++animationToken;
 
-        transitionTimer =
-          window.setTimeout(() => {
+        transitionTimer = window.setTimeout(() => {
+          if (token !== animationToken) {
+            return;
+          }
 
-            if (token !== animationToken) {
-              return;
-            }
+          activeIndex = index;
+          setContent(index);
+          showBubbles();
+          transitionTimer = null;
 
-            activeIndex = index;
+          // The automatic cycle is never permanently disabled by interaction.
+          scheduleAuto(CYCLE_MS);
+        }, fromAuto ? 0 : 20);
+      }
 
-            setContent(index);
 
-            showBubbles();
+      function manualInteraction() {
+        const nextIndex =
+          activeIndex === null
+            ? 0
+            : (activeIndex + 1) % PAIRS.length;
 
-            transitionTimer = null;
+        clearTimer(autoTimer);
+        clearTimer(restartTimer);
+        autoTimer = null;
+        restartTimer = null;
 
-            if (fromAuto) {
-              /*
-               * Automatic sequence:
-               * visible for almost the full 3s interval,
-               * then the next pair starts.
-               */
-              scheduleAuto();
-            }
-          }, 20);
+        activatePair(nextIndex, false);
 
+        // Resume automatic rotation after the manual interaction.
+        restartTimer = window.setTimeout(() => {
+          restartTimer = null;
+          scheduleAuto(CYCLE_MS);
+        }, HOLD_MS);
       }
 
 
       function closeDialogue() {
-
-        ++animationToken;
-
         clearTimer(autoTimer);
         clearTimer(transitionTimer);
         clearTimer(restartTimer);
@@ -2655,95 +2607,45 @@
         transitionTimer = null;
         restartTimer = null;
 
-        activeIndex = null;
-        manualLock = false;
-
-        hideBubbles();
-
-        /*
-         * After a manual close the automatic cycle restarts.
-         */
-        window.setTimeout(() => {
-
-          if (
-            !manualLock &&
-            activeIndex === null
-          ) {
-            activatePair(
-              0,
-              true
-            );
-          }
-
-        }, HOLD_MS);
-
-      }
-
-
-      function manualInteraction() {
-
-        /*
-         * One unified interaction:
-         * character interaction activates exactly one pair
-         * and pauses the automatic sequence.
-         *
-         * Re-interacting while a manual pair is active closes it.
-         */
-        if (
-          manualLock &&
-          activeIndex !== null
-        ) {
-          closeDialogue();
-          return;
-        }
-
-        const nextIndex =
-          activeIndex === null
-            ? 0
-            : (activeIndex + 1) %
-              PAIRS.length;
-
-        activatePair(
-          nextIndex,
-          false
-        );
-
+        scheduleAuto(HOLD_MS);
       }
 
 
       /*
-       * Desktop hover uses the same action as click/tap.
-       * pointerenter fires once when entering either invisible
-       * character area; click/tap fires the same function.
+       * Desktop hover and click/tap both advance the dialogue.
+       * Hover is throttled so simply moving across the artwork cannot
+       * repeatedly consume the whole sequence.
        */
-      const hoverCapable =
-        window.matchMedia(
-          "(hover: hover) and (pointer: fine)"
-        );
+      const hoverCapable = window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+      );
+
+      let lastHoverAt = 0;
+      const HOVER_COOLDOWN_MS = 900;
 
       function bindCharacterHit(button) {
-
         if (!button) {
           return;
         }
 
-        button.addEventListener(
-          "mouseenter",
-          () => {
-            if (hoverCapable.matches) {
-              manualInteraction();
-            }
+        button.addEventListener("mouseenter", () => {
+          if (!hoverCapable.matches) {
+            return;
           }
-        );
 
-        button.addEventListener(
-          "click",
-          (event) => {
-            event.stopPropagation();
-            manualInteraction();
+          const now = Date.now();
+          if (now - lastHoverAt < HOVER_COOLDOWN_MS) {
+            return;
           }
-        );
 
+          lastHoverAt = now;
+          manualInteraction();
+        });
+
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          manualInteraction();
+        });
       }
 
 
@@ -2751,55 +2653,20 @@
       bindCharacterHit(rightHit);
 
 
-      /*
-       * Clicking/tapping empty space closes the manual pair.
-       * Character hit areas stop the event above.
-       */
       if (dialogueRoot) {
-
-        dialogueRoot.addEventListener(
-          "click",
-          (event) => {
-
-            if (
-              event.target === dialogueRoot
-            ) {
-              closeDialogue();
-            }
-
+        dialogueRoot.addEventListener("click", (event) => {
+          if (event.target === dialogueRoot) {
+            closeDialogue();
           }
-        );
-
-        dialogueRoot.addEventListener(
-          "pointerdown",
-          (event) => {
-
-            if (
-              event.target === dialogueRoot
-            ) {
-              closeDialogue();
-            }
-
-          },
-          { passive: true }
-        );
-
+        });
       }
 
 
-      /*
-       * Start automatic rotation.
-       */
+      // Start the automatic sequence and keep it alive continuously.
       window.setTimeout(() => {
-
-        if (!manualLock) {
-          activatePair(
-            0,
-            true
-          );
-        }
-
+        activatePair(0, true);
       }, 450);
+
 
       /* =========================================================
          TELEPHONE
