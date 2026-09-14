@@ -150,6 +150,42 @@
       font-display: swap;
     }
 
+    /* =========================================================
+       MOBILE — FUMETTI LEGGIBILI
+       Il testo lungo della risposta deve restare dentro il fumetto.
+       ========================================================= */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        top: 10% !important;
+        height: 80% !important;
+        transform: none !important;
+        overflow: hidden !important;
+        justify-content: center !important;
+      }
+
+      /* Il problema resta più compatto. */
+      .propaganda-dialogue .bubble-call .bubble-copy span {
+        width: 88% !important;
+        font-size: clamp(17px, 4.4vw, 22px) !important;
+        line-height: 0.98 !important;
+      }
+
+      /* La risposta è molto più lunga: riduciamo il corpo per evitare
+         che il testo esca dalla nuvoletta. */
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        width: 90% !important;
+        max-width: 100% !important;
+        font-size: clamp(15px, 4.15vw, 21px) !important;
+        line-height: 0.94 !important;
+        letter-spacing: -0.01em !important;
+      }
+
+      /* Un filo più di spazio orizzontale per il fumetto destro. */
+      .propaganda-dialogue .bubble-solution {
+        width: min(49vw, 255px) !important;
+      }
+    }
+
   </style>
 
   <!-- STRUCTURED DATA -->
