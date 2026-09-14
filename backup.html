@@ -23,14 +23,7 @@
       send_page_view: true 
     }); 
   </script> 
- 
-  <!-- Google tag (gtag.js) --> 
-  <script 
-    async 
-    src="https://www.googletagmanager.com/gtag/js?id=G-MH6NY7CYV9"
-  ></script>
-
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>PROPAGANDA Marketing</title>
@@ -150,6 +143,42 @@
       font-display: swap;
     }
 
+    /* =========================================================
+       MOBILE — FUMETTI LEGGIBILI
+       Il testo lungo della risposta deve restare dentro il fumetto.
+       ========================================================= */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        top: 10% !important;
+        height: 80% !important;
+        transform: none !important;
+        overflow: hidden !important;
+        justify-content: center !important;
+      }
+
+      /* Il problema resta più compatto. */
+      .propaganda-dialogue .bubble-call .bubble-copy span {
+        width: 88% !important;
+        font-size: clamp(17px, 4.4vw, 22px) !important;
+        line-height: 0.98 !important;
+      }
+
+      /* La risposta è molto più lunga: riduciamo il corpo per evitare
+         che il testo esca dalla nuvoletta. */
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        width: 90% !important;
+        max-width: 100% !important;
+        font-size: clamp(15px, 4.15vw, 21px) !important;
+        line-height: 0.94 !important;
+        letter-spacing: -0.01em !important;
+      }
+
+      /* Un filo più di spazio orizzontale per il fumetto destro. */
+      .propaganda-dialogue .bubble-solution {
+        width: min(49vw, 255px) !important;
+      }
+    }
+
   </style>
 
   <!-- STRUCTURED DATA -->
@@ -167,11 +196,11 @@
       "addressRegion": "IM",
       "addressCountry": "IT"
     },
-    "vatID": "IT01843770080",
+    "vatID": "IT01843770080"
   }
   </script>
 
-  <style>
+<style>
 
     :root {
       --black: #141210;
@@ -451,6 +480,35 @@
 
     .statement .sub-text {
       font-size: 0.8em;
+    }
+
+    .statement-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .statement-lead {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4.6vw, 56px);
+      line-height: 0.95;
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    .statement-body {
+      display: block;
+      max-width: 58ch;
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.9vw, 34px);
+      line-height: 1.04;
+      color: var(--paper);
+    }
+
+    .statement-body strong {
+      color: var(--red);
+      font-weight: 400;
     }
 
     /* ---------- SITUATIONS ---------- */
@@ -896,154 +954,566 @@
       }
     }
 
-    /* ---------- TABLET ---------- */
+    /* =========================================================
+       PROPAGANDA DIALOGUE
+       Composizione stabile: ogni fumetto resta fisicamente legato
+       al personaggio della propria colonna, su desktop e mobile.
+       ========================================================= */
 
-    @media (max-width: 1024px) {
-
-      .situations-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .article-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
+    .propaganda-dialogue {
+      position: relative;
+      overflow: hidden;
+      padding: 64px 0 78px;
+      border-bottom: 1px solid var(--line);
     }
 
-    /* ---------- MOBILE ---------- */
+    .dialogue-head {
+      position: relative;
+      z-index: 20;
+      margin-bottom: 8px;
+    }
+
+    .dialogue-kicker {
+      margin: 0 0 8px;
+      color: var(--red);
+      font-size: var(--size-ui);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .dialogue-head h2 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.92;
+    }
+
+    .dialogue-head h2 > span {
+      display: inline-block;
+    }
+
+    .dialogue-answer-title {
+      color: var(--red);
+    }
+
+    .dialogue-intro {
+      max-width: 58ch;
+      margin: 10px 0 0;
+      color: var(--paper-dim);
+      font-size: 15px;
+    }
+
+    /*
+     * The scene is content-driven. There is deliberately NO viewport-height
+     * spacer between the bubbles and the drawings.
+     */
+    .dialogue-scene {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(12px, 3vw, 48px);
+      width: 100%;
+      margin: 0 auto;
+      overflow: visible;
+    }
+
+    .dialogue-column {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      min-width: 0;
+      text-align: center;
+    }
+
+    /* Bubble + text: natural height, no artificial vertical band. */
+    .coppia-vignetta-testo {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      margin: 0;
+      transform: none;
+    }
+
+    .dialogue-bubble {
+      position: relative;
+      z-index: 20;
+      display: block;
+      flex: 0 0 auto;
+      width: min(92%, 590px);
+      max-width: 590px;
+      height: auto;
+      margin: 0 auto;
+      padding: 0;
+      opacity: 1;
+      visibility: visible;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .dialogue-bubble img {
+      position: relative;
+      z-index: 20;
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .bubble-call,
+    .bubble-solution {
+      top: auto;
+      left: auto;
+      right: auto;
+    }
+
+    /* Text is the only animated layer and sits over the artwork. */
+    .bubble-copy {
+      position: absolute;
+      z-index: 21;
+      left: 12%;
+      top: 13%;
+      width: 76%;
+      height: 72%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--paper);
+      text-align: center;
+      font-family: var(--font-display);
+      box-sizing: border-box;
+      pointer-events: none;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+      white-space: normal;
+      text-wrap: balance;
+      opacity: 1;
+      transform: translateY(-12px) scale(1);
+      transition:
+        opacity 0.24s ease,
+        transform 0.24s cubic-bezier(.2,.7,.3,1);
+    }
+
+    .bubble-copy.is-changing,
+    .bubble-copy.is-new {
+      opacity: 0;
+      transform: translateY(-12px) scale(0.985);
+    }
+
+    .bubble-copy.is-visible {
+      opacity: 1;
+      transform: translateY(-12px) scale(1);
+    }
+
+    .bubble-call .bubble-copy {
+      color: var(--black);
+    }
+
+    .bubble-solution .bubble-copy {
+      color: var(--paper);
+    }
+
+    .bubble-copy small {
+      display: block;
+      margin-bottom: 8px;
+      font-family: var(--font-body);
+      font-size: clamp(11px, 0.95vw, 14px);
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .bubble-copy span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.15vw, 34px);
+      font-weight: 400;
+      line-height: 1.02;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+      text-wrap: balance;
+    }
+
+    .bubble-copy strong {
+      display: block;
+      width: 100%;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 2.9vw, 45px);
+      font-weight: 400;
+      line-height: 0.98;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    /*
+     * Drawing follows its own bubble immediately. A small negative margin
+     * intentionally closes the visual gap so the tail points naturally
+     * toward the character instead of floating in empty space.
+     */
+    .disegno-vero {
+      position: relative;
+      z-index: 3;
+      flex: 0 0 auto;
+      width: 100%;
+      min-height: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      margin-top: clamp(-70px, -4vw, -28px);
+      transform: none;
+    }
+
+    .dialogue-character {
+      position: relative;
+      z-index: 3;
+      flex: 0 0 auto;
+      width: min(112%, 800px);
+      max-width: none;
+      margin: 0 auto;
+      pointer-events: none;
+    }
+
+    .dialogue-character img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Click/tap zones follow the character area. */
+    .character-hit {
+      position: absolute;
+      z-index: 10;
+      right: auto;
+      bottom: 0;
+      width: 46%;
+      height: 42%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .character-hit-left {
+      left: 2%;
+    }
+
+    .character-hit-right {
+      right: 2%;
+    }
+
+    @media (max-width: 1200px) {
+      .dialogue-scene {
+        gap: 12px;
+      }
+
+      .dialogue-bubble {
+        width: min(94%, 500px);
+      }
+
+      .disegno-vero {
+        margin-top: -38px;
+      }
+
+      .dialogue-character {
+        width: min(112%, 650px);
+      }
+    }
 
     @media (max-width: 768px) {
-
-      .grid-12 {
-        gap: 16px;
-      }
-
-      .situations-grid,
-      .article-grid {
-        grid-template-columns: 1fr;
-      }
-
+      /* CONTACT — mobile: una colonna sola, testo sopra e modulo sotto. */
       .contact-left,
       .contact-right {
-        grid-column: span 12;
+        grid-column: 1 / -1;
       }
 
-      .contact .intro {
-        max-width: none;
+      .contact-right {
+        margin-top: 28px;
       }
 
-      .wordmark img {
-        height: 36px;
-        max-width: 200px;
+      .propaganda-dialogue {
+        padding: 44px 0 48px;
       }
 
-      /* Mobile menu */
-
-      .menu-toggle {
-        position: relative;
-        z-index: 100;
-        display: flex;
-        align-items: center;
+      .dialogue-head h2 {
         justify-content: center;
-        width: 32px;
-        height: 32px;
-        padding: 0;
-        border: 0;
-        background: transparent;
-        cursor: pointer;
+        text-align: center;
+        font-size: clamp(34px, 10vw, 52px);
+        line-height: 0.92;
       }
 
-      .hamburger,
-      .hamburger::before,
-      .hamburger::after {
-        position: absolute;
-        width: 24px;
-        height: 2px;
-        background: var(--paper);
-        transition:
-          transform 0.3s ease,
-          background 0.3s ease;
+      .statement-lead {
+        font-size: clamp(30px, 8.5vw, 44px);
       }
 
-      .hamburger {
-        position: relative;
+      .statement-body {
+        font-size: clamp(20px, 5.2vw, 28px);
+        line-height: 1.04;
       }
 
-      .hamburger::before,
-      .hamburger::after {
-        left: 0;
-        content: "";
+      .dialogue-head {
+        margin-bottom: 0;
       }
 
-      .hamburger::before {
-        transform: translateY(-8px);
+      .dialogue-head h2 {
+        gap: 5px;
+        font-size: clamp(30px, 9vw, 46px);
       }
 
-      .hamburger::after {
-        transform: translateY(8px);
+      .dialogue-intro {
+        font-size: 14px;
       }
 
-      .menu-toggle.is-active .hamburger {
-        background: transparent;
+      .dialogue-scene {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        margin-top: 8px;
       }
 
-      .menu-toggle.is-active .hamburger::before {
-        transform: translateY(0) rotate(45deg);
+      .coppia-vignetta-testo {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        transform: none;
       }
 
-      .menu-toggle.is-active .hamburger::after {
-        transform: translateY(0) rotate(-45deg);
+      .dialogue-bubble {
+        width: min(96%, 255px);
       }
 
-      header nav {
-        position: fixed;
-        inset: 0;
-        z-index: 99;
-        display: flex;
-        visibility: hidden;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 40px;
-        padding: 24px;
-        background: var(--black-deep);
-        opacity: 0;
-        transform: translateY(-100%);
-        transition:
-          transform 0.4s cubic-bezier(0.77, 0, 0.175, 1),
-          opacity 0.4s ease,
-          visibility 0.4s ease;
+      .bubble-copy {
+        left: 10%;
+        top: 12%;
+        width: 80%;
+        height: 74%;
+        overflow: hidden;
+        transform: none;
       }
 
-      header nav.is-open {
-        visibility: visible;
-        opacity: 1;
-        transform: translateY(0);
+      .bubble-copy.is-changing,
+      .bubble-copy.is-new,
+      .bubble-copy.is-visible {
+        transform: none;
       }
 
-      header nav a {
-        margin: 0;
-        font-size: clamp(24px, 6vw, 36px);
+      .bubble-copy small {
+        margin-bottom: 5px;
+        font-size: clamp(10px, 2.8vw, 12px);
       }
 
-      /* Cookie */
-
-      #cookie-consent {
-        right: 12px;
-        bottom: 12px;
-        left: 12px;
-        padding: 18px;
+      .bubble-call .bubble-copy span {
+        width: 88%;
+        font-size: clamp(17px, 4.4vw, 22px);
+        line-height: 0.98;
       }
 
-      /* Form */
-
-      form {
-        padding: 24px;
+      .bubble-solution .bubble-copy strong {
+        width: 90%;
+        max-width: 100%;
+        font-size: clamp(15px, 4.15vw, 21px);
+        line-height: 0.94;
+        letter-spacing: -0.01em;
       }
 
+      .bubble-copy span {
+        font-size: clamp(18px, 5vw, 25px);
+        line-height: 1.02;
+      }
+
+      .bubble-copy strong {
+        font-size: clamp(24px, 6.5vw, 34px);
+        line-height: 0.98;
+      }
+
+      .disegno-vero {
+        margin-top: -24px;
+        transform: none;
+      }
+
+      .dialogue-character {
+        width: min(112%, 310px);
+      }
+
+      .character-hit {
+        width: 48%;
+        height: 42%;
+      }
     }
 
-  </style>
+
+
+    /* MOBILE — final bubble text calibration
+       Keep the artwork/layout untouched; only recalibrate text scale and vertical anchor. */
+    @media (max-width: 768px) {
+      /* MOBILE — optical center inside the actual bubble artwork. */
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        top: 15% !important;
+        height: 68% !important;
+        justify-content: center !important;
+        transform: translateY(0) !important;
+        overflow: hidden !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span {
+        width: 90% !important;
+        font-size: clamp(14px, 3.65vw, 18px) !important;
+        line-height: 0.94 !important;
+        letter-spacing: -0.01em !important;
+      }
+
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        width: 92% !important;
+        font-size: clamp(15px, 3.9vw, 19px) !important;
+        line-height: 0.93 !important;
+        letter-spacing: -0.015em !important;
+      }
+    }
+
+
+
+    /* MOBILE — remove the apparent empty first text line inside bubbles.
+       Only the text flow is changed; bubble artwork, characters and layout
+       remain untouched. */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        top: 26% !important;
+        height: 56% !important;
+        justify-content: flex-start !important;
+        padding: 0 !important;
+        transform: none !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span,
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        margin: 0 !important;
+      }
+    }
+
+
+    /* MOBILE — bubble text only. Keep artwork and character positioning untouched. */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        display: flex !important;
+        top: 15% !important;
+        left: 10% !important;
+        width: 80% !important;
+        height: 70% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        transform: none !important;
+        overflow: hidden !important;
+        white-space: normal !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span,
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        text-wrap: wrap !important;
+        white-space: normal !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        hyphens: none !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span {
+        font-size: clamp(13px, 3.45vw, 17px) !important;
+        line-height: 0.96 !important;
+      }
+
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        font-size: clamp(14px, 3.7vw, 18px) !important;
+        line-height: 0.94 !important;
+      }
+    }
+
+
+    /* MOBILE — text centered on a fixed THREE-LINE optical box.
+       Do not move/resize the bubble artwork or characters. */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        top: 10% !important;
+        left: 10% !important;
+        width: 80% !important;
+        height: 80% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transform: none !important;
+        overflow: hidden !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span,
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        position: static !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 3em !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+        white-space: normal !important;
+        text-wrap: wrap !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        hyphens: none !important;
+        transform: none !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span {
+        font-size: clamp(13px, 3.45vw, 17px) !important;
+        line-height: 0.96 !important;
+      }
+
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        font-size: clamp(14px, 3.7vw, 18px) !important;
+        line-height: 0.94 !important;
+      }
+    }
+</style>
 
 </head>
 
@@ -1095,8 +1565,6 @@
           </a>
 
         </nav>
-
-      </div>
 
       </div>
 
@@ -1160,278 +1628,93 @@
       </div>
 
     </section>
-
-    <!-- STATEMENT -->
-
-    <section class="statement">
-
-      <div class="wrap-full">
-
-        <div class="grid-12">
-
-          <p>
-
-            <span class="red-text">
-              NON FACCIAMO MARKETING PERCHÉ "BISOGNA ESSERCI".
-            </span>
-
-            <br>
-
-            <span class="sub-text">
-              Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
-              Se serve, si fa. Se non serve, si lascia perdere.
-            </span>
-
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- SITUATIONS -->
-
-    <section class="situations">
-
-      <div class="wrap-full">
-
-        <div class="grid-12">
-
-          <h2>
-            Ci chiamano quando...
-          </h2>
-
-          <div class="situations-grid">
-
-            <div class="situation">
-              L'azienda è cresciuta, ma comunica ancora come cinque anni fa.
-            </div>
-
-            <div class="situation">
-              Il sito c'è, ma non serve a niente.
-            </div>
-
-            <div class="situation">
-              Bisogna lanciare qualcosa.
-            </div>
-
-            <div class="situation">
-              Nessuno capisce bene cosa facciamo.
-            </div>
-
-            <div class="situation">
-              I social ci sono, ma non succede niente.
-            </div>
-
-            <div class="situation">
-              Abbiamo un problema e non sappiamo quale strumento serva.
-            </div>
-
-            <div class="situation">
-              Serve qualcuno che coordini tutto senza assumere un ufficio marketing.
-            </div>
-
-            <div class="situation">
-              C'è qualcosa da fare e nessuno vuole perdere tre mesi a capire da dove iniziare.
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- SERVICES -->
-
+    <!-- PROBLEMI / RISPOSTE INTERATTIVI -->
     <section
-      class="articles"
+      class="propaganda-dialogue"
       id="cosa-facciamo"
+      aria-label="Conversazione PROPAGANDA"
     >
-
       <div class="wrap-full">
 
-        <div class="grid-12">
-
-          <h2 class="articles-title">
-            Cosa facciamo
+        <div class="dialogue-head">
+          
+          <h2>
+            <span>QUANDO CI CHIAMANO...</span>
+            <span class="dialogue-answer-title">LAVORIAMO COSI</span>
           </h2>
 
-          <div class="article-grid">
+         </div>
 
-            <article class="article">
-
-              <div class="num">
-                I
+        <div
+          class="dialogue-scene"
+          id="propaganda-dialogue"
+        >
+          <!-- COPPIA SINISTRA: TESTO + FUMETTO / DISEGNO SOTTO -->
+          <div class="dialogue-column dialogue-column-left">
+            <div class="coppia-vignetta-testo">
+              <div
+                class="dialogue-bubble bubble-call"
+                id="bubble-call"
+                aria-hidden="true"
+              >
+                <img src="/vignette/call-vignette.png" alt="">
+                <div class="bubble-copy">
+                  <span id="bubble-call-text"></span>
+                </div>
               </div>
+            </div>
 
-              <div>
-
-                <p class="eyebrow">
-                  Quando non sai da dove partire
-                </p>
-
-                <h3>
-                  Strategia.
-                </h3>
-
+            <div class="disegno-vero">
+              <div
+                class="dialogue-character dialogue-character-left"
+                aria-hidden="true"
+              >
+                <img src="/vignette/call-bubble" alt="" decoding="async">
               </div>
+            </div>
 
-            </article>
-
-            <article class="article">
-
-              <div class="num">
-                II
-              </div>
-
-              <div>
-
-                <p class="eyebrow">
-                  Quando la tua azienda non si capisce
-                </p>
-
-                <h3>
-                  Comunicazione.
-                </h3>
-
-              </div>
-
-            </article>
-
-            <article class="article">
-
-              <div class="num">
-                III
-              </div>
-
-              <div>
-
-                <p class="eyebrow">
-                  Quando hai qualcosa da dire
-                </p>
-
-                <h3>
-                  Contenuti.
-                </h3>
-
-              </div>
-
-            </article>
-
-            <article class="article">
-
-              <div class="num">
-                IV
-              </div>
-
-              <div>
-
-                <p class="eyebrow">
-                  Quando ti presenti male
-                </p>
-
-                <h3>
-                  Branding.
-                </h3>
-
-              </div>
-
-            </article>
-
-            <article class="article">
-
-              <div class="num">
-                V
-              </div>
-
-              <div>
-
-                <p class="eyebrow">
-                  Quando ti serve uno strumento
-                </p>
-
-                <h3>
-                  Siti, landing, sistemi digitali.
-                </h3>
-
-              </div>
-
-            </article>
-
-            <article class="article">
-
-              <div class="num">
-                VI
-              </div>
-
-              <div>
-
-                <p class="eyebrow">
-                  Quando devi far arrivare il messaggio
-                </p>
-
-                <h3>
-                  Marketing.
-                </h3>
-
-              </div>
-
-            </article>
-
+            <button
+              type="button"
+              class="character-hit character-hit-left"
+              id="character-hit-left"
+              aria-label="Interagisci con il personaggio a sinistra"
+            ></button>
           </div>
 
-          <div class="articles-close">
+          <!-- COPPIA DESTRA: TESTO + FUMETTO / DISEGNO SOTTO -->
+          <div class="dialogue-column dialogue-column-right">
+            <div class="coppia-vignetta-testo">
+              <div
+                class="dialogue-bubble bubble-solution"
+                id="bubble-solution"
+                aria-hidden="true"
+              >
+                <img src="/vignette/solution-vignette.png" alt="">
+                <div class="bubble-copy">
+                  <strong id="bubble-solution-text"></strong>
+                </div>
+              </div>
+            </div>
 
-            <p>
-              Non devi comprare un pacchetto.
-            </p>
+            <div class="disegno-vero">
+              <div
+                class="dialogue-character dialogue-character-right"
+                aria-hidden="true"
+              >
+                <img src="/vignette/solution-bubble" alt="" decoding="async">
+              </div>
+            </div>
 
-            <p>
-              Devi risolvere una cosa.
-            </p>
-
-            <p class="service-right">
-              Noi capiamo quale.
-            </p>
-
+            <button
+              type="button"
+              class="character-hit character-hit-right"
+              id="character-hit-right"
+              aria-label="Interagisci con il personaggio a destra"
+            ></button>
           </div>
 
         </div>
-
       </div>
-
-    </section>
-
-    <!-- EXTERNAL MARKETING OFFICE -->
-
-    <section class="statement">
-
-      <div class="wrap-full">
-
-        <div class="grid-12">
-
-          <p>
-
-            <span class="red-text title-h2">
-              UN UFFICIO MARKETING ESTERNO.
-            </span>
-
-            <br>
-
-            <span class="sub-text">
-              Senza assumere un ufficio marketing. Senza coordinare cinque fornitori.
-              PROPAGANDA entra quando serve, lavora dove serve e rimane quando serve.
-            </span>
-
-          </p>
-
-        </div>
-
-      </div>
-
     </section>
 
     <!-- PARTNERS -->
@@ -1582,6 +1865,36 @@
 
     </section>
 
+        <!-- STATEMENT -->
+
+    <section class="statement">
+
+      <div class="wrap-full">
+
+        <div class="grid-12">
+
+          <p class="statement-copy">
+
+            <span class="statement-lead red-text">
+              ESSERE ONLINE NON È UNA STRATEGIA.
+            </span>
+
+            <span class="statement-body">
+              Essere online, pubblicare, rifare il sito, fare contenuti:
+              non sono obiettivi. Sono strumenti.
+              Prima bisogna capire <strong>cosa c'è da risolvere.</strong>
+              Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
+              Se serve, si fa. Se non serve, si lascia perdere.
+            </span>
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
     <!-- CONTACT -->
 
     <section
@@ -1596,7 +1909,7 @@
           <div class="contact-left">
 
             <h2 class="contact-title">
-              HAI UNA COSA DA SISTEMARE?
+              HAI UN PROBLEMA DA SISTEMARE?
             </h2>
 
             <p class="intro">
@@ -2160,6 +2473,235 @@
         });
 
       }
+
+
+      /* =========================================================
+         PROBLEMS / RESPONSES DIALOGUE
+         ========================================================= */
+
+      /*
+       * AUTHORITATIVE 6 + 6 DATA.
+       * Pairings are kept exactly as established:
+       * 01 -> Strategy
+       * 02 -> Sites / landing / digital systems
+       * 03 -> Marketing
+       * 04 -> Communication
+       * 05 -> Content
+       * 06 -> Branding
+       *
+       * These are data only. They are never rendered as a
+       * permanent list in the interface.
+       */
+      const PAIRS = [
+        {
+          id: "01",
+          problem:
+            "L’azienda è cresciuta, ma comunica ancora come cinque anni fa.",
+          answer: "Rimettiamo in ordine il modo in cui ti presenti.",
+        },
+        {
+          id: "02",
+          problem:
+            "Il sito c’è, ma non genera niente.",
+          answer: "Non rifacciamo il sito. Lo facciamo funzionare.",
+        },
+        {
+          id: "03",
+          problem:
+            "Dobbiamo fare qualcosa di nuovo.",
+          answer: "Prima troviamo perché quello che hai non funziona.",
+        },
+        {
+          id: "04",
+          problem:
+            "Nessuno capisce bene cosa facciamo.",
+          answer: "Troviamo il modo giusto per dirlo.",
+        },
+        {
+          id: "05",
+          problem:
+            "I social ci sono, ma sono fermi.",
+          answer: "Diamo un motivo per seguirli e ti insegniamo a usarli.",
+        },
+        {
+          id: "06",
+          problem:
+            "Ci serve qualcosa che faccia capire chi siamo.",
+          answer: "Costruiamo qualcosa che ti faccia riconoscere e ricordare.",
+        }
+      ];
+
+      const dialogueRoot =
+        document.getElementById("propaganda-dialogue");
+
+      const leftHit =
+        document.getElementById("character-hit-left");
+
+      const rightHit =
+        document.getElementById("character-hit-right");
+
+      const callBubble =
+        document.getElementById("bubble-call");
+
+      const solutionBubble =
+        document.getElementById("bubble-solution");
+
+      const callBubbleText =
+        document.getElementById("bubble-call-text");
+
+      const solutionBubbleText =
+        document.getElementById("bubble-solution-text");
+
+      const callBubbleCopy =
+        callBubbleText
+          ? callBubbleText.closest(".bubble-copy")
+          : null;
+
+      const solutionBubbleCopy =
+        solutionBubbleText
+          ? solutionBubbleText.closest(".bubble-copy")
+          : null;
+
+      let activeIndex = null;
+      let autoTimer = null;
+      let transitionTimer = null;
+      let restartTimer = null;
+      let animationToken = 0;
+
+      const HOLD_MS = 5000;
+      const CYCLE_MS = 5000;
+
+      function clearTimer(timer) {
+        if (timer !== null) {
+          window.clearTimeout(timer);
+        }
+      }
+
+      function getPair(index) {
+        return PAIRS[index] || null;
+      }
+
+      function setContent(index) {
+        const pair = getPair(index);
+        if (!pair) return;
+
+        const token = animationToken;
+        const copies = [
+          [callBubbleCopy, callBubbleText, pair.problem],
+          [solutionBubbleCopy, solutionBubbleText, pair.answer]
+        ];
+
+        copies.forEach(([copy, target, value]) => {
+          if (!copy || !target) return;
+          copy.classList.remove("is-visible", "is-new");
+          copy.classList.add("is-changing");
+
+          window.setTimeout(() => {
+            if (token !== animationToken) return;
+            target.textContent = value;
+            copy.classList.remove("is-changing");
+            copy.classList.add("is-new");
+
+            window.requestAnimationFrame(() => {
+              if (token !== animationToken) return;
+              copy.classList.remove("is-new");
+              copy.classList.add("is-visible");
+            });
+          }, 120);
+        });
+      }
+
+      function showBubbles() {
+        [callBubble, solutionBubble].forEach((bubble) => {
+          if (!bubble) return;
+          bubble.classList.remove("is-visible", "is-leaving");
+          bubble.style.opacity = "1";
+          bubble.style.visibility = "visible";
+          bubble.setAttribute("aria-hidden", "false");
+        });
+      }
+
+      function scheduleAuto(delay = CYCLE_MS) {
+        clearTimer(autoTimer);
+        autoTimer = window.setTimeout(() => {
+          const nextIndex = activeIndex === null ? 0 : (activeIndex + 1) % PAIRS.length;
+          activatePair(nextIndex, true);
+        }, delay);
+      }
+
+      function activatePair(index, fromAuto = false) {
+        if (!getPair(index)) return;
+        clearTimer(transitionTimer);
+        transitionTimer = null;
+        const token = ++animationToken;
+
+        transitionTimer = window.setTimeout(() => {
+          if (token !== animationToken) return;
+          activeIndex = index;
+          setContent(index);
+          showBubbles();
+          transitionTimer = null;
+          scheduleAuto(CYCLE_MS);
+        }, fromAuto ? 0 : 20);
+      }
+
+      function manualInteraction() {
+        const nextIndex = activeIndex === null ? 0 : (activeIndex + 1) % PAIRS.length;
+        clearTimer(autoTimer);
+        clearTimer(restartTimer);
+        autoTimer = null;
+        restartTimer = null;
+        activatePair(nextIndex, false);
+
+        restartTimer = window.setTimeout(() => {
+          restartTimer = null;
+          scheduleAuto(CYCLE_MS);
+        }, HOLD_MS);
+      }
+
+      function closeDialogue() {
+        clearTimer(autoTimer);
+        clearTimer(transitionTimer);
+        clearTimer(restartTimer);
+        autoTimer = null;
+        transitionTimer = null;
+        restartTimer = null;
+        scheduleAuto(HOLD_MS);
+      }
+
+      const hoverCapable = window.matchMedia("(hover: hover) and (pointer: fine)");
+      let lastHoverAt = 0;
+      const HOVER_COOLDOWN_MS = 900;
+
+      function bindCharacterHit(button) {
+        if (!button) return;
+
+        button.addEventListener("mouseenter", () => {
+          if (!hoverCapable.matches) return;
+          const now = Date.now();
+          if (now - lastHoverAt < HOVER_COOLDOWN_MS) return;
+          lastHoverAt = now;
+          manualInteraction();
+        });
+
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          manualInteraction();
+        });
+      }
+
+      bindCharacterHit(leftHit);
+      bindCharacterHit(rightHit);
+
+      if (dialogueRoot) {
+        dialogueRoot.addEventListener("click", (event) => {
+          if (event.target === dialogueRoot) closeDialogue();
+        });
+      }
+
+      window.setTimeout(() => {
+        activatePair(0, true);
+      }, 450);
 
 
       /* =========================================================
