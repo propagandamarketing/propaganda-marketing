@@ -903,18 +903,18 @@
     .propaganda-dialogue {
       position: relative;
       overflow: hidden;
-      padding: 72px 0 84px;
+      padding: 64px 0 78px;
       border-bottom: 1px solid var(--line);
     }
 
     .dialogue-head {
       position: relative;
-      z-index: 2;
-      margin-bottom: 24px;
+      z-index: 20;
+      margin-bottom: 8px;
     }
 
     .dialogue-kicker {
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       color: var(--red);
       font-size: var(--size-ui);
       font-weight: 700;
@@ -926,7 +926,7 @@
       display: flex;
       flex-wrap: wrap;
       align-items: baseline;
-      gap: 10px;
+      gap: 8px;
     }
 
     .dialogue-answer-title {
@@ -942,31 +942,30 @@
 
     .dialogue-intro {
       max-width: 58ch;
-      margin: 12px 0 0;
+      margin: 10px 0 0;
       color: var(--paper-dim);
       font-size: 15px;
     }
 
+    /*
+     * One single stage.
+     * The characters and bubble artwork stay fixed.
+     * Only the text inside the bubbles changes.
+     */
     .dialogue-scene {
       position: relative;
       isolation: isolate;
-      min-height: 500px;
-      width: min(100%, 980px);
+      width: min(100%, 1320px);
+      min-height: 620px;
       margin: 0 auto;
     }
 
-    /*
-     * Invisible interaction zones:
-     * no visible boxes, panels or cards are created.
-     * The PNG characters sit directly on the scene.
-     */
     .character-hit {
       position: absolute;
-      z-index: 7;
-      bottom: 24px;
-      width: 30%;
-      min-width: 110px;
-      height: 58%;
+      z-index: 20;
+      bottom: 12px;
+      width: 39%;
+      height: 74%;
       border: 0;
       padding: 0;
       background: transparent;
@@ -975,18 +974,22 @@
     }
 
     .character-hit-left {
-      left: 7%;
+      left: 1%;
     }
 
     .character-hit-right {
-      right: 7%;
+      right: 1%;
     }
 
+    /*
+     * Characters are intentionally large and close to each other.
+     * Their PNGs sit directly on the page background.
+     */
     .dialogue-character {
       position: absolute;
-      z-index: 3;
-      bottom: 28px;
-      width: clamp(130px, 17vw, 205px);
+      z-index: 5;
+      bottom: 18px;
+      width: clamp(330px, 38vw, 560px);
       pointer-events: none;
     }
 
@@ -1000,153 +1003,132 @@
     }
 
     .dialogue-character-left {
-      left: 15%;
+      left: 9%;
     }
 
     .dialogue-character-right {
-      right: 15%;
+      right: 9%;
     }
 
     /*
-     * Bubbles use the supplied PNG artwork as the visible shape.
-     * No rectangular UI container is drawn around them.
+     * Bubble artwork is a transparent PNG used as the actual
+     * speech-bubble shape. There is NO visible rectangular box.
      */
     .dialogue-bubble {
       position: absolute;
-      z-index: 6;
-      width: clamp(190px, 24vw, 300px);
+      z-index: 10;
+      width: clamp(250px, 29vw, 390px);
       aspect-ratio: 1.35 / 1;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: scale(0.94);
-      transform-origin: center bottom;
-      transition:
-        opacity 0.24s ease,
-        transform 0.24s cubic-bezier(.2,.7,.3,1),
-        visibility 0s linear 0.24s;
-    }
-
-    .dialogue-bubble.is-visible {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
       opacity: 1;
       visibility: visible;
-      transform: scale(1);
-      transition:
-        opacity 0.24s ease,
-        transform 0.24s cubic-bezier(.2,.7,.3,1),
-        visibility 0s linear 0s;
-    }
-
-    .dialogue-bubble.is-leaving {
-      opacity: 0;
-      visibility: visible;
-      transform: scale(0.97);
-      transition:
-        opacity 0.18s ease,
-        transform 0.18s ease,
-        visibility 0s linear 0.18s;
-    }
-
-    .dialogue-bubble img {
-      position: absolute;
-      inset: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      user-select: none;
-      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .bubble-call {
-      left: 5%;
-      top: 20px;
+      left: 7%;
+      top: 4px;
+      background-image: url("/vignette/call-bubble.png");
     }
 
     .bubble-solution {
-      right: 5%;
-      top: 52px;
+      right: 7%;
+      top: 28px;
+      background-image: url("/vignette/solution-bubble.png");
     }
 
+    /*
+     * Text only:
+     * this is the ONLY animated layer.
+     */
     .bubble-copy {
       position: absolute;
       overflow-wrap: anywhere;
-      font-family: var(--font-display);
-      font-size: clamp(18px, 2vw, 28px);
-      line-height: 1.02;
+      opacity: 1;
+      transform: scale(1);
+      transition:
+        opacity 0.24s ease,
+        transform 0.24s cubic-bezier(.2,.7,.3,1);
+    }
+
+    .bubble-copy.is-changing {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+
+    .bubble-copy.is-new {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+
+    .bubble-copy.is-visible {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .bubble-call .bubble-copy {
-      left: 14%;
-      top: 19%;
-      width: 70%;
+      left: 13%;
+      top: 18%;
+      width: 74%;
       color: var(--black);
+      text-align: left;
     }
 
     .bubble-solution .bubble-copy {
-      left: 15%;
-      top: 20%;
-      width: 70%;
+      left: 14%;
+      top: 18%;
+      width: 72%;
       color: var(--paper);
       text-align: center;
     }
 
     .bubble-copy small {
       display: block;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
       font-family: var(--font-body);
-      font-size: 11px;
+      font-size: clamp(11px, 0.95vw, 14px);
       font-weight: 800;
       letter-spacing: 0.09em;
       line-height: 1;
       text-transform: uppercase;
     }
 
+    .bubble-copy span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.35vw, 36px);
+      line-height: 1;
+    }
+
     .bubble-copy strong {
       display: block;
       font-family: var(--font-display);
-      font-size: clamp(25px, 2.6vw, 36px);
-      line-height: 0.98;
+      font-size: clamp(30px, 3.1vw, 48px);
+      line-height: 0.96;
+      text-transform: uppercase;
     }
 
-    .dialogue-pair-indicator {
-      position: absolute;
-      z-index: 2;
-      right: 50%;
-      bottom: 0;
-      transform: translateX(50%);
-      color: var(--paper-dim);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      opacity: 0.65;
-      pointer-events: none;
-    }
-
-    /* Keep the scene visually integrated with the existing page. */
-    .dialogue-scene::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: transparent;
-      pointer-events: none;
-    }
-
-    @media (max-width: 1024px) {
+    @media (max-width: 1200px) {
       .dialogue-scene {
-        min-height: 450px;
+        min-height: 570px;
       }
 
       .dialogue-character {
-        width: clamp(115px, 19vw, 170px);
+        width: clamp(300px, 37vw, 470px);
       }
 
       .dialogue-character-left {
-        left: 14%;
+        left: 7%;
       }
 
       .dialogue-character-right {
-        right: 14%;
+        right: 7%;
+      }
+
+      .dialogue-bubble {
+        width: clamp(225px, 29vw, 340px);
       }
 
       .bubble-call {
@@ -1160,15 +1142,15 @@
 
     @media (max-width: 768px) {
       .propaganda-dialogue {
-        padding: 54px 0 66px;
+        padding: 52px 0 64px;
       }
 
       .dialogue-head {
-        margin-bottom: 12px;
+        margin-bottom: 4px;
       }
 
       .dialogue-head h2 {
-        gap: 6px;
+        gap: 5px;
         font-size: clamp(31px, 9vw, 48px);
       }
 
@@ -1177,64 +1159,72 @@
       }
 
       .dialogue-scene {
-        min-height: 420px;
+        min-height: 440px;
       }
 
       .dialogue-character {
-        width: clamp(92px, 27vw, 135px);
-        bottom: 34px;
+        width: clamp(165px, 47vw, 245px);
+        bottom: 12px;
       }
 
       .dialogue-character-left {
-        left: 12%;
+        left: 2%;
       }
 
       .dialogue-character-right {
-        right: 12%;
+        right: 2%;
       }
 
       .character-hit {
-        bottom: 30px;
-        width: 38%;
-        height: 52%;
+        width: 46%;
+        height: 72%;
+        bottom: 8px;
       }
 
       .character-hit-left {
-        left: 3%;
+        left: 0;
       }
 
       .character-hit-right {
-        right: 3%;
+        right: 0;
       }
 
       .dialogue-bubble {
-        width: min(47vw, 195px);
+        width: min(47vw, 215px);
       }
 
       .bubble-call {
-        left: -2%;
-        top: 18px;
+        left: -3%;
+        top: 6px;
       }
 
       .bubble-solution {
-        right: -2%;
-        top: 48px;
+        right: -3%;
+        top: 26px;
       }
 
-      .bubble-copy {
-        font-size: clamp(15px, 4vw, 20px);
+      .bubble-call .bubble-copy {
+        left: 13%;
+        top: 17%;
+        width: 74%;
+      }
+
+      .bubble-solution .bubble-copy {
+        left: 14%;
+        top: 17%;
+        width: 72%;
       }
 
       .bubble-copy small {
-        font-size: 8px;
+        font-size: 9px;
+      }
+
+      .bubble-copy span {
+        font-size: clamp(15px, 4.2vw, 22px);
       }
 
       .bubble-copy strong {
-        font-size: clamp(21px, 5vw, 28px);
-      }
-
-      .dialogue-pair-indicator {
-        bottom: 4px;
+        font-size: clamp(22px, 5.3vw, 31px);
       }
     }
 
@@ -1600,10 +1590,6 @@
             id="bubble-call"
             aria-hidden="true"
           >
-            <img
-              src="/vignette/call-bubble"
-              alt=""
-            >
             <div class="bubble-copy">
               <small>IL PROBLEMA</small>
               <span id="bubble-call-text"></span>
@@ -1616,21 +1602,11 @@
             id="bubble-solution"
             aria-hidden="true"
           >
-            <img
-              src="/vignette/solution-bubble"
-              alt=""
-            >
             <div class="bubble-copy">
               <small>LA RISPOSTA</small>
               <strong id="bubble-solution-text"></strong>
             </div>
           </div>
-
-          <span
-            class="dialogue-pair-indicator"
-            id="dialogue-pair-indicator"
-            aria-hidden="true"
-          ></span>
 
         </div>
       </div>
@@ -2441,8 +2417,15 @@
       const solutionBubbleText =
         document.getElementById("bubble-solution-text");
 
-      const pairIndicator =
-        document.getElementById("dialogue-pair-indicator");
+      const callBubbleCopy =
+        callBubbleText
+          ? callBubbleText.closest(".bubble-copy")
+          : null;
+
+      const solutionBubbleCopy =
+        solutionBubbleText
+          ? solutionBubbleText.closest(".bubble-copy")
+          : null;
 
       let activeIndex = null;
       let manualLock = false;
@@ -2450,10 +2433,8 @@
       let transitionTimer = null;
       let animationToken = 0;
 
-      const FADE_IN_MS = 240;
-      const FADE_OUT_MS = 180;
-      const HOLD_MS = 2760;
-      const CYCLE_MS = 3000;
+      const HOLD_MS = 5000;
+      const CYCLE_MS = 5000;
 
 
       function clearTimer(timer) {
@@ -2476,82 +2457,73 @@
           return;
         }
 
-        if (callBubbleText) {
-          callBubbleText.textContent =
-            pair.problem;
-        }
+        const copies = [
+          [callBubbleCopy, callBubbleText, pair.problem],
+          [solutionBubbleCopy, solutionBubbleText, pair.answer]
+        ];
 
-        if (solutionBubbleText) {
-          solutionBubbleText.textContent =
-            pair.answer;
-        }
+        copies.forEach(([copy, target, value]) => {
 
-        if (pairIndicator) {
-          pairIndicator.textContent =
-            pair.id;
-        }
+          if (!copy || !target) {
+            return;
+          }
+
+          copy.classList.remove("is-visible");
+          copy.classList.add("is-changing");
+
+          window.setTimeout(() => {
+
+            target.textContent = value;
+
+            copy.classList.remove("is-changing");
+            copy.classList.add("is-new");
+
+            window.requestAnimationFrame(() => {
+              copy.classList.remove("is-new");
+              copy.classList.add("is-visible");
+            });
+
+          }, 120);
+
+        });
 
       }
 
 
       function showBubbles() {
 
-        if (callBubble) {
-          callBubble.classList.remove(
-            "is-leaving"
-          );
-          callBubble.classList.add(
-            "is-visible"
-          );
-          callBubble.setAttribute(
-            "aria-hidden",
-            "false"
-          );
-        }
+        [callBubble, solutionBubble].forEach((bubble) => {
 
-        if (solutionBubble) {
-          solutionBubble.classList.remove(
+          if (!bubble) {
+            return;
+          }
+
+          bubble.classList.remove(
+            "is-visible",
             "is-leaving"
           );
-          solutionBubble.classList.add(
-            "is-visible"
-          );
-          solutionBubble.setAttribute(
+
+          bubble.style.opacity = "1";
+          bubble.style.visibility = "visible";
+
+          bubble.setAttribute(
             "aria-hidden",
             "false"
           );
-        }
+
+        });
 
       }
 
 
       function hideBubbles() {
 
-        if (callBubble) {
-          callBubble.classList.remove(
-            "is-visible"
-          );
-          callBubble.classList.add(
-            "is-leaving"
-          );
-          callBubble.setAttribute(
-            "aria-hidden",
-            "true"
-          );
-        }
+        /*
+         * Artwork stays on screen permanently.
+         * Only the text layer changes.
+         */
 
-        if (solutionBubble) {
-          solutionBubble.classList.remove(
-            "is-visible"
-          );
-          solutionBubble.classList.add(
-            "is-leaving"
-          );
-          solutionBubble.setAttribute(
-            "aria-hidden",
-            "true"
-          );
-        }
+        showBubbles();
 
       }
 
@@ -2607,14 +2579,6 @@
         const token =
           ++animationToken;
 
-        const changingPair =
-          activeIndex !== null &&
-          activeIndex !== index;
-
-        if (changingPair) {
-          hideBubbles();
-        }
-
         transitionTimer =
           window.setTimeout(() => {
 
@@ -2638,8 +2602,7 @@
                */
               scheduleAuto();
             }
-
-          }, changingPair ? FADE_OUT_MS : 20);
+          }, 20);
 
       }
 
@@ -2658,10 +2621,6 @@
         manualLock = false;
 
         hideBubbles();
-
-        if (pairIndicator) {
-          pairIndicator.textContent = "";
-        }
 
         /*
          * After a manual close the automatic cycle restarts.
