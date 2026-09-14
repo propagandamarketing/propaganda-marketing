@@ -1465,6 +1465,54 @@
         line-height: 0.94 !important;
       }
     }
+
+
+    /* MOBILE — text centered on a fixed THREE-LINE optical box.
+       Do not move/resize the bubble artwork or characters. */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        top: 10% !important;
+        left: 10% !important;
+        width: 80% !important;
+        height: 80% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        transform: none !important;
+        overflow: hidden !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span,
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        position: static !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 3em !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+        white-space: normal !important;
+        text-wrap: wrap !important;
+        overflow-wrap: normal !important;
+        word-break: normal !important;
+        hyphens: none !important;
+        transform: none !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span {
+        font-size: clamp(13px, 3.45vw, 17px) !important;
+        line-height: 0.96 !important;
+      }
+
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        font-size: clamp(14px, 3.7vw, 18px) !important;
+        line-height: 0.94 !important;
+      }
+    }
 </style>
 
 </head>
