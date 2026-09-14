@@ -1222,7 +1222,20 @@
       }
     }
 
+    
     @media (max-width: 768px) {
+      /* CONTACT — mobile: testo sopra, modulo sotto */
+      .contact-left,
+      .contact-right {
+        grid-column: span 12;
+      }
+
+      .contact-right {
+        margin-top: 28px;
+      }
+    }
+
+@media (max-width: 768px) {
       .propaganda-dialogue {
         padding: 44px 0 48px;
       }
@@ -1321,11 +1334,14 @@
     /* MOBILE — final bubble text calibration
        Keep the artwork/layout untouched; only recalibrate text scale and vertical anchor. */
     @media (max-width: 768px) {
+      /* MOBILE — final bubble text position
+         The text must sit higher inside the artwork and remain visually
+         attached to the bubble tail/character below. */
       .propaganda-dialogue .dialogue-bubble > .bubble-copy {
-        top: 8% !important;
-        height: 78% !important;
+        top: 4% !important;
+        height: 82% !important;
         justify-content: flex-start !important;
-        transform: translateY(-4px) !important;
+        transform: translateY(-8px) !important;
         overflow: hidden !important;
       }
 
@@ -1459,36 +1475,6 @@
       </div>
 
     </section>
-
-    <!-- STATEMENT -->
-
-    <section class="statement">
-
-      <div class="wrap-full">
-
-        <div class="grid-12">
-
-          <p>
-
-            <span class="red-text">
-              NON FACCIAMO MARKETING PERCHÉ "BISOGNA ESSERCI".
-            </span>
-
-            <br>
-
-            <span class="sub-text">
-              Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
-              Se serve, si fa. Se non serve, si lascia perdere.
-            </span>
-
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
     <!-- PROBLEMI / RISPOSTE INTERATTIVI -->
     <section
       class="propaganda-dialogue"
@@ -1720,6 +1706,35 @@
             </div>
 
           </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- STATEMENT -->
+
+<section class="statement">
+
+      <div class="wrap-full">
+
+        <div class="grid-12">
+
+          <p>
+
+            <span class="red-text">
+              NON FACCIAMO MARKETING PERCHÉ "BISOGNA ESSERCI".
+            </span>
+
+            <br>
+
+            <span class="sub-text">
+              Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
+              Se serve, si fa. Se non serve, si lascia perdere.
+            </span>
+
+          </p>
 
         </div>
 
