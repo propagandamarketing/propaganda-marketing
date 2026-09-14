@@ -482,6 +482,7 @@
       font-size: 0.8em;
     }
 
+    /* STATEMENT — typographic hierarchy */
     .statement-copy {
       display: flex;
       flex-direction: column;
@@ -1253,7 +1254,20 @@
       }
     }
 
+    
     @media (max-width: 768px) {
+      /* CONTACT — mobile: testo sopra, modulo sotto */
+      .contact-left,
+      .contact-right {
+        grid-column: span 12;
+      }
+
+      .contact-right {
+        margin-top: 28px;
+      }
+    }
+
+@media (max-width: 768px) {
       .propaganda-dialogue {
         padding: 44px 0 48px;
       }
@@ -1368,12 +1382,14 @@
     /* MOBILE — final bubble text calibration
        Keep the artwork/layout untouched; only recalibrate text scale and vertical anchor. */
     @media (max-width: 768px) {
-      /* MOBILE — optical center inside the actual bubble artwork. */
+      /* MOBILE — final bubble text position
+         The text must sit higher inside the artwork and remain visually
+         attached to the bubble tail/character below. */
       .propaganda-dialogue .dialogue-bubble > .bubble-copy {
-        top: 13% !important;
-        height: 72% !important;
-        justify-content: center !important;
-        transform: translateY(2px) !important;
+        top: 4% !important;
+        height: 82% !important;
+        justify-content: flex-start !important;
+        transform: translateY(-8px) !important;
         overflow: hidden !important;
       }
 
@@ -1536,8 +1552,8 @@
                 id="bubble-call"
                 aria-hidden="true"
               >
-                <img src="/vignette/call-vignette.png" alt="">
-                <div class="bubble-copy">
+                <img src="/vignette/call-vignette.png" alt="" loading="lazy">
+                <div class="bubble-copy" aria-live="polite">
                   <span id="bubble-call-text"></span>
                 </div>
               </div>
@@ -1548,7 +1564,7 @@
                 class="dialogue-character dialogue-character-left"
                 aria-hidden="true"
               >
-                <img src="/vignette/call-bubble" alt="">
+                <img src="/vignette/call-bubble" alt="" loading="lazy">
               </div>
             </div>
 
@@ -1568,8 +1584,8 @@
                 id="bubble-solution"
                 aria-hidden="true"
               >
-                <img src="/vignette/solution-vignette.png" alt="">
-                <div class="bubble-copy">
+                <img src="/vignette/solution-vignette.png" alt="" loading="lazy">
+                <div class="bubble-copy" aria-live="polite">
                   <strong id="bubble-solution-text"></strong>
                 </div>
               </div>
@@ -1580,7 +1596,7 @@
                 class="dialogue-character dialogue-character-right"
                 aria-hidden="true"
               >
-                <img src="/vignette/solution-bubble" alt="">
+                <img src="/vignette/solution-bubble" alt="" loading="lazy">
               </div>
             </div>
 
@@ -1622,6 +1638,7 @@
                 src="/logos/partner1.png"
                 alt="Partner 1"
                 style="--logo-scale: 1.5;"
+                loading="lazy"
               >
             </div>
 
@@ -1630,6 +1647,7 @@
                 src="/logos/partner2.png"
                 alt="Partner 2"
                 style="--logo-scale: 1.5;"
+                loading="lazy"
               >
             </div>
 
@@ -1638,6 +1656,7 @@
                 src="/logos/partner3.png"
                 alt="Partner 3"
                 style="--logo-scale: 1;"
+                loading="lazy"
               >
             </div>
 
@@ -1646,6 +1665,7 @@
                 src="/logos/partner4.png"
                 alt="Partner 4"
                 style="--logo-scale: 1;"
+                loading="lazy"
               >
             </div>
 
@@ -1654,6 +1674,7 @@
                 src="/logos/partner5.png"
                 alt="Partner 5"
                 style="--logo-scale: 1.25;"
+                loading="lazy"
               >
             </div>
 
@@ -1662,6 +1683,7 @@
                 src="/logos/partner6.png"
                 alt="Partner 6"
                 style="--logo-scale: 0.8;"
+                loading="lazy"
               >
             </div>
 
@@ -1670,6 +1692,7 @@
                 src="/logos/partner7.png"
                 alt="Partner 7"
                 style="--logo-scale: 1;"
+                loading="lazy"
               >
             </div>
 
@@ -1685,6 +1708,7 @@
                 src="/logos/partner1.png"
                 alt=""
                 style="--logo-scale: 1.5;"
+                loading="lazy"
               >
             </div>
 
@@ -1693,6 +1717,7 @@
                 src="/logos/partner2.png"
                 alt=""
                 style="--logo-scale: 1.5;"
+                loading="lazy"
               >
             </div>
 
@@ -1701,6 +1726,7 @@
                 src="/logos/partner3.png"
                 alt=""
                 style="--logo-scale: 1;"
+                loading="lazy"
               >
             </div>
 
@@ -1709,6 +1735,7 @@
                 src="/logos/partner4.png"
                 alt=""
                 style="--logo-scale: 1;"
+                loading="lazy"
               >
             </div>
 
@@ -1717,6 +1744,7 @@
                 src="/logos/partner5.png"
                 alt=""
                 style="--logo-scale: 1.25;"
+                loading="lazy"
               >
             </div>
 
@@ -1725,6 +1753,7 @@
                 src="/logos/partner6.png"
                 alt=""
                 style="--logo-scale: 0.8;"
+                loading="lazy"
               >
             </div>
 
@@ -1733,6 +1762,7 @@
                 src="/logos/partner7.png"
                 alt=""
                 style="--logo-scale: 1;"
+                loading="lazy"
               >
             </div>
 
@@ -1744,9 +1774,9 @@
 
     </section>
 
-        <!-- STATEMENT -->
+    <!-- STATEMENT -->
 
-    <section class="statement">
+<section class="statement">
 
       <div class="wrap-full">
 
@@ -2450,19 +2480,25 @@
       const HOLD_MS = 5000;
       const CYCLE_MS = 5000;
 
+
       function clearTimer(timer) {
         if (timer !== null) {
           window.clearTimeout(timer);
         }
       }
 
+
       function getPair(index) {
         return PAIRS[index] || null;
       }
 
+
       function setContent(index) {
         const pair = getPair(index);
-        if (!pair) return;
+
+        if (!pair) {
+          return;
+        }
 
         const token = animationToken;
         const copies = [
@@ -2471,18 +2507,27 @@
         ];
 
         copies.forEach(([copy, target, value]) => {
-          if (!copy || !target) return;
+          if (!copy || !target) {
+            return;
+          }
+
           copy.classList.remove("is-visible", "is-new");
           copy.classList.add("is-changing");
 
           window.setTimeout(() => {
-            if (token !== animationToken) return;
+            if (token !== animationToken) {
+              return;
+            }
+
             target.textContent = value;
             copy.classList.remove("is-changing");
             copy.classList.add("is-new");
 
             window.requestAnimationFrame(() => {
-              if (token !== animationToken) return;
+              if (token !== animationToken) {
+                return;
+              }
+
               copy.classList.remove("is-new");
               copy.classList.add("is-visible");
             });
@@ -2490,75 +2535,123 @@
         });
       }
 
+
       function showBubbles() {
         [callBubble, solutionBubble].forEach((bubble) => {
-          if (!bubble) return;
-          bubble.classList.remove("is-visible", "is-leaving");
+          if (!bubble) {
+            return;
+          }
+
           bubble.style.opacity = "1";
           bubble.style.visibility = "visible";
           bubble.setAttribute("aria-hidden", "false");
         });
       }
 
+
       function scheduleAuto(delay = CYCLE_MS) {
         clearTimer(autoTimer);
+
         autoTimer = window.setTimeout(() => {
-          const nextIndex = activeIndex === null ? 0 : (activeIndex + 1) % PAIRS.length;
+          const nextIndex =
+            activeIndex === null
+              ? 0
+              : (activeIndex + 1) % PAIRS.length;
+
           activatePair(nextIndex, true);
         }, delay);
       }
 
+
       function activatePair(index, fromAuto = false) {
-        if (!getPair(index)) return;
+        const pair = getPair(index);
+
+        if (!pair) {
+          return;
+        }
+
         clearTimer(transitionTimer);
         transitionTimer = null;
+
         const token = ++animationToken;
 
         transitionTimer = window.setTimeout(() => {
-          if (token !== animationToken) return;
+          if (token !== animationToken) {
+            return;
+          }
+
           activeIndex = index;
           setContent(index);
           showBubbles();
           transitionTimer = null;
+
+          // The automatic cycle is never permanently disabled by interaction.
           scheduleAuto(CYCLE_MS);
         }, fromAuto ? 0 : 20);
       }
 
+
       function manualInteraction() {
-        const nextIndex = activeIndex === null ? 0 : (activeIndex + 1) % PAIRS.length;
+        const nextIndex =
+          activeIndex === null
+            ? 0
+            : (activeIndex + 1) % PAIRS.length;
+
         clearTimer(autoTimer);
         clearTimer(restartTimer);
         autoTimer = null;
         restartTimer = null;
+
         activatePair(nextIndex, false);
 
+        // Resume automatic rotation after the manual interaction.
         restartTimer = window.setTimeout(() => {
           restartTimer = null;
           scheduleAuto(CYCLE_MS);
         }, HOLD_MS);
       }
 
+
       function closeDialogue() {
         clearTimer(autoTimer);
         clearTimer(transitionTimer);
         clearTimer(restartTimer);
+
         autoTimer = null;
         transitionTimer = null;
         restartTimer = null;
+
         scheduleAuto(HOLD_MS);
       }
 
-      const hoverCapable = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+      /*
+       * Desktop hover and click/tap both advance the dialogue.
+       * Hover is throttled so simply moving across the artwork cannot
+       * repeatedly consume the whole sequence.
+       */
+      const hoverCapable = window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+      );
+
       let lastHoverAt = 0;
       const HOVER_COOLDOWN_MS = 900;
 
       function bindCharacterHit(button) {
-        if (!button) return;
+        if (!button) {
+          return;
+        }
 
         button.addEventListener("mouseenter", () => {
-          if (!hoverCapable.matches) return;
+          if (!hoverCapable.matches) {
+            return;
+          }
+
           const now = Date.now();
-          if (now - lastHoverAt < HOVER_COOLDOWN_MS) return;
+          if (now - lastHoverAt < HOVER_COOLDOWN_MS) {
+            return;
+          }
+
           lastHoverAt = now;
           manualInteraction();
         });
@@ -2569,15 +2662,21 @@
         });
       }
 
+
       bindCharacterHit(leftHit);
       bindCharacterHit(rightHit);
 
+
       if (dialogueRoot) {
         dialogueRoot.addEventListener("click", (event) => {
-          if (event.target === dialogueRoot) closeDialogue();
+          if (event.target === dialogueRoot) {
+            closeDialogue();
+          }
         });
       }
 
+
+      // Start the automatic sequence and keep it alive continuously.
       window.setTimeout(() => {
         activatePair(0, true);
       }, 450);
