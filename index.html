@@ -1317,6 +1317,33 @@
     }
 
 
+
+    /* MOBILE — final bubble text calibration
+       Keep the artwork/layout untouched; only recalibrate text scale and vertical anchor. */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        top: 8% !important;
+        height: 78% !important;
+        justify-content: flex-start !important;
+        transform: translateY(-4px) !important;
+        overflow: hidden !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span {
+        width: 90% !important;
+        font-size: clamp(14px, 3.65vw, 18px) !important;
+        line-height: 0.94 !important;
+        letter-spacing: -0.01em !important;
+      }
+
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        width: 92% !important;
+        font-size: clamp(15px, 3.9vw, 19px) !important;
+        line-height: 0.93 !important;
+        letter-spacing: -0.015em !important;
+      }
+    }
+
 </style>
 
 </head>
@@ -1474,7 +1501,8 @@
           
           <h2>
             <span>QUANDO CI CHIAMANO...</span>
-            <span class="dialogue-answer-title">...FACCIAMO COSI</span>
+            <span class="dialogue-arrow">↔</span>
+            <span class="dialogue-answer-title">LAVORIAMO COSI</span>
           </h2>
 
          </div>
