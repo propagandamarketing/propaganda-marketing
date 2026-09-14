@@ -1415,7 +1415,341 @@
 
     }
 
-  </style>
+  
+    /* ===== DIALOGUE FINAL ALIGNMENT =====
+       Pair 1 = left bubble + left text + left drawing
+       Pair 2 = right bubble + right text + right drawing
+       Bubbles and their text share the same center; drawings sit lower.
+    */
+    .propaganda-dialogue .dialogue-scene {
+      position: relative;
+      min-height: clamp(700px, 78vh, 900px);
+    }
+
+    /* DRAWINGS: deliberately lower than the bubble/text band */
+    .propaganda-dialogue .dialogue-character {
+      z-index: 3;
+      bottom: -8px;
+      width: clamp(500px, 44vw, 800px);
+    }
+    .propaganda-dialogue .dialogue-character-left {
+      left: 0;
+    }
+    .propaganda-dialogue .dialogue-character-right {
+      right: 0;
+    }
+
+    /* BUBBLES: one upper band, behind text */
+    .propaganda-dialogue .dialogue-bubble {
+      z-index: 20;
+      top: 0;
+      width: clamp(390px, 34vw, 590px);
+    }
+    .propaganda-dialogue .bubble-call {
+      left: 4%;
+    }
+    .propaganda-dialogue .bubble-solution {
+      right: 4%;
+      top: 0;
+    }
+
+    /* TEXT: centered inside its own bubble and therefore aligned with it */
+    .propaganda-dialogue .bubble-copy {
+      z-index: 21;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .propaganda-dialogue .bubble-call .bubble-copy {
+      left: 12%;
+      width: 76%;
+      top: 13%;
+    }
+    .propaganda-dialogue .bubble-solution .bubble-copy {
+      left: 12%;
+      width: 76%;
+      top: 13%;
+    }
+
+    /* Keep the artwork behind the text, never over it. */
+    .propaganda-dialogue .dialogue-bubble img {
+      position: relative;
+      z-index: 20;
+    }
+
+    @media (max-width: 1200px) {
+      .propaganda-dialogue .dialogue-scene {
+        min-height: clamp(620px, 76vh, 800px);
+      }
+      .propaganda-dialogue .dialogue-character {
+        width: clamp(430px, 46vw, 650px);
+        bottom: -6px;
+      }
+      .propaganda-dialogue .dialogue-bubble {
+        width: clamp(330px, 34vw, 480px);
+      }
+      .propaganda-dialogue .bubble-call {
+        left: 1%;
+        top: 0;
+      }
+      .propaganda-dialogue .bubble-solution {
+        right: 1%;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Mobile still uses two clean vertical bands:
+         bubbles/text above, drawings below. */
+      .propaganda-dialogue .dialogue-scene {
+        min-height: 590px;
+      }
+      .propaganda-dialogue .dialogue-bubble {
+        width: 45vw;
+        max-width: 245px;
+      }
+      .propaganda-dialogue .bubble-call {
+        left: 0;
+        top: 0;
+      }
+      .propaganda-dialogue .bubble-solution {
+        right: 0;
+        top: 0;
+      }
+      .propaganda-dialogue .dialogue-character {
+        width: 52vw;
+        max-width: 270px;
+        bottom: -2px;
+      }
+      .propaganda-dialogue .dialogue-character-left {
+        left: -1%;
+      }
+      .propaganda-dialogue .dialogue-character-right {
+        right: -1%;
+      }
+      .propaganda-dialogue .bubble-call .bubble-copy,
+      .propaganda-dialogue .bubble-solution .bubble-copy {
+        left: 10%;
+        width: 80%;
+        top: 13%;
+      }
+    }
+
+
+    /* =========================================================
+       DIALOGUE — FINAL PAIR LAYOUT
+       Each side is a column:
+       [ text + bubble together ]
+       [ real drawing below ]
+       ========================================================= */
+
+    .propaganda-dialogue .dialogue-scene {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: clamp(10px, 3vw, 50px);
+      align-items: stretch;
+      min-height: clamp(700px, 78vh, 900px);
+      width: 100%;
+      overflow: visible;
+    }
+
+    .propaganda-dialogue .dialogue-column {
+      position: relative;
+      min-width: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* TESTO + FUMETTO = UN SOLO GRUPPO CENTRATO */
+    .propaganda-dialogue .coppia-vignetta-testo {
+      position: relative;
+      z-index: 20;
+      width: min(100%, 620px);
+      height: clamp(270px, 30vh, 360px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      transform: translateY(-18px);
+    }
+
+    .propaganda-dialogue .dialogue-bubble {
+      position: relative;
+      inset: auto;
+      z-index: 20;
+      width: clamp(390px, 34vw, 590px);
+      max-width: 100%;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: none;
+      margin: 0 auto;
+    }
+
+    .propaganda-dialogue .dialogue-bubble img {
+      position: relative;
+      z-index: 20;
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Il testo è DAVANTI alla grafica del fumetto. */
+    .propaganda-dialogue .bubble-copy {
+      position: absolute;
+      z-index: 21;
+      left: 12% !important;
+      top: 13% !important;
+      width: 76% !important;
+      margin: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    /* Disegni veri: fascia separata e leggermente abbassata. */
+    .propaganda-dialogue .disegno-vero {
+      position: relative;
+      z-index: 3;
+      flex: 1;
+      width: 100%;
+      min-height: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      transform: translateY(14px);
+    }
+
+    .propaganda-dialogue .dialogue-character {
+      position: relative;
+      inset: auto;
+      z-index: 3;
+      width: clamp(500px, 44vw, 800px);
+      max-width: 118%;
+      margin: 0 auto;
+      pointer-events: none;
+    }
+
+    .propaganda-dialogue .dialogue-character img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Le aree cliccabili restano sopra il disegno ma sotto i fumetti. */
+    .propaganda-dialogue .character-hit {
+      position: absolute;
+      z-index: 10;
+      bottom: 0;
+      width: 46%;
+      height: 52%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .propaganda-dialogue .character-hit-left {
+      left: 2%;
+    }
+
+    .propaganda-dialogue .character-hit-right {
+      right: 2%;
+    }
+
+    @media (max-width: 1200px) {
+      .propaganda-dialogue .dialogue-scene {
+        min-height: clamp(620px, 76vh, 800px);
+        column-gap: 12px;
+      }
+
+      .propaganda-dialogue .coppia-vignetta-testo {
+        height: clamp(245px, 31vh, 320px);
+        transform: translateY(-12px);
+      }
+
+      .propaganda-dialogue .dialogue-bubble {
+        width: clamp(330px, 34vw, 480px);
+      }
+
+      .propaganda-dialogue .dialogue-character {
+        width: clamp(430px, 46vw, 650px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-scene {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 0;
+        min-height: 590px;
+      }
+
+      /* Mobile: gruppo testo+fumetto in alto, disegno nettamente sotto. */
+      .propaganda-dialogue .coppia-vignetta-testo {
+        width: 100%;
+        height: 245px;
+        transform: translateY(-10px);
+      }
+
+      .propaganda-dialogue .dialogue-bubble {
+        width: min(48vw, 245px);
+      }
+
+      .propaganda-dialogue .bubble-call,
+      .propaganda-dialogue .bubble-solution {
+        top: 0;
+      }
+
+      .propaganda-dialogue .bubble-copy {
+        left: 10% !important;
+        top: 13% !important;
+        width: 80% !important;
+      }
+
+      .propaganda-dialogue .disegno-vero {
+        transform: translateY(10px);
+      }
+
+      .propaganda-dialogue .dialogue-character {
+        width: min(56vw, 290px);
+        max-width: 100%;
+      }
+
+      .propaganda-dialogue .character-hit {
+        width: 48%;
+        height: 48%;
+      }
+
+      .propaganda-dialogue .bubble-copy small {
+        font-size: clamp(10px, 2.8vw, 12px);
+      }
+
+      .propaganda-dialogue .bubble-copy span {
+        font-size: clamp(18px, 5vw, 25px);
+        line-height: 1.02;
+      }
+
+      .propaganda-dialogue .bubble-copy strong {
+        font-size: clamp(24px, 6.5vw, 34px);
+        line-height: .98;
+      }
+    }
+
+</style>
 
 </head>
 
@@ -1611,54 +1945,70 @@
 
           
 
-          <!-- CHARACTER 2: RIGHT -->
-          
-
-                    <!-- Invisible interaction areas: no visible UI container. -->
-          <button
-            type="button"
-            class="character-hit character-hit-left"
-            id="character-hit-left"
-            aria-label="Interagisci con il personaggio a sinistra"
-          ></button>
-
-          <button
-            type="button"
-            class="character-hit character-hit-right"
-            id="character-hit-right"
-            aria-label="Interagisci con il personaggio a destra"
-          ></button>
-
-          <!-- LEFT BUBBLE -->
-          <div
-            class="dialogue-bubble bubble-call"
-            id="bubble-call"
-            aria-hidden="true"
-          >
-            <img
-              src="/vignette/call-bubble"
-              alt=""
-            >
-            <div class="bubble-copy">
-              <small>IL PROBLEMA</small>
-              <span id="bubble-call-text"></span>
+          <!-- COPPIA SINISTRA: TESTO + FUMETTO / DISEGNO SOTTO -->
+          <div class="dialogue-column dialogue-column-left">
+            <div class="coppia-vignetta-testo">
+              <div
+                class="dialogue-bubble bubble-call"
+                id="bubble-call"
+                aria-hidden="true"
+              >
+                <img src="/vignette/call-bubble" alt="">
+                <div class="bubble-copy">
+                  <small>IL PROBLEMA</small>
+                  <span id="bubble-call-text"></span>
+                </div>
+              </div>
             </div>
+
+            <div class="disegno-vero">
+              <div
+                class="dialogue-character dialogue-character-left"
+                aria-hidden="true"
+              >
+                <img src="/vignette/call-vignette.png" alt="">
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="character-hit character-hit-left"
+              id="character-hit-left"
+              aria-label="Interagisci con il personaggio a sinistra"
+            ></button>
           </div>
 
-          <!-- RIGHT BUBBLE -->
-          <div
-            class="dialogue-bubble bubble-solution"
-            id="bubble-solution"
-            aria-hidden="true"
-          >
-            <img
-              src="/vignette/solution-bubble"
-              alt=""
-            >
-            <div class="bubble-copy">
-              <small>LA RISPOSTA</small>
-              <strong id="bubble-solution-text"></strong>
+          <!-- COPPIA DESTRA: TESTO + FUMETTO / DISEGNO SOTTO -->
+          <div class="dialogue-column dialogue-column-right">
+            <div class="coppia-vignetta-testo">
+              <div
+                class="dialogue-bubble bubble-solution"
+                id="bubble-solution"
+                aria-hidden="true"
+              >
+                <img src="/vignette/solution-bubble" alt="">
+                <div class="bubble-copy">
+                  <small>LA RISPOSTA</small>
+                  <strong id="bubble-solution-text"></strong>
+                </div>
+              </div>
             </div>
+
+            <div class="disegno-vero">
+              <div
+                class="dialogue-character dialogue-character-right"
+                aria-hidden="true"
+              >
+                <img src="/vignette/solution-vignette.png" alt="">
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="character-hit character-hit-right"
+              id="character-hit-right"
+              aria-label="Interagisci con il personaggio a destra"
+            ></button>
           </div>
 
         </div>
