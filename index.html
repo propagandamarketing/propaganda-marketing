@@ -927,10 +927,8 @@
 
     /* =========================================================
        PROPAGANDA DIALOGUE
-       Unica definizione della composizione:
-       - fumetti/testi nella fascia superiore
-       - personaggi nella fascia inferiore
-       - due colonne indipendenti
+       Composizione stabile: ogni fumetto resta fisicamente legato
+       al personaggio della propria colonna, su desktop e mobile.
        ========================================================= */
 
     .propaganda-dialogue {
@@ -980,6 +978,10 @@
       font-size: 15px;
     }
 
+    /*
+     * The scene is content-driven. There is deliberately NO viewport-height
+     * spacer between the bubbles and the drawings.
+     */
     .dialogue-scene {
       position: relative;
       isolation: isolate;
@@ -987,7 +989,6 @@
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: clamp(12px, 3vw, 48px);
       width: 100%;
-      min-height: clamp(700px, 78vh, 900px);
       margin: 0 auto;
       overflow: visible;
     }
@@ -999,23 +1000,22 @@
       align-items: center;
       justify-content: flex-start;
       width: 100%;
-      height: 100%;
       min-width: 0;
       text-align: center;
     }
 
-    /* TOP: artwork + text */
+    /* Bubble + text: natural height, no artificial vertical band. */
     .coppia-vignetta-testo {
       position: relative;
       z-index: 20;
-      flex: 0 0 auto;
       display: flex;
       align-items: flex-start;
       justify-content: center;
       width: 100%;
-      height: clamp(300px, 34vh, 380px);
+      height: auto;
+      min-height: 0;
       margin: 0;
-      transform: translateY(24px);
+      transform: none;
     }
 
     .dialogue-bubble {
@@ -1050,7 +1050,9 @@
 
     .bubble-call,
     .bubble-solution {
-      top: 0;
+      top: auto;
+      left: auto;
+      right: auto;
     }
 
     /* Text is the only animated layer and sits over the artwork. */
@@ -1084,11 +1086,7 @@
         transform 0.24s cubic-bezier(.2,.7,.3,1);
     }
 
-    .bubble-copy.is-changing {
-      opacity: 0;
-      transform: translateY(-12px) scale(0.985);
-    }
-
+    .bubble-copy.is-changing,
     .bubble-copy.is-new {
       opacity: 0;
       transform: translateY(-12px) scale(0.985);
@@ -1146,18 +1144,22 @@
       text-wrap: balance;
     }
 
-    /* BOTTOM: associated drawing */
+    /*
+     * Drawing follows its own bubble immediately. A small negative margin
+     * intentionally closes the visual gap so the tail points naturally
+     * toward the character instead of floating in empty space.
+     */
     .disegno-vero {
       position: relative;
       z-index: 3;
-      flex: 1 1 auto;
+      flex: 0 0 auto;
       width: 100%;
       min-height: 0;
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       justify-content: center;
-      margin: 0;
-      transform: translateY(-55px);
+      margin-top: clamp(-70px, -4vw, -28px);
+      transform: none;
     }
 
     .dialogue-character {
@@ -1179,14 +1181,14 @@
       -webkit-user-drag: none;
     }
 
-    /* Click/tap zones */
+    /* Click/tap zones follow the character area. */
     .character-hit {
       position: absolute;
       z-index: 10;
       right: auto;
       bottom: 0;
       width: 46%;
-      height: 52%;
+      height: 42%;
       border: 0;
       padding: 0;
       background: transparent;
@@ -1204,17 +1206,15 @@
 
     @media (max-width: 1200px) {
       .dialogue-scene {
-        min-height: clamp(620px, 76vh, 800px);
         gap: 12px;
-      }
-
-      .coppia-vignetta-testo {
-        height: clamp(270px, 34vh, 340px);
-        transform: translateY(24px);
       }
 
       .dialogue-bubble {
         width: min(94%, 500px);
+      }
+
+      .disegno-vero {
+        margin-top: -38px;
       }
 
       .dialogue-character {
@@ -1243,14 +1243,14 @@
       .dialogue-scene {
         grid-template-columns: 1fr 1fr;
         gap: 0;
-        min-height: 590px;
         margin-top: 8px;
       }
 
       .coppia-vignetta-testo {
         width: 100%;
-        height: 245px;
-        transform: translateY(-8px);
+        height: auto;
+        min-height: 0;
+        transform: none;
       }
 
       .dialogue-bubble {
@@ -1302,7 +1302,8 @@
       }
 
       .disegno-vero {
-        transform: translateY(12px);
+        margin-top: -24px;
+        transform: none;
       }
 
       .dialogue-character {
@@ -1311,9 +1312,10 @@
 
       .character-hit {
         width: 48%;
-        height: 48%;
+        height: 42%;
       }
     }
+
 
 </style>
 
