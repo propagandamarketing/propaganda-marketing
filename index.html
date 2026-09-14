@@ -1254,6 +1254,16 @@
     }
 
     @media (max-width: 768px) {
+      /* CONTACT — mobile: una colonna sola, testo sopra e modulo sotto. */
+      .contact-left,
+      .contact-right {
+        grid-column: 1 / -1;
+      }
+
+      .contact-right {
+        margin-top: 28px;
+      }
+
       .propaganda-dialogue {
         padding: 44px 0 48px;
       }
