@@ -168,7 +168,6 @@
       "addressCountry": "IT"
     },
     "vatID": "IT01843770080",
-    "email": "info@propagandamarketing.online"
   }
   </script>
 
@@ -1610,7 +1609,7 @@
           <div class="contact-right">
 
             <form
-              action="https://formsubmit.co/info@propagandamarketing.online"
+              id="contact-form"
               method="POST"
             >
 
@@ -1699,7 +1698,7 @@
 
                 <label for="privacy">
 
-                  Ho letto e accetto la
+                  Ho letto la
 
                   <a href="/privacy-policy">
                     Privacy Policy
@@ -1756,9 +1755,11 @@
 
           PEC:
 
-          <a href="mailto:iv@pec-studio.it">
-            iv@pec-studio.it
-          </a>
+          <a
+            href="#"
+            id="pec-link"
+            aria-label="Contatto PEC"
+          >PEC</a>
 
         </span>
 
@@ -1800,8 +1801,17 @@
       <br>
 
       Utilizziamo Google Analytics per capire come viene utilizzato il sito.
-      Google Analytics viene attivato solo con il tuo consenso.
+      Google Analytics viene caricato solo dopo il tuo consenso.
       Puoi accettare o rifiutare l'analisi statistica.
+
+      <br><br>
+
+      <a
+        href="/privacy-policy"
+        target="_blank"
+        rel="noopener"
+        style="text-decoration: underline;"
+      >Leggi la Privacy Policy</a>.
 
     </p>
 
@@ -1834,7 +1844,7 @@
       "use strict";
 
       /* =========================================================
-         COOKIE CONSENT
+         COOKIE CONSENT + PRIVACY-FIRST ANALYTICS
          ========================================================= */
 
       const CONSENT_KEY = "analytics-consent";
@@ -1850,6 +1860,31 @@
 
       const settingsButton =
         document.getElementById("cookie-settings");
+
+      const contactForm =
+        document.getElementById("contact-form");
+
+      const pecLink =
+        document.getElementById("pec-link");
+
+
+      function decodeBase64(value) {
+        try {
+          return atob(value);
+        } catch (error) {
+          return "";
+        }
+      }
+
+
+      const analyticsId =
+        decodeBase64("Ry1NSDZOWTdDWVY5");
+
+      const formEmail =
+        decodeBase64("aW5mb0Bwcm9wYWdhbmRhbWFya2V0aW5nLm9ubGluZQ==");
+
+      const pecEmail =
+        decodeBase64("aXZAcGVjLXN0dWRpby5pdA==");
 
 
       function getConsent() {
@@ -1905,27 +1940,51 @@
       }
 
 
-      function acceptAnalytics() {
+      function loadGoogleAnalytics() {
 
-        if (typeof window.gtag === "function") {
-
-          window.gtag(
-            "consent",
-            "update",
-            {
-              analytics_storage: "granted"
-            }
-          );
-
+        if (
+          !analyticsId ||
+          document.getElementById("google-analytics-loader")
+        ) {
+          return;
         }
+
+
+        window.dataLayer = window.dataLayer || [];
+
+        window.gtag = function() {
+          window.dataLayer.push(arguments);
+        };
+
+
+        window.gtag("js", new Date());
+
+        window.gtag("config", analyticsId, {
+          send_page_view: true
+        });
+
+
+        const script =
+          document.createElement("script");
+
+        script.id = "google-analytics-loader";
+        script.async = true;
+        script.src =
+          "https://www.googletagmanager.com/gtag/js?id="
+          + encodeURIComponent(analyticsId);
+
+        document.head.appendChild(script);
+
+      }
+
+
+      function acceptAnalytics() {
 
         setConsent("accepted");
 
         hideCookieBanner();
 
-        console.log(
-          "Google Analytics: consenso accettato."
-        );
+        loadGoogleAnalytics();
 
       }
 
@@ -1936,9 +1995,21 @@
 
         hideCookieBanner();
 
-        console.log(
-          "Google Analytics: consenso rifiutato."
-        );
+      }
+
+
+      function setupPrivacySafeContacts() {
+
+        if (pecLink && pecEmail) {
+          pecLink.href = "mailto:" + pecEmail;
+          pecLink.textContent = pecEmail;
+        }
+
+
+        if (contactForm && formEmail) {
+          contactForm.action =
+            "https://formsubmit.co/" + formEmail;
+        }
 
       }
 
@@ -1946,21 +2017,14 @@
       const consent = getConsent();
 
 
+      setupPrivacySafeContacts();
+
+
       if (consent === "accepted") {
 
-        if (typeof window.gtag === "function") {
-
-          window.gtag(
-            "consent",
-            "update",
-            {
-              analytics_storage: "granted"
-            }
-          );
-
-        }
-
         hideCookieBanner();
+
+        loadGoogleAnalytics();
 
       } else if (consent === "rejected") {
 
