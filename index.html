@@ -988,7 +988,7 @@
     .dialogue-character {
       position: absolute;
       z-index: 3;
-      bottom: 12px;
+      bottom: 10px;
       width: clamp(360px, 41vw, 590px);
       pointer-events: none;
     }
@@ -1013,31 +1013,36 @@
      * Bubble artwork is a transparent PNG used as the actual
      * speech-bubble shape. There is NO visible rectangular box.
      */
+    /* FUMETTI: artwork reale + testo sopra l'artwork.
+       Il fumetto resta nella fascia superiore; il personaggio nella fascia inferiore. */
     .dialogue-bubble {
       position: absolute;
-      z-index: 10;
-      width: clamp(260px, 30vw, 400px);
-      aspect-ratio: 1.35 / 1;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
+      z-index: 20;
+      width: clamp(255px, 30vw, 405px);
       opacity: 1;
       visibility: visible;
       pointer-events: none;
     }
 
+    .dialogue-bubble img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
     .bubble-call {
-      left: 5%;
-      top: 95px;
-      width: clamp(270px, 31vw, 410px);
-      background-image: url("/vignette/call-bubble");
-      transform-origin: center bottom;
+      left: 4%;
+      top: 4px;
     }
 
     .bubble-solution {
-      right: 5%;
-      top: 95px;
-      background-image: url("/vignette/solution-bubble");
+      right: 4%;
+      top: 34px;
     }
 
     /*
@@ -1073,8 +1078,8 @@
     }
 
     .bubble-call .bubble-copy {
-      left: 12%;
-      top: 1%;
+      left: 13%;
+      top: 16%;
       width: 76%;
       color: var(--black);
       text-align: center;
@@ -1083,8 +1088,8 @@
     }
 
     .bubble-solution .bubble-copy {
-      left: 12%;
-      top: 1%;
+      left: 14%;
+      top: 17%;
       width: 76%;
       color: var(--paper);
       text-align: center;
@@ -1212,18 +1217,18 @@
       }
 
       .dialogue-bubble {
-        width: min(47vw, 215px);
+        width: min(49vw, 220px);
       }
 
       .bubble-call {
         left: -2%;
-        top: 55px;
+        top: 5px;
         width: min(54vw, 230px);
       }
 
       .bubble-solution {
         right: -2%;
-        top: 55px;
+        top: 28px;
       }
 
       .bubble-call .bubble-copy {
@@ -1620,6 +1625,11 @@
             id="bubble-call"
             aria-hidden="true"
           >
+            <img
+              src="/vignette/call-bubble.png"
+              alt=""
+              onerror="if(this.src.endsWith('/call-bubble.png')){this.src='/vignette/call-bubble';}"
+            >
             <div class="bubble-copy">
               <small>IL PROBLEMA</small>
               <span id="bubble-call-text"></span>
@@ -1632,6 +1642,11 @@
             id="bubble-solution"
             aria-hidden="true"
           >
+            <img
+              src="/vignette/solution-bubble.png"
+              alt=""
+              onerror="if(this.src.endsWith('/solution-bubble.png')){this.src='/vignette/solution-bubble';}"
+            >
             <div class="bubble-copy">
               <small>LA RISPOSTA</small>
               <strong id="bubble-solution-text"></strong>
