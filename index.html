@@ -1,116 +1,2850 @@
-Trovato il file, ma la vista mi ha mostrato solo l'inizio e la fine (2405 righe troncate in mezzo). Devo vedere la struttura HTML della scena e il CSS delle bubble. Cerco i punti chiave.Ora vedo la struttura reale. Guardo il CSS della scena (righe 940-1200) e l'HTML (1500-1600).Il file ha del contenuto anomalo in quella sezione (probabile problema di visualizzazione). Vediamo la porzione esatta con un range più mirato.Trovato un indizio enorme: le righe 1520–1575 pesano **2,4 milioni di caratteri** — le immagini dei personaggi sono incorporate come base64 inline nell'HTML, non richiamate da file esterni. Verifico la struttura esatta tagliando via il base64.Ora ho un quadro completo. Ecco cosa succede realmente in questa versione.
+<!DOCTYPE html> 
+<html lang="it"> 
+<head> 
+ 
+  <!-- GOOGLE TAG / CONSENT MODE --> 
+  <script> 
+    window.dataLayer = window.dataLayer || []; 
+ 
+    function gtag() { 
+      dataLayer.push(arguments); 
+    } 
+ 
+    gtag("consent", "default", { 
+      analytics_storage: "denied", 
+      ad_storage: "denied", 
+      ad_user_data: "denied", 
+      ad_personalization: "denied", 
+      wait_for_update: 500 
+    }); 
+ 
+    gtag("js", new Date()); 
+    gtag("config", "G-MH6NY7CYV9", { 
+      send_page_view: true 
+    }); 
+  </script> 
+ 
+  <!-- Google tag (gtag.js) --> 
+  <script 
+    async 
+    src="https://www.googletagmanager.com/gtag/js?id=G-MH6NY7CYV9"
+  ></script>
 
-## 1. Perché le immagini dei personaggi ora si vedono
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-Hai risolto il problema delle immagini **non usando più path esterni**, ma incorporando i personaggi come **base64 inline** direttamente nell'HTML:
+  <title>PROPAGANDA Marketing</title>
 
-```html
-<img src="data:image/png;base64,iVBORw0KGgo..." alt="">
-```
+  <meta
+    name="description"
+    content="Trasformiamo quello che un'azienda ha da dire in qualcosa che le persone vedono, capiscono e ricordano."
+  >
 
-Le due righe con i personaggi pesano da sole **2,4 MB di testo**. Funziona sempre (non dipende da hosting/case-sensitivity), ma è pesantissimo da caricare e non cacheable come file separato — va bene come soluzione tampone, ma andrebbe sistemato prima di andare in produzione.
+  <link
+    rel="canonical"
+    href="https://propagandamarketing.online/"
+  >
 
-## 2. Perché il testo delle nuvolette "galleggia" senza sfondo — causa trovata
+  <!-- OPEN GRAPH -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://propagandamarketing.online/">
+<meta property="og:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende">
+<meta property="og:description" content="Trasformiamo quello che un'azienda ha da dire in qualcosa che le persone vedono, capiscono e ricordano.">
 
-Le **bubble** (a differenza dei personaggi) sono rimaste su path esterni mai sistemati:
+<meta property="og:image" content="https://propagandamarketing.online/imagevignetta.jpg">
+<meta property="og:image:secure_url" content="https://propagandamarketing.online/imagevignetta.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PROPAGANDA Marketing">
 
-```html
-<img src="/vignette/call-bubble.png" ... onerror="...src='/vignette/call-bubble'">
-<img src="/vignette/solution-bubble.png" ... onerror="...src='/vignette/solution-bubble'">
-```
+<!-- TWITTER / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PROPAGANDA Marketing — Comunicazione personalizzata per aziende">
+<meta name="twitter:description" content="Trasformiamo quello che un'azienda ha da dire in qualcosa che le persone vedono, capiscono e ricordano.">
+<meta name="twitter:image" content="https://propagandamarketing.online/imagevignetta.jpg">
 
-E qui sta il problema strutturale:
+  <!-- FAVICON / APP ICONS -->
 
-```css
-.dialogue-bubble {
-  position: absolute;
-  width: clamp(255px, 30vw, 405px);
-  /* NESSUNA altezza esplicita: l'altezza dipende dall'immagine */
-}
-.dialogue-bubble img {
-  width: 100%;
-  height: auto;
-}
-.bubble-solution .bubble-copy {
-  position: absolute;
-  top: 18%;   /* percentuale calcolata sull'altezza del genitore */
-  left: 14%;
-  width: 72%;
-}
-```
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-Se `call-bubble.png` / `solution-bubble.png` danno **404** (e con ogni probabilità li danno, visto che anche il fallback `onerror` verso il path senza estensione non esiste come file reale), l'immagine è "rotta": non ha dimensioni intrinseche, quindi `height: auto` collassa il contenitore `.dialogue-bubble` a un'altezza vicina allo zero (o all'icona di default del browser, ~20-24px).
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon/favicon-16x16.png"
+>
 
-Il testo `.bubble-copy`, essendo posizionato in percentuale **rispetto a quel contenitore quasi-zero**, finisce per comparire vicino al bordo superiore della posizione dove la bubble avrebbe dovuto stare — senza nessuno sfondo visibile dietro (perché lo sfondo è proprio l'immagine mancante) e, non essendoci `overflow: hidden`, il testo trabocca liberamente sovrapponendosi a quello che c'è sotto: la testa del personaggio.
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon/favicon-32x32.png"
+>
 
-**Verifica**: apri DevTools → Network → filtra "vignette" → ricarica. Aspettati righe rosse 404 su `call-bubble.png` e `solution-bubble.png`.
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/favicon/android-chrome-192x192.png"
+>
 
-**Fix consigliati (in ordine di priorità):**
-1. Sistema i file `call-bubble.png` / `solution-bubble.png` sul server (path/case esatti), oppure incorporali come base64 come hai fatto per i personaggi.
-2. Indipendentemente da questo, **blinda il layout** dando un'altezza reale al contenitore, così anche se un'immagine manca il testo non si sparpaglia:
-```css
-.dialogue-bubble {
-  aspect-ratio: 405 / 260; /* sostituisci con le proporzioni reali del PNG */
-  width: clamp(255px, 30vw, 405px);
-  overflow: hidden; /* il testo non esce mai dal contenitore */
-}
-```
+<link
+  rel="icon"
+  type="image/png"
+  sizes="512x512"
+  href="/favicon/android-chrome-512x512.png"
+>
 
-## 3. Logica hover→carosello: confermato, è invertita
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/favicon/apple-touch-icon.png"
+>
 
-Nello script attuale (identico a prima su questo punto):
+<link
+  rel="manifest"
+  href="/favicon/site.webmanifest"
+>
+  <!-- FONT -->
 
-```js
-// Parte da solo al caricamento pagina, dopo 450ms
-window.setTimeout(() => {
-  if (!manualLock) activatePair(0, true);
-}, 450);
-```
-```js
-button.addEventListener("mouseenter", () => {
-  if (hoverCapable.matches) manualInteraction(); // ferma l'autoplay!
-});
-```
+  <style>
 
-Oggi: il carosello **parte da solo** al caricamento, e il passaggio del mouse sui personaggi **lo interrompe** (passa a modalità manuale). È l'esatto contrario di quanto vuoi.
-
-**Fix**: rimuovi lo start automatico e lega `scheduleAuto()`/`clearTimer` all'hover sull'intera vignetta (`#propaganda-dialogue`), non solo sui due bottoni dei personaggi:
-
-```js
-// RIMUOVI questo blocco:
-// window.setTimeout(() => { if (!manualLock) activatePair(0, true); }, 450);
-
-if (dialogueRoot) {
-  dialogueRoot.addEventListener("mouseenter", () => {
-    if (!manualLock && activeIndex === null) {
-      activatePair(0, true); // avvia la prima coppia
+    @font-face {
+      font-family: "Anton";
+      src: url("/font/Anton-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
     }
-  });
-  dialogueRoot.addEventListener("mouseleave", () => {
-    clearTimer(autoTimer);
-    // opzionale: ferma anche l'animazione visibile, senza nascondere le bubble
-  });
-}
-```
 
-E se vuoi davvero che le bubble/testo spariscano quando il mouse esce, va riscritta anche `hideBubbles()`, che oggi è un semplice alias di `showBubbles()`:
+    @font-face {
+      font-family: "Oswald";
+      src: url("/font/Oswald-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
 
-```js
-function hideBubbles() {
-  [callBubble, solutionBubble].forEach((bubble) => {
-    if (!bubble) return;
-    bubble.style.opacity = "0";
-    bubble.style.visibility = "hidden";
-    bubble.setAttribute("aria-hidden", "true");
-  });
-}
-```
+    @font-face {
+      font-family: "Oswald";
+      src: url("/font/Oswald-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
 
----
+    @font-face {
+      font-family: "Oswald";
+      src: url("/font/Oswald-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
 
-**Riepilogo priorità di intervento:**
-1. Fix path/base64 delle bubble (causa diretta del testo senza nuvoletta).
-2. `aspect-ratio`/`overflow:hidden` su `.dialogue-bubble` come rete di sicurezza.
-3. Sposta il trigger da "click sui personaggi" a "hover sull'intera vignetta" e rimuovi l'autoplay al load.
+    @font-face {
+      font-family: "Oswald";
+      src: url("/font/Oswald-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
 
-Vuoi che ti prepari il diff completo del file con questi tre fix applicati?
+  </style>
+
+  <!-- STRUCTURED DATA -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "PROPAGANDA Marketing",
+    "url": "https://propagandamarketing.online/",
+    "description": "Trasformiamo quello che un'azienda ha da dire in qualcosa che le persone vedono, capiscono e ricordano.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ventimiglia",
+      "addressRegion": "IM",
+      "addressCountry": "IT"
+    },
+    "vatID": "IT01843770080",
+  }
+  </script>
+
+  <style>
+
+    :root {
+      --black: #141210;
+      --black-deep: #0d0b0a;
+      --paper: #f2eee4;
+      --paper-dim: #c9c4b6;
+      --red: #c81e1e;
+      --red-dark: #8f1515;
+      --line: #2c2924;
+
+      --font-display: "Anton", sans-serif;
+      --font-body: "Oswald", sans-serif;
+
+      --size-h1: clamp(62px, 10.4vw, 110px);
+      --size-h2: clamp(32px, 5vw, 44px);
+      --size-h3: clamp(28px, 2.5vw, 36px);
+      --size-manifesto: clamp(24px, 3.2vw, 36px);
+      --size-body: 18px;
+      --size-ui: 14px;
+    }
+
+    /* ---------- RESET ---------- */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--black);
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: var(--size-body);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: var(--size-h1);
+    }
+
+    h2 {
+      font-size: var(--size-h2);
+    }
+
+    h3 {
+      font-size: var(--size-h3);
+    }
+
+    /* ---------- LAYOUT ---------- */
+
+    .wrap-full {
+      width: 100%;
+      padding-inline: 5vw;
+    }
+
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      width: 100%;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wordmark {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .wordmark img {
+      display: block;
+      width: auto;
+      height: 42px;
+      max-width: 240px;
+      object-fit: contain;
+    }
+
+    header nav a {
+      margin-left: 24px;
+      border-bottom: 1px solid transparent;
+      color: var(--paper-dim);
+      font-size: var(--size-ui);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition:
+        color 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    header nav a:hover,
+    header nav a:focus-visible {
+      color: var(--paper);
+      border-color: var(--red);
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-content {
+      grid-column: span 12;
+    }
+
+    .hero .stamp {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 4px 10px;
+      border: 1.5px solid var(--red);
+      color: var(--red);
+      font-size: var(--size-ui);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    .hero h1 {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: rise 0.7s cubic-bezier(.2,.7,.3,1) forwards;
+    }
+
+    .hero h1 .line2 {
+      display: block;
+      color: var(--red);
+    }
+
+    .hero .lede {
+      grid-column: span 12;
+      margin: 28px 0 0;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: var(--size-manifesto);
+      line-height: 1.05;
+    }
+
+    .hero .lede .red-text {
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    .hero .lede-second {
+      display: block;
+      margin-top: 6px;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: 0.8em;
+      line-height: 1.05;
+    }
+
+    .cta-row {
+      display: flex;
+      grid-column: span 12;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    /* ---------- BUTTONS ---------- */
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border: 1.5px solid var(--paper);
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: var(--size-body);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    .btn-primary {
+      border-color: var(--red);
+      background: var(--red);
+      color: var(--paper);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      border-color: var(--red-dark);
+      background: var(--red-dark);
+    }
+
+    .btn-ghost:hover,
+    .btn-ghost:focus-visible {
+      background: var(--paper);
+      color: var(--black);
+    }
+
+    /* ---------- STATEMENTS ---------- */
+
+    .statement {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .statement p {
+      grid-column: span 12;
+      margin: 0;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: var(--size-manifesto);
+      line-height: 1.05;
+    }
+
+    .statement .red-text {
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    .statement .title-h2 {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: var(--size-h2);
+      line-height: 0.95;
+    }
+
+    .statement .sub-text {
+      font-size: 0.8em;
+    }
+
+    /* ---------- SITUATIONS ---------- */
+
+    .situations {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .situations h2 {
+      grid-column: span 12;
+      margin-bottom: 20px;
+    }
+
+    .situations-grid {
+      display: grid;
+      grid-column: span 12;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .situation {
+      display: flex;
+      align-items: center;
+      min-height: 140px;
+      padding: 28px 24px;
+      background: var(--black);
+      color: var(--paper);
+      font-size: calc(var(--size-body) * 1.4);
+      line-height: 1.25;
+    }
+
+    .situation::before {
+      flex: 0 0 auto;
+      margin-right: 10px;
+      color: var(--red);
+      content: "—";
+    }
+
+    /* ---------- SERVICES ---------- */
+
+    .articles {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .articles-title {
+      grid-column: span 12;
+      margin-bottom: 24px;
+    }
+
+    .article-grid {
+      display: grid;
+      grid-column: span 12;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .article {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 220px;
+      padding: 40px 32px;
+      border: 1px solid var(--line);
+      background: var(--black-deep);
+    }
+
+    .article .num {
+      margin-bottom: 12px;
+      color: var(--red);
+      font-family: var(--font-display);
+      font-size: clamp(40px, 4.5vw, 56px);
+      line-height: 0.9;
+    }
+
+    .article .eyebrow {
+      margin: 0 0 10px;
+      color: var(--paper-dim);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .articles-close {
+      display: flex;
+      flex-direction: column;
+      grid-column: span 12;
+      gap: 12px;
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+    }
+
+    .articles-close p {
+      margin: 0;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: calc(var(--size-manifesto) * 0.8);
+      line-height: 1.05;
+    }
+
+    .articles-close .service-right {
+      color: var(--red);
+    }
+
+    /* ---------- PARTNERS ---------- */
+
+    .partners-banner {
+      width: 100%;
+      overflow: hidden;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .partners-label {
+      margin-bottom: 20px;
+      color: #777;
+      font-size: var(--size-ui);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .marquee-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      user-select: none;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+      );
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 32s linear infinite;
+    }
+
+    .marquee-content {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 64px;
+      padding-right: 64px;
+    }
+
+    .partner-logo {
+      display: flex;
+      flex: 0 0 180px;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      min-height: 80px;
+    }
+
+    .partner-logo img {
+      display: block;
+      width: auto;
+      height: calc(40px * var(--logo-scale, 1));
+      max-width: 100%;
+      max-height: 70px;
+      object-fit: contain;
+      opacity: 0.85;
+    }
+
+    /* ---------- CONTACT ---------- */
+
+    .contact {
+      padding: 80px 0 100px;
+    }
+
+    .contact-left,
+    .contact-right {
+      grid-column: span 6;
+    }
+
+    .contact-title {
+      margin-bottom: 28px;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: 0.95;
+      text-transform: uppercase;
+    }
+
+    .contact .intro {
+      max-width: 32ch;
+      margin: 0;
+      color: var(--paper);
+      font-size: clamp(20px, 2.2vw, 26px);
+      line-height: 1.25;
+    }
+
+    /* ---------- FORM ---------- */
+
+    form {
+      padding: 32px;
+      border: 1.5px solid var(--line);
+      background: var(--black-deep);
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--paper-dim);
+      font-size: var(--size-ui);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px 2px;
+      border: 0;
+      border-bottom: 1.5px solid var(--line);
+      outline: none;
+      background: transparent;
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: var(--size-body);
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-bottom-color: var(--red);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .privacy-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .privacy-field input[type="checkbox"] {
+      flex: 0 0 auto;
+      width: auto;
+      margin: 4px 0 0;
+      padding: 0;
+      accent-color: var(--red);
+    }
+
+    .privacy-field label {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+    }
+
+    .privacy-field a {
+      text-decoration: underline;
+    }
+
+    .field-submit {
+      margin-top: 24px;
+      margin-bottom: 0;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      width: 100%;
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      color: var(--paper-dim);
+      font-size: var(--size-ui);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    footer a {
+      color: var(--paper-dim);
+      text-decoration: none;
+    }
+
+    footer a:hover,
+    footer a:focus-visible {
+      color: var(--paper);
+    }
+
+    #cookie-settings {
+      text-decoration: underline;
+    }
+
+    /* ---------- COOKIE CONSENT ---------- */
+
+    #cookie-consent {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      left: 20px;
+      z-index: 9999;
+      max-width: 620px;
+      padding: 22px;
+      border: 1px solid var(--red);
+      background: var(--black-deep);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      color: var(--paper);
+    }
+
+    #cookie-consent p {
+      margin: 0 0 18px;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    #cookie-consent strong {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .cookie-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cookie-buttons button {
+      padding: 10px 18px;
+      border: 1px solid var(--paper);
+      background: transparent;
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .cookie-buttons button:first-child {
+      border-color: var(--red);
+      background: var(--red);
+    }
+
+    .cookie-buttons button:hover,
+    .cookie-buttons button:focus-visible {
+      opacity: 0.85;
+    }
+
+    /* ---------- ANIMATIONS ---------- */
+
+    #intro-wipe {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: var(--black);
+      animation: snapOut 0.45s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+      pointer-events: none;
+    }
+
+    @keyframes snapOut {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+
+    @keyframes rise {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes marquee-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero h1 {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      .marquee-track {
+        animation: none;
+      }
+    }
+
+    /* ---------- PROBLEMI / RISPOSTE INTERATTIVI ---------- */
+
+    /* ---------- PROPAGANDA CONVERSATION ---------- */
+
+    .propaganda-dialogue {
+      position: relative;
+      overflow: hidden;
+      padding: 64px 0 78px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .dialogue-head {
+      position: relative;
+      z-index: 20;
+      margin-bottom: 8px;
+    }
+
+    .dialogue-kicker {
+      margin: 0 0 8px;
+      color: var(--red);
+      font-size: var(--size-ui);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .dialogue-head h2 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .dialogue-answer-title {
+      color: var(--red);
+    }
+
+    .dialogue-arrow {
+      color: var(--paper-dim);
+      font-family: var(--font-body);
+      font-size: 0.72em;
+      line-height: 1;
+    }
+
+    .dialogue-intro {
+      max-width: 58ch;
+      margin: 10px 0 0;
+      color: var(--paper-dim);
+      font-size: 15px;
+    }
+
+    /*
+     * One single stage.
+     * The characters and bubble artwork stay fixed.
+     * Only the text inside the bubbles changes.
+     */
+    .dialogue-scene {
+      position: relative;
+      isolation: isolate;
+      width: min(100%, 1360px);
+      min-height: 660px;
+      margin: 0 auto;
+    }
+
+    .character-hit {
+      position: absolute;
+      z-index: 20;
+      bottom: 12px;
+      width: 39%;
+      height: 74%;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .character-hit-left {
+      left: 1%;
+    }
+
+    .character-hit-right {
+      right: 1%;
+    }
+
+    /*
+     * Characters are intentionally large and close to each other.
+     * Their PNGs sit directly on the page background.
+     */
+    .dialogue-character {
+      position: absolute;
+      z-index: 3;
+      bottom: 12px;
+      width: clamp(360px, 41vw, 590px);
+      pointer-events: none;
+    }
+
+    .dialogue-character img {
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .dialogue-character-left {
+      left: 3%;
+    }
+
+    .dialogue-character-right {
+      right: 3%;
+    }
+
+    /*
+     * Bubble artwork is a transparent PNG used as the actual
+     * speech-bubble shape. There is NO visible rectangular box.
+     */
+    .dialogue-bubble {
+      position: absolute;
+      z-index: 10;
+      width: clamp(260px, 30vw, 400px);
+      aspect-ratio: 1.35 / 1;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: none;
+    }
+
+    .bubble-call {
+      left: 5%;
+      top: 0;
+      width: clamp(270px, 31vw, 410px);
+      background-image: url("/vignette/call-bubble.png");
+      transform-origin: center bottom;
+    }
+
+    .bubble-solution {
+      right: 5%;
+      top: 0;
+      background-image: url("/vignette/solution-bubble.png");
+    }
+
+    /*
+     * Text only:
+     * this is the ONLY animated layer.
+     */
+    .bubble-copy {
+      position: absolute;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+      white-space: normal;
+      opacity: 1;
+      transform: scale(1);
+      transition:
+        opacity 0.24s ease,
+        transform 0.24s cubic-bezier(.2,.7,.3,1);
+    }
+
+    .bubble-copy.is-changing {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+
+    .bubble-copy.is-new {
+      opacity: 0;
+      transform: scale(0.985);
+    }
+
+    .bubble-copy.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .bubble-call .bubble-copy {
+      left: 12%;
+      top: 9%;
+      width: 76%;
+      color: var(--black);
+      text-align: center;
+      font-family: var(--font-display);
+      text-wrap: balance;
+    }
+
+    .bubble-solution .bubble-copy {
+      left: 12%;
+      top: 9%;
+      width: 76%;
+      color: var(--paper);
+      text-align: center;
+      font-family: var(--font-display);
+      text-wrap: balance;
+    }
+
+    .bubble-copy small {
+      display: block;
+      margin-bottom: 8px;
+      font-family: var(--font-body);
+      font-size: clamp(11px, 0.95vw, 14px);
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .bubble-copy span {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.15vw, 34px);
+      font-weight: 400;
+      line-height: 1.02;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+      text-wrap: balance;
+    }
+
+    .bubble-copy strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 2.9vw, 45px);
+      font-weight: 400;
+      line-height: 0.98;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    @media (max-width: 1200px) {
+      .dialogue-scene {
+        min-height: 570px;
+      }
+
+      .dialogue-character {
+        width: clamp(320px, 41vw, 500px);
+      }
+
+      .dialogue-character-left {
+        left: 2%;
+      }
+
+      .dialogue-character-right {
+        right: 2%;
+      }
+
+      .dialogue-bubble {
+        width: clamp(225px, 29vw, 340px);
+      }
+
+      .bubble-call {
+        left: 2%;
+        top: 0;
+      }
+
+      .bubble-solution {
+        right: 2%;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .propaganda-dialogue {
+        padding: 52px 0 64px;
+      }
+
+      .dialogue-head {
+        margin-bottom: 4px;
+      }
+
+      .dialogue-head h2 {
+        gap: 5px;
+        font-size: clamp(31px, 9vw, 48px);
+      }
+
+      .dialogue-intro {
+        font-size: 14px;
+      }
+
+      .dialogue-scene {
+        min-height: 440px;
+      }
+
+      .dialogue-character {
+        width: clamp(175px, 48vw, 255px);
+        bottom: 6px;
+      }
+
+      .dialogue-character-left {
+        left: 0;
+      }
+
+      .dialogue-character-right {
+        right: 0;
+      }
+
+      .character-hit {
+        width: 46%;
+        height: 72%;
+        bottom: 8px;
+      }
+
+      .character-hit-left {
+        left: 0;
+      }
+
+      .character-hit-right {
+        right: 0;
+      }
+
+      .dialogue-bubble {
+        width: min(47vw, 215px);
+      }
+
+      .bubble-call {
+        left: -2%;
+        top: 0;
+        width: min(54vw, 230px);
+      }
+
+      .bubble-solution {
+        right: -2%;
+        top: 0;
+      }
+
+      .bubble-call .bubble-copy {
+        left: 11%;
+        top: 8%;
+        width: 78%;
+        text-align: center;
+      }
+
+      .bubble-solution .bubble-copy {
+        left: 11%;
+        top: 8%;
+        width: 78%;
+        text-align: center;
+      }
+
+      .bubble-copy small {
+        font-size: 9px;
+      }
+
+      .bubble-copy span {
+        font-size: clamp(15px, 4.2vw, 22px);
+      }
+
+      .bubble-copy strong {
+        font-size: clamp(22px, 5.3vw, 31px);
+      }
+    }
+
+    /* ---------- TABLET ---------- */
+
+    @media (max-width: 1024px) {
+
+      .situations-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .article-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 768px) {
+
+      .grid-12 {
+        gap: 16px;
+      }
+
+      .situations-grid,
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-left,
+      .contact-right {
+        grid-column: span 12;
+      }
+
+      .contact .intro {
+        max-width: none;
+      }
+
+      .wordmark img {
+        height: 36px;
+        max-width: 200px;
+      }
+
+      /* Mobile menu */
+
+      .menu-toggle {
+        position: relative;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .hamburger,
+      .hamburger::before,
+      .hamburger::after {
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background: var(--paper);
+        transition:
+          transform 0.3s ease,
+          background 0.3s ease;
+      }
+
+      .hamburger {
+        position: relative;
+      }
+
+      .hamburger::before,
+      .hamburger::after {
+        left: 0;
+        content: "";
+      }
+
+      .hamburger::before {
+        transform: translateY(-8px);
+      }
+
+      .hamburger::after {
+        transform: translateY(8px);
+      }
+
+      .menu-toggle.is-active .hamburger {
+        background: transparent;
+      }
+
+      .menu-toggle.is-active .hamburger::before {
+        transform: translateY(0) rotate(45deg);
+      }
+
+      .menu-toggle.is-active .hamburger::after {
+        transform: translateY(0) rotate(-45deg);
+      }
+
+      header nav {
+        position: fixed;
+        inset: 0;
+        z-index: 99;
+        display: flex;
+        visibility: hidden;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 40px;
+        padding: 24px;
+        background: var(--black-deep);
+        opacity: 0;
+        transform: translateY(-100%);
+        transition:
+          transform 0.4s cubic-bezier(0.77, 0, 0.175, 1),
+          opacity 0.4s ease,
+          visibility 0.4s ease;
+      }
+
+      header nav.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      header nav a {
+        margin: 0;
+        font-size: clamp(24px, 6vw, 36px);
+      }
+
+      /* Cookie */
+
+      #cookie-consent {
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        padding: 18px;
+      }
+
+      /* Form */
+
+      form {
+        padding: 24px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div id="intro-wipe"></div>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="wrap-full">
+
+      <div class="header-inner">
+
+        <a
+          href="/"
+          class="wordmark"
+          aria-label="PROPAGANDA Marketing — Home"
+        >
+          <img
+            src="/logo-PROPAGANDAmarketing.png"
+            alt="PROPAGANDA Marketing"
+            width="240"
+            height="42"
+          >
+        </a>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Apri menu"
+          aria-expanded="false"
+          aria-controls="main-navigation"
+        >
+          <span class="hamburger"></span>
+        </button>
+
+        <nav
+          id="main-navigation"
+          aria-label="Navigazione principale"
+        >
+          <a href="#cosa-facciamo">
+            Cosa facciamo
+          </a>
+
+          <a href="#contatti">
+            Contatti
+          </a>
+
+        </nav>
+
+      </div>
+
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="wrap-full">
+
+        <div class="grid-12">
+
+          <div class="hero-content">
+
+            <span class="stamp">
+              Studio di comunicazione e marketing
+            </span>
+
+            <h1>
+              <span>PROPAGANDA</span>
+              <span class="line2">MARKETING</span>
+            </h1>
+
+          </div>
+
+          <p class="lede">
+
+            <span class="red-text">
+              NON VENDIAMO PACCHETTI DI MARKETING.
+            </span>
+
+            <span class="lede-second">
+              Entriamo dove c'è qualcosa da sistemare, costruire o far ri-partire.
+            </span>
+
+          </p>
+
+          <div class="cta-row">
+
+            <a
+              class="btn btn-primary"
+              href="#contatti"
+            >
+              Scrivici
+            </a>
+
+            <a
+              class="btn btn-ghost"
+              href="#cosa-facciamo"
+            >
+              Cosa facciamo
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- STATEMENT -->
+
+    <section class="statement">
+
+      <div class="wrap-full">
+
+        <div class="grid-12">
+
+          <p>
+
+            <span class="red-text">
+              NON FACCIAMO MARKETING PERCHÉ "BISOGNA ESSERCI".
+            </span>
+
+            <br>
+
+            <span class="sub-text">
+              Partiamo da come lavori, da cosa ti serve e da cosa può davvero funzionare.
+              Se serve, si fa. Se non serve, si lascia perdere.
+            </span>
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PROBLEMI / RISPOSTE INTERATTIVI -->
+    <section
+      class="propaganda-dialogue"
+      id="cosa-facciamo"
+      aria-label="Conversazione PROPAGANDA"
+    >
+      <div class="wrap-full">
+
+        <div class="dialogue-head">
+          <p class="dialogue-kicker">Una cosa alla volta.</p>
+
+          <h2>
+            <span>CI CHIAMANO QUANDO...</span>
+            <span class="dialogue-arrow">↔</span>
+            <span class="dialogue-answer-title">QUELLO CHE FACCIAMO</span>
+          </h2>
+
+          <p class="dialogue-intro">
+            Due personaggi. Una cosa alla volta.
+          </p>
+        </div>
+
+        <div
+          class="dialogue-scene"
+          id="propaganda-dialogue"
+        ><!-- CHARACTER 2: RIGHT -->
+          <div
+            class="dialogue-character dialogue-character-right"
+            aria-hidden="true"
+          >
+            <img
+              src="/vignette/character-right.png"
+              alt=""
+            >
+              </div>
+
+
+
+          <!-- CHARACTER 1: LEFT -->
+          <div
+            class="dialogue-character dialogue-character-left"
+            aria-hidden="true"
+          >
+            <img
+              src="/vignette/character-left.png"
+              alt=""
+            >
+              </div>
+
+          
+
+          <!-- CHARACTER 2: RIGHT -->
+          
+
+                    <!-- Invisible interaction areas: no visible UI container. -->
+          <button
+            type="button"
+            class="character-hit character-hit-left"
+            id="character-hit-left"
+            aria-label="Interagisci con il personaggio a sinistra"
+          ></button>
+
+          <button
+            type="button"
+            class="character-hit character-hit-right"
+            id="character-hit-right"
+            aria-label="Interagisci con il personaggio a destra"
+          ></button>
+
+          <!-- LEFT BUBBLE -->
+          <div
+            class="dialogue-bubble bubble-call"
+            id="bubble-call"
+            aria-hidden="true"
+          >
+            <div class="bubble-copy">
+              <small>IL PROBLEMA</small>
+              <span id="bubble-call-text"></span>
+            </div>
+          </div>
+
+          <!-- RIGHT BUBBLE -->
+          <div
+            class="dialogue-bubble bubble-solution"
+            id="bubble-solution"
+            aria-hidden="true"
+          >
+            <div class="bubble-copy">
+              <small>LA RISPOSTA</small>
+              <strong id="bubble-solution-text"></strong>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+
+    <section
+      class="partners-banner"
+      aria-label="Partner"
+    >
+
+      <div class="partners-label">
+        Hanno ri-partito con noi
+      </div>
+
+      <div
+        class="marquee-container"
+        role="region"
+        aria-label="Loghi partner"
+      >
+
+        <div class="marquee-track">
+
+          <div class="marquee-content">
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner1.png"
+                alt="Partner 1"
+                style="--logo-scale: 1.5;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner2.png"
+                alt="Partner 2"
+                style="--logo-scale: 1.5;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner3.png"
+                alt="Partner 3"
+                style="--logo-scale: 1;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner4.png"
+                alt="Partner 4"
+                style="--logo-scale: 1;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner5.png"
+                alt="Partner 5"
+                style="--logo-scale: 1.25;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner6.png"
+                alt="Partner 6"
+                style="--logo-scale: 0.8;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner7.png"
+                alt="Partner 7"
+                style="--logo-scale: 1;"
+              >
+            </div>
+
+          </div>
+
+          <div
+            class="marquee-content"
+            aria-hidden="true"
+          >
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner1.png"
+                alt=""
+                style="--logo-scale: 1.5;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner2.png"
+                alt=""
+                style="--logo-scale: 1.5;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner3.png"
+                alt=""
+                style="--logo-scale: 1;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner4.png"
+                alt=""
+                style="--logo-scale: 1;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner5.png"
+                alt=""
+                style="--logo-scale: 1.25;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner6.png"
+                alt=""
+                style="--logo-scale: 0.8;"
+              >
+            </div>
+
+            <div class="partner-logo">
+              <img
+                src="/logos/partner7.png"
+                alt=""
+                style="--logo-scale: 1;"
+              >
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section
+      class="contact"
+      id="contatti"
+    >
+
+      <div class="wrap-full">
+
+        <div class="grid-12">
+
+          <div class="contact-left">
+
+            <h2 class="contact-title">
+              HAI UNA COSA DA SISTEMARE?
+            </h2>
+
+            <p class="intro">
+              Raccontaci cosa stai costruendo, cosa non funziona o cosa vuoi far partire.
+              Rispondiamo di persona, non con un modulo automatico che finisce in un CRM.
+            </p>
+
+          </div>
+
+          <div class="contact-right">
+
+            <form
+              id="contact-form"
+              method="POST"
+            >
+
+              <input
+                type="hidden"
+                name="_subject"
+                value="Nuovo contatto da propagandamarketing.online"
+              >
+
+              <input
+                type="hidden"
+                name="_template"
+                value="table"
+              >
+
+              <input
+                type="hidden"
+                name="_captcha"
+                value="true"
+              >
+
+              <input
+                type="text"
+                name="_honey"
+                class="hp-field"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+              >
+
+              <div class="field">
+
+                <label for="nome">
+                  Nome
+                </label>
+
+                <input
+                  type="text"
+                  id="nome"
+                  name="Nome"
+                  autocomplete="name"
+                  required
+                >
+
+              </div>
+
+              <div class="field">
+
+                <label for="email">
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  id="email"
+                  name="Email"
+                  autocomplete="email"
+                  required
+                >
+
+              </div>
+
+              <div class="field">
+
+                <label for="messaggio">
+                  Messaggio
+                </label>
+
+                <textarea
+                  id="messaggio"
+                  name="Messaggio"
+                  required
+                ></textarea>
+
+              </div>
+
+              <div class="privacy-field">
+
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  name="Privacy"
+                  value="Accettata"
+                  required
+                >
+
+                <label for="privacy">
+
+                  Ho letto la
+
+                  <a href="/privacy-policy">
+                    Privacy Policy
+                  </a>.
+
+                </label>
+
+              </div>
+
+              <div class="field field-submit">
+
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Invia messaggio
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="wrap-full">
+
+      <div class="footer-inner">
+
+        <span>
+
+          © 2026 PROPAGANDA Marketing di Fiorillo Vincenzo —
+
+          P.IVA 01843770080 —
+
+          Ventimiglia (IM) —
+
+          <span id="tel-wrap">
+            Tel:
+          </span>
+
+          —
+
+          PEC:
+
+          <a
+            href="#"
+            id="pec-link"
+            aria-label="Contatto PEC"
+          >PEC</a>
+
+        </span>
+
+        <span>
+
+          Studio di comunicazione e marketing —
+
+          <a
+            href="#"
+            id="cookie-settings"
+          >
+            Cookie
+          </a>
+
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+  <!-- COOKIE CONSENT -->
+
+  <div
+    id="cookie-consent"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="cookie-title"
+    hidden
+  >
+
+    <p>
+
+      <strong id="cookie-title">
+        Cookie
+      </strong>
+
+      <br>
+
+      Utilizziamo Google Analytics per capire come viene utilizzato il sito.
+      Google Analytics viene caricato solo dopo il tuo consenso.
+      Puoi accettare o rifiutare l'analisi statistica.
+
+      <br><br>
+
+      <a
+        href="/privacy-policy"
+        target="_blank"
+        rel="noopener"
+        style="text-decoration: underline;"
+      >Leggi la Privacy Policy</a>.
+
+    </p>
+
+    <div class="cookie-buttons">
+
+      <button
+        type="button"
+        id="cookie-accept"
+      >
+        Accetta
+      </button>
+
+      <button
+        type="button"
+        id="cookie-reject"
+      >
+        Rifiuta
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    (() => {
+
+      "use strict";
+
+      /* =========================================================
+         COOKIE CONSENT + PRIVACY-FIRST ANALYTICS
+         ========================================================= */
+
+      const CONSENT_KEY = "analytics-consent";
+
+      const banner =
+        document.getElementById("cookie-consent");
+
+      const acceptButton =
+        document.getElementById("cookie-accept");
+
+      const rejectButton =
+        document.getElementById("cookie-reject");
+
+      const settingsButton =
+        document.getElementById("cookie-settings");
+
+      const contactForm =
+        document.getElementById("contact-form");
+
+      const pecLink =
+        document.getElementById("pec-link");
+
+
+      function decodeBase64(value) {
+        try {
+          return atob(value);
+        } catch (error) {
+          return "";
+        }
+      }
+
+
+      const analyticsId =
+        decodeBase64("Ry1NSDZOWTdDWVY5");
+
+      const formEmail =
+        decodeBase64("aW5mb0Bwcm9wYWdhbmRhbWFya2V0aW5nLm9ubGluZQ==");
+
+      const pecEmail =
+        decodeBase64("aXZAcGVjLXN0dWRpby5pdA==");
+
+
+      function getConsent() {
+
+        try {
+
+          return localStorage.getItem(
+            CONSENT_KEY
+          );
+
+        } catch (error) {
+
+          return null;
+
+        }
+
+      }
+
+
+      function setConsent(value) {
+
+        try {
+
+          localStorage.setItem(
+            CONSENT_KEY,
+            value
+          );
+
+        } catch (error) {
+
+          /* LocalStorage non disponibile */
+
+        }
+
+      }
+
+
+      function showCookieBanner() {
+
+        if (banner) {
+          banner.hidden = false;
+        }
+
+      }
+
+
+      function hideCookieBanner() {
+
+        if (banner) {
+          banner.hidden = true;
+        }
+
+      }
+
+
+      function loadGoogleAnalytics() {
+
+        if (
+          !analyticsId ||
+          document.getElementById("google-analytics-loader")
+        ) {
+          return;
+        }
+
+
+        window.dataLayer = window.dataLayer || [];
+
+        window.gtag = function() {
+          window.dataLayer.push(arguments);
+        };
+
+
+        window.gtag("js", new Date());
+
+        window.gtag("config", analyticsId, {
+          send_page_view: true
+        });
+
+
+        const script =
+          document.createElement("script");
+
+        script.id = "google-analytics-loader";
+        script.async = true;
+        script.src =
+          "https://www.googletagmanager.com/gtag/js?id="
+          + encodeURIComponent(analyticsId);
+
+        document.head.appendChild(script);
+
+      }
+
+
+      function acceptAnalytics() {
+
+        setConsent("accepted");
+
+        hideCookieBanner();
+
+        loadGoogleAnalytics();
+
+      }
+
+
+      function rejectAnalytics() {
+
+        setConsent("rejected");
+
+        hideCookieBanner();
+
+      }
+
+
+      function setupPrivacySafeContacts() {
+
+        if (pecLink && pecEmail) {
+          pecLink.href = "mailto:" + pecEmail;
+          pecLink.textContent = pecEmail;
+        }
+
+
+        if (contactForm && formEmail) {
+          contactForm.action =
+            "https://formsubmit.co/" + formEmail;
+        }
+
+      }
+
+
+      const consent = getConsent();
+
+
+      setupPrivacySafeContacts();
+
+
+      if (consent === "accepted") {
+
+        hideCookieBanner();
+
+        loadGoogleAnalytics();
+
+      } else if (consent === "rejected") {
+
+        hideCookieBanner();
+
+      } else {
+
+        showCookieBanner();
+
+      }
+
+
+      if (acceptButton) {
+
+        acceptButton.addEventListener(
+          "click",
+          acceptAnalytics
+        );
+
+      }
+
+
+      if (rejectButton) {
+
+        rejectButton.addEventListener(
+          "click",
+          rejectAnalytics
+        );
+
+      }
+
+
+      if (settingsButton) {
+
+        settingsButton.addEventListener(
+          "click",
+          (event) => {
+
+            event.preventDefault();
+
+            showCookieBanner();
+
+          }
+        );
+
+      }
+
+
+      /* =========================================================
+         MOBILE MENU
+         ========================================================= */
+
+      const menuToggle =
+        document.querySelector(".menu-toggle");
+
+      const nav =
+        document.getElementById("main-navigation");
+
+      const navLinks =
+        document.querySelectorAll(
+          "#main-navigation a"
+        );
+
+
+      function closeMenu() {
+
+        if (!menuToggle || !nav) {
+          return;
+        }
+
+        menuToggle.classList.remove(
+          "is-active"
+        );
+
+        nav.classList.remove(
+          "is-open"
+        );
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        document.body.style.overflow = "";
+
+      }
+
+
+      if (menuToggle && nav) {
+
+        menuToggle.addEventListener(
+          "click",
+          () => {
+
+            const isOpen =
+              menuToggle.getAttribute(
+                "aria-expanded"
+              ) === "true";
+
+
+            menuToggle.classList.toggle(
+              "is-active",
+              !isOpen
+            );
+
+
+            nav.classList.toggle(
+              "is-open",
+              !isOpen
+            );
+
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              String(!isOpen)
+            );
+
+
+            document.body.style.overflow =
+              isOpen ? "" : "hidden";
+
+          }
+        );
+
+
+        navLinks.forEach((link) => {
+
+          link.addEventListener(
+            "click",
+            closeMenu
+          );
+
+        });
+
+      }
+
+
+      /* =========================================================
+         PROBLEMS / RESPONSES DIALOGUE
+         ========================================================= */
+
+      /*
+       * AUTHORITATIVE 6 + 6 DATA.
+       * Pairings are kept exactly as established:
+       * 01 -> Strategy
+       * 02 -> Sites / landing / digital systems
+       * 03 -> Marketing
+       * 04 -> Communication
+       * 05 -> Content
+       * 06 -> Branding
+       *
+       * These are data only. They are never rendered as a
+       * permanent list in the interface.
+       */
+      const PAIRS = [
+        {
+          id: "01",
+          problem:
+            "L'azienda è cresciuta, ma comunica ancora come cinque anni fa.",
+          answer: "Strategia.",
+        },
+        {
+          id: "02",
+          problem:
+            "Il sito c'è, ma non serve a niente.",
+          answer: "Siti, landing, sistemi digitali.",
+        },
+        {
+          id: "03",
+          problem:
+            "Bisogna lanciare qualcosa.",
+          answer: "Marketing.",
+        },
+        {
+          id: "04",
+          problem:
+            "Nessuno capisce bene cosa facciamo.",
+          answer: "Comunicazione.",
+        },
+        {
+          id: "05",
+          problem:
+            "I social ci sono, ma non succede niente.",
+          answer: "Contenuti.",
+        },
+        {
+          id: "06",
+          problem:
+            "Ti serve qualcosa che faccia capire chi sei al primo colpo.",
+          answer: "Branding.",
+        }
+      ];
+
+      const dialogueRoot =
+        document.getElementById("propaganda-dialogue");
+
+      const leftHit =
+        document.getElementById("character-hit-left");
+
+      const rightHit =
+        document.getElementById("character-hit-right");
+
+      const callBubble =
+        document.getElementById("bubble-call");
+
+      const solutionBubble =
+        document.getElementById("bubble-solution");
+
+      const callBubbleText =
+        document.getElementById("bubble-call-text");
+
+      const solutionBubbleText =
+        document.getElementById("bubble-solution-text");
+
+      const callBubbleCopy =
+        callBubbleText
+          ? callBubbleText.closest(".bubble-copy")
+          : null;
+
+      const solutionBubbleCopy =
+        solutionBubbleText
+          ? solutionBubbleText.closest(".bubble-copy")
+          : null;
+
+      let activeIndex = null;
+      let manualLock = false;
+      let autoTimer = null;
+      let transitionTimer = null;
+      let animationToken = 0;
+
+      const HOLD_MS = 5000;
+      const CYCLE_MS = 5000;
+
+
+      function clearTimer(timer) {
+        if (timer) {
+          window.clearTimeout(timer);
+        }
+      }
+
+
+      function getPair(index) {
+        return PAIRS[index] || null;
+      }
+
+
+      function setContent(index) {
+
+        const pair = getPair(index);
+
+        if (!pair) {
+          return;
+        }
+
+        const copies = [
+          [callBubbleCopy, callBubbleText, pair.problem],
+          [solutionBubbleCopy, solutionBubbleText, pair.answer]
+        ];
+
+        copies.forEach(([copy, target, value]) => {
+
+          if (!copy || !target) {
+            return;
+          }
+
+          copy.classList.remove("is-visible");
+          copy.classList.add("is-changing");
+
+          window.setTimeout(() => {
+
+            target.textContent = value;
+
+            copy.classList.remove("is-changing");
+            copy.classList.add("is-new");
+
+            window.requestAnimationFrame(() => {
+              copy.classList.remove("is-new");
+              copy.classList.add("is-visible");
+            });
+
+          }, 120);
+
+        });
+
+      }
+
+
+      function showBubbles() {
+
+        [callBubble, solutionBubble].forEach((bubble) => {
+
+          if (!bubble) {
+            return;
+          }
+
+          bubble.classList.remove(
+            "is-visible",
+            "is-leaving"
+          );
+
+          bubble.style.opacity = "1";
+          bubble.style.visibility = "visible";
+
+          bubble.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+        });
+
+      }
+
+
+      function hideBubbles() {
+
+        /*
+         * Artwork stays on screen permanently.
+         * Only the text layer changes.
+         */
+
+        showBubbles();
+
+      }
+
+
+      function scheduleAuto() {
+
+        clearTimer(autoTimer);
+        autoTimer = null;
+
+        if (manualLock) {
+          return;
+        }
+
+        autoTimer =
+          window.setTimeout(() => {
+
+            const nextIndex =
+              activeIndex === null
+                ? 0
+                : (activeIndex + 1) %
+                  PAIRS.length;
+
+            activatePair(
+              nextIndex,
+              true
+            );
+
+          }, CYCLE_MS);
+
+      }
+
+
+      function activatePair(
+        index,
+        fromAuto = false
+      ) {
+
+        const pair = getPair(index);
+
+        if (!pair) {
+          return;
+        }
+
+        if (!fromAuto) {
+          manualLock = true;
+          clearTimer(autoTimer);
+          autoTimer = null;
+        }
+
+        clearTimer(transitionTimer);
+        transitionTimer = null;
+
+        const token =
+          ++animationToken;
+
+        transitionTimer =
+          window.setTimeout(() => {
+
+            if (token !== animationToken) {
+              return;
+            }
+
+            activeIndex = index;
+
+            setContent(index);
+
+            showBubbles();
+
+            transitionTimer = null;
+
+            if (fromAuto) {
+              /*
+               * Automatic sequence:
+               * visible for almost the full 3s interval,
+               * then the next pair starts.
+               */
+              scheduleAuto();
+            }
+          }, 20);
+
+      }
+
+
+      function closeDialogue() {
+
+        ++animationToken;
+
+        clearTimer(autoTimer);
+        clearTimer(transitionTimer);
+
+        autoTimer = null;
+        transitionTimer = null;
+
+        activeIndex = null;
+        manualLock = false;
+
+        hideBubbles();
+
+        /*
+         * After a manual close the automatic cycle restarts.
+         */
+        window.setTimeout(() => {
+
+          if (
+            !manualLock &&
+            activeIndex === null
+          ) {
+            activatePair(
+              0,
+              true
+            );
+          }
+
+        }, HOLD_MS);
+
+      }
+
+
+      function manualInteraction() {
+
+        /*
+         * One unified interaction:
+         * character interaction activates exactly one pair
+         * and pauses the automatic sequence.
+         *
+         * Re-interacting while a manual pair is active closes it.
+         */
+        if (
+          manualLock &&
+          activeIndex !== null
+        ) {
+          closeDialogue();
+          return;
+        }
+
+        const nextIndex =
+          activeIndex === null
+            ? 0
+            : (activeIndex + 1) %
+              PAIRS.length;
+
+        activatePair(
+          nextIndex,
+          false
+        );
+
+      }
+
+
+      /*
+       * Desktop hover uses the same action as click/tap.
+       * pointerenter fires once when entering either invisible
+       * character area; click/tap fires the same function.
+       */
+      const hoverCapable =
+        window.matchMedia(
+          "(hover: hover) and (pointer: fine)"
+        );
+
+      function bindCharacterHit(button) {
+
+        if (!button) {
+          return;
+        }
+
+        button.addEventListener(
+          "mouseenter",
+          () => {
+            if (hoverCapable.matches) {
+              manualInteraction();
+            }
+          }
+        );
+
+        button.addEventListener(
+          "click",
+          (event) => {
+            event.stopPropagation();
+            manualInteraction();
+          }
+        );
+
+      }
+
+
+      bindCharacterHit(leftHit);
+      bindCharacterHit(rightHit);
+
+
+      /*
+       * Clicking/tapping empty space closes the manual pair.
+       * Character hit areas stop the event above.
+       */
+      if (dialogueRoot) {
+
+        dialogueRoot.addEventListener(
+          "click",
+          (event) => {
+
+            if (
+              event.target === dialogueRoot
+            ) {
+              closeDialogue();
+            }
+
+          }
+        );
+
+        dialogueRoot.addEventListener(
+          "pointerdown",
+          (event) => {
+
+            if (
+              event.target === dialogueRoot
+            ) {
+              closeDialogue();
+            }
+
+          },
+          { passive: true }
+        );
+
+      }
+
+
+      /*
+       * Start automatic rotation.
+       */
+      window.setTimeout(() => {
+
+        if (!manualLock) {
+          activatePair(
+            0,
+            true
+          );
+        }
+
+      }, 450);
+
+      /* =========================================================
+         TELEPHONE
+         ========================================================= */
+
+      const phoneParts = [
+        "+39",
+        "371",
+        "612",
+        "63",
+        "58"
+      ];
+
+
+      const phoneNumber =
+        phoneParts.join(" ");
+
+
+      const phoneRaw =
+        phoneNumber.replace(/\s+/g, "");
+
+
+      const phoneContainer =
+        document.getElementById("tel-wrap");
+
+
+      if (phoneContainer) {
+
+        const phoneLink =
+          document.createElement("a");
+
+
+        phoneLink.href =
+          "tel:" + phoneRaw;
+
+
+        phoneLink.rel =
+          "nofollow";
+
+
+        phoneLink.textContent =
+          phoneNumber;
+
+
+        phoneContainer.appendChild(
+          phoneLink
+        );
+
+      }
+
+    })();
+
+  </script>
+
+</body>
+</html>
