@@ -955,8 +955,8 @@
     .dialogue-scene {
       position: relative;
       isolation: isolate;
-      width: min(100%, 1360px);
-      min-height: 660px;
+      width: 100%;
+      min-height: clamp(700px, 78vh, 900px);
       margin: 0 auto;
     }
 
@@ -989,7 +989,7 @@
       position: absolute;
       z-index: 3;
       bottom: 10px;
-      width: clamp(360px, 41vw, 590px);
+      width: clamp(480px, 42vw, 760px);
       pointer-events: none;
     }
 
@@ -1017,8 +1017,8 @@
        Il fumetto resta nella fascia superiore; il personaggio nella fascia inferiore. */
     .dialogue-bubble {
       position: absolute;
-      z-index: 20;
-      width: clamp(255px, 30vw, 405px);
+      z-index: 30;
+      width: clamp(390px, 34vw, 590px);
       opacity: 1;
       visibility: visible;
       pointer-events: none;
@@ -1036,13 +1036,13 @@
     }
 
     .bubble-call {
-      left: 4%;
-      top: 4px;
+      left: 2%;
+      top: 0;
     }
 
     .bubble-solution {
-      right: 4%;
-      top: 34px;
+      right: 2%;
+      top: 28px;
     }
 
     /*
@@ -1079,8 +1079,8 @@
 
     .bubble-call .bubble-copy {
       left: 13%;
-      top: 16%;
-      width: 76%;
+      top: 15%;
+      width: 74%;
       color: var(--black);
       text-align: center;
       font-family: var(--font-display);
@@ -1089,8 +1089,8 @@
 
     .bubble-solution .bubble-copy {
       left: 14%;
-      top: 17%;
-      width: 76%;
+      top: 16%;
+      width: 72%;
       color: var(--paper);
       text-align: center;
       font-family: var(--font-display);
@@ -1137,61 +1137,12 @@
 
     @media (max-width: 1200px) {
       .dialogue-scene {
-        min-height: 570px;
+        min-height: clamp(620px, 76vh, 800px);
       }
 
       .dialogue-character {
-        width: clamp(320px, 41vw, 500px);
-      }
-
-      .dialogue-character-left {
-        left: 2%;
-      }
-
-      .dialogue-character-right {
-        right: 2%;
-      }
-
-      .dialogue-bubble {
-        width: clamp(225px, 29vw, 340px);
-      }
-
-      .bubble-call {
-        left: 2%;
-        top: 75px;
-      }
-
-      .bubble-solution {
-        right: 2%;
-        top: 75px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .propaganda-dialogue {
-        padding: 52px 0 64px;
-      }
-
-      .dialogue-head {
-        margin-bottom: 4px;
-      }
-
-      .dialogue-head h2 {
-        gap: 5px;
-        font-size: clamp(31px, 9vw, 48px);
-      }
-
-      .dialogue-intro {
-        font-size: 14px;
-      }
-
-      .dialogue-scene {
-        min-height: 440px;
-      }
-
-      .dialogue-character {
-        width: clamp(175px, 48vw, 255px);
-        bottom: 6px;
+        width: clamp(430px, 46vw, 650px);
+        bottom: 0;
       }
 
       .dialogue-character-left {
@@ -1202,10 +1153,68 @@
         right: 0;
       }
 
+      .dialogue-bubble {
+        width: clamp(330px, 34vw, 480px);
+      }
+
+      .bubble-call {
+        left: 1%;
+        top: 0;
+      }
+
+      .bubble-solution {
+        right: 1%;
+        top: 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .propaganda-dialogue {
+        padding: 44px 0 48px;
+      }
+
+      .dialogue-head {
+        margin-bottom: 0;
+      }
+
+      .dialogue-head h2 {
+        gap: 5px;
+        font-size: clamp(30px, 9vw, 46px);
+      }
+
+      .dialogue-intro {
+        font-size: 14px;
+      }
+
+      /*
+       * MOBILE = TWO CLEAR BANDS:
+       * 1) fumetti sopra
+       * 2) personaggi sotto
+       * They never share the same vertical area.
+       */
+      .dialogue-scene {
+        min-height: 590px;
+        margin-top: 8px;
+      }
+
+      .dialogue-character {
+        width: 52vw;
+        max-width: 270px;
+        bottom: 0;
+      }
+
+      .dialogue-character-left {
+        left: -1%;
+      }
+
+      .dialogue-character-right {
+        right: -1%;
+      }
+
       .character-hit {
-        width: 46%;
-        height: 72%;
-        bottom: 8px;
+        width: 47%;
+        height: 48%;
+        bottom: 0;
       }
 
       .character-hit-left {
@@ -1217,44 +1226,45 @@
       }
 
       .dialogue-bubble {
-        width: min(49vw, 220px);
+        width: 45vw;
+        max-width: 245px;
       }
 
       .bubble-call {
-        left: -2%;
-        top: 5px;
-        width: min(54vw, 230px);
+        left: 0;
+        top: 0;
       }
 
       .bubble-solution {
-        right: -2%;
-        top: 28px;
+        right: 0;
+        top: 18px;
       }
 
       .bubble-call .bubble-copy {
         left: 11%;
-        top: 8%;
+        top: 15%;
         width: 78%;
-        text-align: center;
       }
 
       .bubble-solution .bubble-copy {
         left: 11%;
-        top: 8%;
+        top: 15%;
         width: 78%;
-        text-align: center;
       }
 
       .bubble-copy small {
-        font-size: 9px;
+        margin-bottom: 5px;
+        font-size: clamp(10px, 2.8vw, 12px);
       }
 
       .bubble-copy span {
-        font-size: clamp(15px, 4.2vw, 22px);
+        font-size: clamp(18px, 5vw, 25px);
+        line-height: 1.02;
       }
 
       .bubble-copy strong {
-        font-size: clamp(22px, 5.3vw, 31px);
+        font-size: clamp(25px, 6.5vw, 34px);
+        line-height: 0.98;
       }
     }
 
@@ -1581,7 +1591,7 @@
             aria-hidden="true"
           >
             <img
-              src="/vignette/character-right.png"
+              src="/vignette/solution-vignette.png"
               alt=""
             >
               </div>
@@ -1594,7 +1604,7 @@
             aria-hidden="true"
           >
             <img
-              src="/vignette/character-left.png"
+              src="/vignette/call-vignette.png"
               alt=""
             >
               </div>
@@ -1626,9 +1636,8 @@
             aria-hidden="true"
           >
             <img
-              src="/vignette/call-bubble.png"
+              src="/vignette/call-bubble"
               alt=""
-              onerror="if(this.src.endsWith('/call-bubble.png')){this.src='/vignette/call-bubble';}"
             >
             <div class="bubble-copy">
               <small>IL PROBLEMA</small>
@@ -1643,9 +1652,8 @@
             aria-hidden="true"
           >
             <img
-              src="/vignette/solution-bubble.png"
+              src="/vignette/solution-bubble"
               alt=""
-              onerror="if(this.src.endsWith('/solution-bubble.png')){this.src='/vignette/solution-bubble';}"
             >
             <div class="bubble-copy">
               <small>LA RISPOSTA</small>
