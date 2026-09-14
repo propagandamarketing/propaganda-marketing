@@ -1392,6 +1392,25 @@
       }
     }
 
+
+
+    /* MOBILE — remove the apparent empty first text line inside bubbles.
+       Only the text flow is changed; bubble artwork, characters and layout
+       remain untouched. */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        top: 26% !important;
+        height: 56% !important;
+        justify-content: flex-start !important;
+        padding: 0 !important;
+        transform: none !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span,
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        margin: 0 !important;
+      }
+    }
 </style>
 
 </head>
