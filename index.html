@@ -1749,6 +1749,202 @@
       }
     }
 
+
+    /* =========================================================
+       DIALOGUE — PERFECT FINAL COMPOSITION
+       TOP: bubble artwork + its text
+       BOTTOM: associated character drawing
+       ========================================================= */
+
+    .propaganda-dialogue #propaganda-dialogue.dialogue-scene {
+      position: relative !important;
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+      gap: clamp(12px, 3vw, 48px) !important;
+      width: 100% !important;
+      min-height: clamp(700px, 78vh, 900px) !important;
+      overflow: visible !important;
+    }
+
+    .propaganda-dialogue .dialogue-column {
+      position: relative !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      width: 100% !important;
+      height: 100% !important;
+      min-width: 0 !important;
+    }
+
+    /* TOP PAIR: bubble and text share exactly the same center */
+    .propaganda-dialogue .coppia-vignetta-testo {
+      position: relative !important;
+      flex: 0 0 auto !important;
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: center !important;
+      width: 100% !important;
+      height: clamp(300px, 34vh, 380px) !important;
+      margin: 0 !important;
+      transform: translateY(-24px) !important;
+      z-index: 20 !important;
+    }
+
+    .propaganda-dialogue .dialogue-bubble {
+      position: relative !important;
+      inset: auto !important;
+      display: block !important;
+      flex: 0 0 auto !important;
+      width: min(92%, 590px) !important;
+      max-width: 590px !important;
+      height: auto !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      overflow: visible !important;
+      z-index: 20 !important;
+      pointer-events: none !important;
+    }
+
+    .propaganda-dialogue .dialogue-bubble > img {
+      position: relative !important;
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      margin: 0 !important;
+      z-index: 20 !important;
+    }
+
+    /* Text is a true overlay of the bubble artwork. */
+    .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+      position: absolute !important;
+      left: 12% !important;
+      top: 13% !important;
+      width: 76% !important;
+      height: 72% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      z-index: 21 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      box-sizing: border-box !important;
+      pointer-events: none !important;
+    }
+
+    .propaganda-dialogue .bubble-copy small,
+    .propaganda-dialogue .bubble-copy span,
+    .propaganda-dialogue .bubble-copy strong {
+      position: relative !important;
+      z-index: 22 !important;
+      display: block !important;
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    /* BOTTOM PAIR: drawing is lower and cannot cover the bubble. */
+    .propaganda-dialogue .disegno-vero {
+      position: relative !important;
+      flex: 1 1 auto !important;
+      width: 100% !important;
+      min-height: 0 !important;
+      display: flex !important;
+      align-items: flex-end !important;
+      justify-content: center !important;
+      margin: 0 !important;
+      transform: translateY(18px) !important;
+      z-index: 3 !important;
+    }
+
+    .propaganda-dialogue .dialogue-character {
+      position: relative !important;
+      inset: auto !important;
+      flex: 0 0 auto !important;
+      width: min(112%, 800px) !important;
+      max-width: none !important;
+      margin: 0 auto !important;
+      z-index: 3 !important;
+      pointer-events: none !important;
+    }
+
+    .propaganda-dialogue .dialogue-character img {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      margin: 0 !important;
+    }
+
+    .propaganda-dialogue .character-hit {
+      position: absolute !important;
+      z-index: 10 !important;
+      bottom: 0 !important;
+    }
+
+    /* Explicit pair centering: left bubble aligns with left drawing;
+       right bubble aligns with right drawing. */
+    .propaganda-dialogue .dialogue-column-left,
+    .propaganda-dialogue .dialogue-column-right {
+      justify-items: center !important;
+      text-align: center !important;
+    }
+
+    @media (max-width: 1200px) {
+      .propaganda-dialogue #propaganda-dialogue.dialogue-scene {
+        min-height: clamp(620px, 76vh, 800px) !important;
+        gap: 12px !important;
+      }
+
+      .propaganda-dialogue .coppia-vignetta-testo {
+        height: clamp(270px, 34vh, 340px) !important;
+        transform: translateY(-18px) !important;
+      }
+
+      .propaganda-dialogue .dialogue-bubble {
+        width: min(94%, 500px) !important;
+      }
+
+      .propaganda-dialogue .dialogue-character {
+        width: min(112%, 650px) !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .propaganda-dialogue #propaganda-dialogue.dialogue-scene {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0 !important;
+        min-height: 590px !important;
+      }
+
+      .propaganda-dialogue .coppia-vignetta-testo {
+        height: 245px !important;
+        transform: translateY(-8px) !important;
+      }
+
+      .propaganda-dialogue .dialogue-bubble {
+        width: min(96%, 255px) !important;
+      }
+
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        left: 10% !important;
+        top: 12% !important;
+        width: 80% !important;
+        height: 74% !important;
+      }
+
+      .propaganda-dialogue .disegno-vero {
+        transform: translateY(12px) !important;
+      }
+
+      .propaganda-dialogue .dialogue-character {
+        width: min(112%, 310px) !important;
+      }
+    }
+
 </style>
 
 </head>
@@ -1919,32 +2115,7 @@
         <div
           class="dialogue-scene"
           id="propaganda-dialogue"
-        ><!-- CHARACTER 2: RIGHT -->
-          <div
-            class="dialogue-character dialogue-character-right"
-            aria-hidden="true"
-          >
-            <img
-              src="/vignette/solution-vignette.png"
-              alt=""
-            >
-              </div>
-
-
-
-          <!-- CHARACTER 1: LEFT -->
-          <div
-            class="dialogue-character dialogue-character-left"
-            aria-hidden="true"
-          >
-            <img
-              src="/vignette/call-vignette.png"
-              alt=""
-            >
-              </div>
-
-          
-
+        >
           <!-- COPPIA SINISTRA: TESTO + FUMETTO / DISEGNO SOTTO -->
           <div class="dialogue-column dialogue-column-left">
             <div class="coppia-vignetta-testo">
