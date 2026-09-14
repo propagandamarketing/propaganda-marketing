@@ -1421,6 +1421,44 @@
         margin: 0 !important;
       }
     }
+
+
+    /* MOBILE — text box: remove the apparent leading empty line.
+       Keep the bubble/artwork untouched. The text itself is laid out
+       as a normal block so its first rendered line starts immediately. */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy {
+        display: block !important;
+        top: 23% !important;
+        left: 8% !important;
+        width: 84% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+        transform: none !important;
+        overflow: visible !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span,
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+        text-wrap: nowrap !important;
+      }
+
+      .propaganda-dialogue .bubble-call .bubble-copy span {
+        font-size: clamp(13px, 3.45vw, 17px) !important;
+        line-height: 0.96 !important;
+      }
+
+      .propaganda-dialogue .bubble-solution .bubble-copy strong {
+        font-size: clamp(14px, 3.7vw, 18px) !important;
+        line-height: 0.94 !important;
+      }
+    }
 </style>
 
 </head>
