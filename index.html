@@ -1368,27 +1368,57 @@
     /* MOBILE — final bubble text calibration
        Keep the artwork/layout untouched; only recalibrate text scale and vertical anchor. */
     @media (max-width: 768px) {
-      /* MOBILE — optical center inside the actual bubble artwork. */
+      /* MOBILE — bubble text geometry lock.
+       The copy is constrained to the oval body of the PNG itself.
+       Animation may fade, but it can never translate the text outside the bubble. */
+    @media (max-width: 768px) {
+      .propaganda-dialogue .dialogue-bubble {
+        position: relative !important;
+      }
+
       .propaganda-dialogue .dialogue-bubble > .bubble-copy {
-        top: 13% !important;
-        height: 72% !important;
+        position: absolute !important;
+        top: 11% !important;
+        right: 10% !important;
+        bottom: 27% !important;
+        left: 10% !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 2% !important;
+        display: flex !important;
+        align-items: center !important;
         justify-content: center !important;
-        transform: translateY(2px) !important;
         overflow: hidden !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        transform: none !important;
+      }
+
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy.is-changing,
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy.is-new,
+      .propaganda-dialogue .dialogue-bubble > .bubble-copy.is-visible {
+        transform: none !important;
       }
 
       .propaganda-dialogue .bubble-call .bubble-copy span {
-        width: 90% !important;
-        font-size: clamp(14px, 3.65vw, 18px) !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: clamp(13px, 3.35vw, 17px) !important;
         line-height: 0.94 !important;
         letter-spacing: -0.01em !important;
+        text-align: center !important;
       }
 
       .propaganda-dialogue .bubble-solution .bubble-copy strong {
-        width: 92% !important;
-        font-size: clamp(15px, 3.9vw, 19px) !important;
-        line-height: 0.93 !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        font-size: clamp(14px, 3.55vw, 18px) !important;
+        line-height: 0.92 !important;
         letter-spacing: -0.015em !important;
+        text-align: center !important;
       }
     }
 
